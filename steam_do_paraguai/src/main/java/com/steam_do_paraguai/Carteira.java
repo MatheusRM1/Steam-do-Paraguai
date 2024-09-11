@@ -8,12 +8,12 @@ package com.steam_do_paraguai;
  *
  * @author lukas-freitas
  */
-public class MenuPrincipal extends javax.swing.JFrame {
+public class Carteira extends javax.swing.JFrame {
 
     /**
-     * Creates new form MenuPrincipal
+     * Creates new form Carteira
      */
-    public MenuPrincipal() {
+    public Carteira() {
         initComponents();
     }
 
@@ -33,9 +33,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         carrinhoButton = new javax.swing.JButton();
         lojaButton = new javax.swing.JButton();
         iniciarSessaoButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMaximumSize(new java.awt.Dimension(720, 480));
         setMinimumSize(new java.awt.Dimension(720, 480));
         setPreferredSize(new java.awt.Dimension(720, 480));
 
@@ -85,7 +89,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barraSuperiorPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(lojaButton, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addComponent(lojaButton, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bibliotecaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -116,17 +120,42 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton1.setText("Recarregar");
+
+        jRadioButton1.setText("R$ 5,00");
+
+        jRadioButton2.setText("R$ 10,00");
+
+        jRadioButton3.setText("R$ 15,00");
+
         javax.swing.GroupLayout fundoPanelLayout = new javax.swing.GroupLayout(fundoPanel);
         fundoPanel.setLayout(fundoPanelLayout);
         fundoPanelLayout.setHorizontalGroup(
             fundoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(barraSuperiorPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fundoPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(fundoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButton3)
+                    .addGroup(fundoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addGap(54, 54, 54))
         );
         fundoPanelLayout.setVerticalGroup(
             fundoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundoPanelLayout.createSequentialGroup()
                 .addComponent(barraSuperiorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 353, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addComponent(jRadioButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton3)
+                .addGap(2, 2, 2)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -143,14 +172,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void iniciarSessaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSessaoButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_iniciarSessaoButtonActionPerformed
-
     private void bibliotecaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaButtonActionPerformed
         new BibliotecaJogos().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bibliotecaButtonActionPerformed
+
+    private void iniciarSessaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSessaoButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iniciarSessaoButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,20 +198,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Carteira.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Carteira.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Carteira.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Carteira.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                new Carteira().setVisible(true);
             }
         });
     }
@@ -193,6 +222,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton carrinhoButton;
     private javax.swing.JPanel fundoPanel;
     private javax.swing.JButton iniciarSessaoButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JButton lojaButton;
     private javax.swing.JLabel steamLabel;
     // End of variables declaration//GEN-END:variables
