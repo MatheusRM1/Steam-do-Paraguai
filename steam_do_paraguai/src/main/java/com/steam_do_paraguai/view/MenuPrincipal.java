@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.steam_do_paraguai;
+package com.steam_do_paraguai.view;
 
 /**
  *
@@ -35,9 +35,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         iniciarSessaoButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(720, 480));
-        setPreferredSize(new java.awt.Dimension(720, 480));
 
         fundoPanel.setBackground(new java.awt.Color(62, 122, 155));
 

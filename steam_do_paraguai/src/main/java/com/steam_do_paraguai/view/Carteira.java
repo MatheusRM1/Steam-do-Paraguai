@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.steam_do_paraguai;
+package com.steam_do_paraguai.view;
 
 /**
  *
@@ -39,9 +39,7 @@ public class Carteira extends javax.swing.JFrame {
         jRadioButton3 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(720, 480));
         setMinimumSize(new java.awt.Dimension(720, 480));
-        setPreferredSize(new java.awt.Dimension(720, 480));
 
         fundoPanel.setBackground(new java.awt.Color(62, 122, 155));
 
