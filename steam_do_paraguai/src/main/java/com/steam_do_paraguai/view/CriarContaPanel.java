@@ -26,19 +26,143 @@ public class CriarContaPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        createAccountLabel = new javax.swing.JLabel();
+        createAccountPane = new javax.swing.JPanel();
+        createAccountButton = new javax.swing.JButton();
+        userLabel = new javax.swing.JLabel();
+        userField = new javax.swing.JTextField();
+        passwordLabel = new javax.swing.JLabel();
+        passwordField = new javax.swing.JTextField();
+        confirmPasswordLabel = new javax.swing.JLabel();
+        confirmPasswordField = new javax.swing.JTextField();
+        userRadio = new javax.swing.JRadioButton();
+        adminRadio = new javax.swing.JRadioButton();
+
+        setBackground(new java.awt.Color(61, 122, 155));
+        setMaximumSize(new java.awt.Dimension(708, 368));
+        setMinimumSize(new java.awt.Dimension(708, 368));
+        setPreferredSize(new java.awt.Dimension(708, 368));
+
+        createAccountLabel.setFont(new java.awt.Font("Source Sans Pro", 0, 24)); // NOI18N
+        createAccountLabel.setForeground(new java.awt.Color(255, 255, 255));
+        createAccountLabel.setText("CRIAR CONTA");
+
+        createAccountPane.setBackground(new java.awt.Color(30, 30, 29));
+
+        createAccountButton.setForeground(new java.awt.Color(0, 0, 0));
+        createAccountButton.setText("Criar Conta");
+        createAccountButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createAccountButtonActionPerformed(evt);
+            }
+        });
+
+        userLabel.setForeground(new java.awt.Color(255, 255, 255));
+        userLabel.setText("Usuário");
+
+        userField.setText("Insira o nome de usuário");
+
+        passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        passwordLabel.setText("Senha");
+
+        passwordField.setText("Insira a senha");
+
+        confirmPasswordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        confirmPasswordLabel.setText("Confirmar Senha");
+
+        confirmPasswordField.setText("Insira a nova senha");
+
+        userRadio.setForeground(new java.awt.Color(255, 255, 255));
+        userRadio.setText("Usuário");
+
+        adminRadio.setForeground(new java.awt.Color(255, 255, 255));
+        adminRadio.setText("Admin");
+
+        javax.swing.GroupLayout createAccountPaneLayout = new javax.swing.GroupLayout(createAccountPane);
+        createAccountPane.setLayout(createAccountPaneLayout);
+        createAccountPaneLayout.setHorizontalGroup(
+            createAccountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createAccountPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(createAccountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(confirmPasswordField)
+                    .addComponent(userField, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                    .addComponent(passwordField)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createAccountPaneLayout.createSequentialGroup()
+                        .addComponent(userRadio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(adminRadio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createAccountButton))
+                    .addGroup(createAccountPaneLayout.createSequentialGroup()
+                        .addGroup(createAccountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userLabel)
+                            .addComponent(passwordLabel)
+                            .addComponent(confirmPasswordLabel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        createAccountPaneLayout.setVerticalGroup(
+            createAccountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createAccountPaneLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(userLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(passwordLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(confirmPasswordLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(createAccountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createAccountButton)
+                    .addComponent(userRadio)
+                    .addComponent(adminRadio))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(createAccountPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createAccountLabel))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(createAccountLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(createAccountPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void createAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createAccountButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton adminRadio;
+    private javax.swing.JTextField confirmPasswordField;
+    private javax.swing.JLabel confirmPasswordLabel;
+    private javax.swing.JButton createAccountButton;
+    private javax.swing.JLabel createAccountLabel;
+    private javax.swing.JPanel createAccountPane;
+    private javax.swing.JTextField passwordField;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JTextField userField;
+    private javax.swing.JLabel userLabel;
+    private javax.swing.JRadioButton userRadio;
     // End of variables declaration//GEN-END:variables
 }

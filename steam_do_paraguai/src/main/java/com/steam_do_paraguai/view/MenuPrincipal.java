@@ -48,6 +48,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(720, 480));
         setMinimumSize(new java.awt.Dimension(720, 480));
+        setResizable(false);
 
         fundoPanel.setBackground(new java.awt.Color(62, 122, 155));
 
@@ -113,6 +114,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         fundosButton.setBorder(null);
         fundosButton.setBorderPainted(false);
         fundosButton.setContentAreaFilled(false);
+        fundosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fundosButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout barraSuperiorPanelLayout = new javax.swing.GroupLayout(barraSuperiorPanel);
         barraSuperiorPanel.setLayout(barraSuperiorPanelLayout);
@@ -131,9 +137,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addGap(53, 53, 53)))
                 .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
-                        .addComponent(carrinhoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(carrinhoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fundosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(fundosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(iniciarSessaoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -152,6 +159,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(fundosButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        template.setBackground(new java.awt.Color(30, 30, 29));
 
         javax.swing.GroupLayout templateLayout = new javax.swing.GroupLayout(template);
         template.setLayout(templateLayout);
@@ -240,6 +249,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         template.validate();
         template.repaint();
     }//GEN-LAST:event_carrinhoButtonActionPerformed
+
+    private void fundosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fundosButtonActionPerformed
+       FundosPanel saldo = new FundosPanel();
+       saldo.setSize(708,368);
+       saldo.setLocation(0,0);
+       
+       template.removeAll();
+       template.add(saldo);
+       template.validate();
+       template.repaint();
+    }//GEN-LAST:event_fundosButtonActionPerformed
 
     /**
      * @param args the command line arguments
