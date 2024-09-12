@@ -171,8 +171,7 @@ public class Carteira extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bibliotecaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaButtonActionPerformed
-        new BibliotecaJogos().setVisible(true);
-        this.dispose();
+ 
     }//GEN-LAST:event_bibliotecaButtonActionPerformed
 
     private void iniciarSessaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSessaoButtonActionPerformed

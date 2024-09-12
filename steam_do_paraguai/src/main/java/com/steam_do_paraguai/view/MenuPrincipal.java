@@ -15,6 +15,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
+        
+        LojaPanel loja = new LojaPanel();
+        loja.setSize(708,368);
+        loja.setLocation(0,0);
+        
+        template.removeAll();
+        template.add(loja);
+        template.validate();
+        template.repaint();
     }
 
     /**
@@ -33,8 +42,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         carrinhoButton = new javax.swing.JButton();
         lojaButton = new javax.swing.JButton();
         iniciarSessaoButton = new javax.swing.JButton();
+        fundosButton = new javax.swing.JButton();
+        template = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(720, 480));
         setMinimumSize(new java.awt.Dimension(720, 480));
 
         fundoPanel.setBackground(new java.awt.Color(62, 122, 155));
@@ -42,12 +54,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         barraSuperiorPanel.setBackground(new java.awt.Color(30, 30, 29));
         barraSuperiorPanel.setForeground(new java.awt.Color(30, 30, 30));
 
-        steamLabel.setFont(new java.awt.Font("Cascadia Code", 0, 36)); // NOI18N
+        steamLabel.setFont(new java.awt.Font("Cascadia Code", 0, 30)); // NOI18N
         steamLabel.setForeground(new java.awt.Color(255, 255, 255));
         steamLabel.setText("STEAM DO PARAGUAI");
 
-        bibliotecaButton.setBackground(new java.awt.Color(30, 30, 30));
+        bibliotecaButton.setBackground(new java.awt.Color(30, 30, 29));
+        bibliotecaButton.setForeground(new java.awt.Color(255, 255, 255));
         bibliotecaButton.setText("BIBLIOTECA");
+        bibliotecaButton.setBorder(null);
         bibliotecaButton.setBorderPainted(false);
         bibliotecaButton.setContentAreaFilled(false);
         bibliotecaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -56,17 +70,35 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        carrinhoButton.setBackground(new java.awt.Color(30, 30, 30));
+        carrinhoButton.setBackground(new java.awt.Color(30, 30, 29));
+        carrinhoButton.setForeground(new java.awt.Color(255, 255, 255));
         carrinhoButton.setText("CARRINHO");
+        carrinhoButton.setBorder(null);
+        carrinhoButton.setBorderPainted(false);
+        carrinhoButton.setContentAreaFilled(false);
+        carrinhoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carrinhoButtonActionPerformed(evt);
+            }
+        });
 
-        lojaButton.setBackground(new java.awt.Color(30, 30, 30));
+        lojaButton.setBackground(new java.awt.Color(30, 30, 29));
+        lojaButton.setForeground(new java.awt.Color(255, 255, 255));
         lojaButton.setText("LOJA");
+        lojaButton.setBorder(null);
+        lojaButton.setBorderPainted(false);
+        lojaButton.setContentAreaFilled(false);
+        lojaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lojaButtonActionPerformed(evt);
+            }
+        });
 
         iniciarSessaoButton.setBackground(new java.awt.Color(30, 30, 29));
         iniciarSessaoButton.setFont(new java.awt.Font("Cascadia Code", 0, 24)); // NOI18N
         iniciarSessaoButton.setForeground(new java.awt.Color(255, 255, 255));
         iniciarSessaoButton.setText("INICIAR SESSAO");
-        iniciarSessaoButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        iniciarSessaoButton.setBorder(null);
         iniciarSessaoButton.setBorderPainted(false);
         iniciarSessaoButton.setContentAreaFilled(false);
         iniciarSessaoButton.addActionListener(new java.awt.event.ActionListener() {
@@ -75,56 +107,80 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        fundosButton.setBackground(new java.awt.Color(30, 30, 29));
+        fundosButton.setForeground(new java.awt.Color(255, 255, 255));
+        fundosButton.setText("FUNDOS");
+        fundosButton.setBorder(null);
+        fundosButton.setBorderPainted(false);
+        fundosButton.setContentAreaFilled(false);
+
         javax.swing.GroupLayout barraSuperiorPanelLayout = new javax.swing.GroupLayout(barraSuperiorPanel);
         barraSuperiorPanel.setLayout(barraSuperiorPanelLayout);
         barraSuperiorPanelLayout.setHorizontalGroup(
             barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barraSuperiorPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lojaButton, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bibliotecaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(carrinhoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addComponent(lojaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bibliotecaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barraSuperiorPanelLayout.createSequentialGroup()
                         .addComponent(steamLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(iniciarSessaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(53, 53, 53)))
+                .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
+                        .addComponent(carrinhoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fundosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(iniciarSessaoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         barraSuperiorPanelLayout.setVerticalGroup(
             barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
-                .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(steamLabel))
-                    .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(iniciarSessaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(iniciarSessaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(steamLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(bibliotecaButton)
-                        .addComponent(carrinhoButton))
-                    .addComponent(lojaButton))
+                .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lojaButton)
+                    .addComponent(bibliotecaButton)
+                    .addComponent(carrinhoButton)
+                    .addComponent(fundosButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout templateLayout = new javax.swing.GroupLayout(template);
+        template.setLayout(templateLayout);
+        templateLayout.setHorizontalGroup(
+            templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        templateLayout.setVerticalGroup(
+            templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 368, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout fundoPanelLayout = new javax.swing.GroupLayout(fundoPanel);
         fundoPanel.setLayout(fundoPanelLayout);
         fundoPanelLayout.setHorizontalGroup(
             fundoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(barraSuperiorPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(barraSuperiorPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(fundoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(template, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         fundoPanelLayout.setVerticalGroup(
             fundoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundoPanelLayout.createSequentialGroup()
                 .addComponent(barraSuperiorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 353, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(template, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,13 +198,48 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void iniciarSessaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSessaoButtonActionPerformed
-        // TODO add your handling code here:
+        LoginPanel log = new LoginPanel();
+        log.setSize(708,368);
+        log.setLocation(0,0);
+        
+        template.removeAll();
+        template.add(log);
+        template.revalidate();
+        template.repaint();
     }//GEN-LAST:event_iniciarSessaoButtonActionPerformed
 
     private void bibliotecaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaButtonActionPerformed
-        new BibliotecaJogos().setVisible(true);
-        this.dispose();
+        BibliotecaPanel bib = new BibliotecaPanel();
+        bib.setSize(708,368);
+        bib.setLocation(0,0);
+        
+        template.removeAll();
+        template.add(bib);
+        template.revalidate();
+        template.repaint();
     }//GEN-LAST:event_bibliotecaButtonActionPerformed
+
+    private void lojaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lojaButtonActionPerformed
+        LojaPanel loja = new LojaPanel();
+        loja.setSize(708,368);
+        loja.setLocation(0,0);
+
+        template.removeAll();
+        template.add(loja);
+        template.validate();
+        template.repaint();
+    }//GEN-LAST:event_lojaButtonActionPerformed
+
+    private void carrinhoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carrinhoButtonActionPerformed
+        CarrinhoPanel carrinho = new CarrinhoPanel();
+        carrinho.setSize(708,368);
+        carrinho.setLocation(0,0);
+
+        template.removeAll();
+        template.add(carrinho);
+        template.validate();
+        template.repaint();
+    }//GEN-LAST:event_carrinhoButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,8 +281,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton bibliotecaButton;
     private javax.swing.JButton carrinhoButton;
     private javax.swing.JPanel fundoPanel;
+    private javax.swing.JButton fundosButton;
     private javax.swing.JButton iniciarSessaoButton;
     private javax.swing.JButton lojaButton;
     private javax.swing.JLabel steamLabel;
+    private javax.swing.JPanel template;
     // End of variables declaration//GEN-END:variables
 }

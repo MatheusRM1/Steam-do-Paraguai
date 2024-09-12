@@ -4,7 +4,6 @@
  */
 package com.steam_do_paraguai.view;
 
-import com.steam_do_paraguai.view.BibliotecaJogos;
 
 /**
  *
@@ -243,8 +242,7 @@ public class AdminAdicaoJogos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bibliotecaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaButtonActionPerformed
-        new BibliotecaJogos().setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_bibliotecaButtonActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
