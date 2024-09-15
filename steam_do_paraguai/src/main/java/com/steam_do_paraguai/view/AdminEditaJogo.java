@@ -8,12 +8,12 @@ package com.steam_do_paraguai.view;
  *
  * @author lukas-freitas
  */
-public class AdminPanel extends javax.swing.JPanel {
+public class AdminEditaJogo extends javax.swing.JPanel {
 
     /**
      * Creates new form AdminPanel
      */
-    public AdminPanel() {
+    public AdminEditaJogo() {
         initComponents();
     }
 
