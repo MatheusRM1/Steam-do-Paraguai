@@ -38,16 +38,27 @@ public class LojaPanel extends javax.swing.JPanel {
         shopTableGames.setBackground(new java.awt.Color(221, 221, 221));
         shopTableGames.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "Descrição", "Preço"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        shopTableGames.getTableHeader().setReorderingAllowed(false);
         shopTable.setViewportView(shopTableGames);
+        if (shopTableGames.getColumnModel().getColumnCount() > 0) {
+            shopTableGames.getColumnModel().getColumn(0).setResizable(false);
+            shopTableGames.getColumnModel().getColumn(1).setResizable(false);
+            shopTableGames.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jTextField1.setText("Pesquisar");
 

@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.steam_do_paraguai.view;
-
+        
+        import java.util.List;
+        import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 /**
  *
  * @author lukas-freitas
@@ -85,6 +88,25 @@ public class BibliotecaPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+//    public void carregaLista(List<Jogos> jogos)
+//    {
+//        DefaultListModel<Jogos> model = (DefaultListModel<Jogos>)gamesList.getModel();
+//        for(Jogos game: jogos)
+//        {
+//            model.add(game);
+//        }
+//    }
+    
+//    public List<Jogos> listaContatos(){
+//        DefaultListModel<Jogos> model = (DefaultListModel<Jogos>)gamesList.getModel();
+//        List<Jogos> jogos = new ArrayList<>();
+//
+//        for (int i = 0; i < model.size(); i++) {
+//            jogos.add(model.get(i));
+//        }
+//
+//        return jogos;
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> gamesList;

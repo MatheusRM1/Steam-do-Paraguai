@@ -4,6 +4,8 @@
  */
 package com.steam_do_paraguai.view;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author lukas-freitas
@@ -38,18 +40,34 @@ public class CarrinhoPanel extends javax.swing.JPanel {
 
         tableCartGames.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "Descrição", "Preço"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableCartGames.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableCartGames);
+        if (tableCartGames.getColumnModel().getColumnCount() > 0) {
+            tableCartGames.getColumnModel().getColumn(0).setResizable(false);
+            tableCartGames.getColumnModel().getColumn(1).setResizable(false);
+            tableCartGames.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         buyButton.setText("Comprar");
+        buyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyButtonActionPerformed(evt);
+            }
+        });
 
         totalLabel.setBackground(new java.awt.Color(30, 30, 29));
         totalLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -81,6 +99,28 @@ public class CarrinhoPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
+//        compraJogos();
+    }//GEN-LAST:event_buyButtonActionPerformed
+
+//    public void carregaCarrinho(List<Jogos> jogos)
+//    {
+//        DefaultTableModel model = (DefaultTableModel)tableCartGames.getModel();
+//        for(int i = 0; i<jogos.size(); i+=1)
+//        {
+//            model.addRow(new Object[]{jogos.get(i).getNome(), jogos.get(i).getDescricao, jogos.get(i).getPreco});
+//        }
+//    }
+    
+//    public List<Jogos> listaPessoas()
+//    {
+//        List<Jogos> jogos = new ArrayList<>();
+//
+//
+//        }
+//        return jogos;
+//    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buyButton;
