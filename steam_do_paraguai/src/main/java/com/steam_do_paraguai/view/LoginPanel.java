@@ -151,7 +151,7 @@ public class LoginPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_redirecionaParaCriarConta
 
     private void entraNaConta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entraNaConta
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_entraNaConta
 
 

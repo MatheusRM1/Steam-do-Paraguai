@@ -35,4 +35,11 @@ public class Usuario extends User{
     public String acessoAoSistema(){
         return this.getNome();
     }
+
+    @Override
+    public String toString() {
+        return "Usuario";
+    }
+    
+    
 }
