@@ -129,6 +129,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Entrar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="entraNaConta"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="createAccountButton">
           <Properties>
@@ -141,7 +144,7 @@
             <Property name="text" type="java.lang.String" value="Criar Conta"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createAccountButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="redirecionaParaCriarConta"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="userLabel">

@@ -49,13 +49,18 @@ public class LoginPanel extends javax.swing.JPanel {
         enterAccountButton.setBackground(new java.awt.Color(221, 221, 221));
         enterAccountButton.setForeground(new java.awt.Color(30, 30, 29));
         enterAccountButton.setText("Entrar");
+        enterAccountButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entraNaConta(evt);
+            }
+        });
 
         createAccountButton.setBackground(new java.awt.Color(221, 221, 221));
         createAccountButton.setForeground(new java.awt.Color(30, 30, 29));
         createAccountButton.setText("Criar Conta");
         createAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createAccountButtonActionPerformed(evt);
+                redirecionaParaCriarConta(evt);
             }
         });
 
@@ -134,7 +139,7 @@ public class LoginPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountButtonActionPerformed
+    private void redirecionaParaCriarConta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redirecionaParaCriarConta
         CriarContaPanel criarConta = new CriarContaPanel();
         criarConta.setSize(708,368);
         criarConta.setLocation(0,0);
@@ -143,7 +148,11 @@ public class LoginPanel extends javax.swing.JPanel {
         this.add(criarConta);
         this.revalidate();
         this.repaint();
-    }//GEN-LAST:event_createAccountButtonActionPerformed
+    }//GEN-LAST:event_redirecionaParaCriarConta
+
+    private void entraNaConta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entraNaConta
+        // TODO add your handling code here:
+    }//GEN-LAST:event_entraNaConta
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

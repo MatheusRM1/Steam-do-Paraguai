@@ -135,7 +135,7 @@
             <Property name="text" type="java.lang.String" value="Criar Conta"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createAccountButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="criarConta"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="userLabel">

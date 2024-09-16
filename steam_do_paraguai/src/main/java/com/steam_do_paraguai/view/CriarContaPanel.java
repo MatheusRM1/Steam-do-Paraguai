@@ -53,7 +53,7 @@ public class CriarContaPanel extends javax.swing.JPanel {
         createAccountButton.setText("Criar Conta");
         createAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createAccountButtonActionPerformed(evt);
+                criarConta(evt);
             }
         });
 
@@ -147,9 +147,9 @@ public class CriarContaPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountButtonActionPerformed
+    private void criarConta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarConta
         // TODO add your handling code here:
-    }//GEN-LAST:event_createAccountButtonActionPerformed
+    }//GEN-LAST:event_criarConta
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
