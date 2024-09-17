@@ -4,17 +4,35 @@
  */
 package com.steam_do_paraguai.view;
 
+import com.google.gson.JsonArray;
+import com.steam_do_paraguai.model.*;
+import com.google.gson.JsonObject;
+import com.steam_do_paraguai.persistence.Persistence;
+import com.steam_do_paraguai.persistence.UsuarioPersistence;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lukas-freitas
  */
 public class CriarContaPanel extends javax.swing.JPanel {
 
+    private List<User> jlUsuarios = new ArrayList<>();
+
     /**
      * Creates new form CriarContaPanel
      */
     public CriarContaPanel() {
         initComponents();
+    }
+    
+    public List<User> listaUsuarios(){
+        return jlUsuarios;
     }
 
     /**
@@ -26,6 +44,7 @@ public class CriarContaPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         createAccountLabel = new javax.swing.JLabel();
         createAccountPane = new javax.swing.JPanel();
         createAccountButton = new javax.swing.JButton();
@@ -35,7 +54,7 @@ public class CriarContaPanel extends javax.swing.JPanel {
         passwordField = new javax.swing.JTextField();
         confirmPasswordLabel = new javax.swing.JLabel();
         confirmPasswordField = new javax.swing.JTextField();
-        userRadio = new javax.swing.JRadioButton();
+        usuarioRadio = new javax.swing.JRadioButton();
         adminRadio = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(61, 122, 155));
@@ -60,21 +79,34 @@ public class CriarContaPanel extends javax.swing.JPanel {
         userLabel.setForeground(new java.awt.Color(255, 255, 255));
         userLabel.setText("Usuário");
 
-        userField.setText("Insira o nome de usuário");
+        userField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userFieldActionPerformed(evt);
+            }
+        });
 
         passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
         passwordLabel.setText("Senha");
 
-        passwordField.setText("Insira a senha");
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
 
         confirmPasswordLabel.setForeground(new java.awt.Color(255, 255, 255));
         confirmPasswordLabel.setText("Confirmar Senha");
 
-        confirmPasswordField.setText("Insira a nova senha");
+        buttonGroup1.add(usuarioRadio);
+        usuarioRadio.setForeground(new java.awt.Color(255, 255, 255));
+        usuarioRadio.setText("Usuário");
+        usuarioRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioRadioActionPerformed(evt);
+            }
+        });
 
-        userRadio.setForeground(new java.awt.Color(255, 255, 255));
-        userRadio.setText("Usuário");
-
+        buttonGroup1.add(adminRadio);
         adminRadio.setForeground(new java.awt.Color(255, 255, 255));
         adminRadio.setText("Admin");
 
@@ -86,20 +118,17 @@ public class CriarContaPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(createAccountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(confirmPasswordField)
-                    .addComponent(userField, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
                     .addComponent(passwordField)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createAccountPaneLayout.createSequentialGroup()
-                        .addComponent(userRadio)
+                        .addComponent(usuarioRadio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(adminRadio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(createAccountButton))
-                    .addGroup(createAccountPaneLayout.createSequentialGroup()
-                        .addGroup(createAccountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(userLabel)
-                            .addComponent(passwordLabel)
-                            .addComponent(confirmPasswordLabel))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(userField, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                    .addComponent(userLabel)
+                    .addComponent(passwordLabel)
+                    .addComponent(confirmPasswordLabel))
                 .addContainerGap())
         );
         createAccountPaneLayout.setVerticalGroup(
@@ -120,7 +149,7 @@ public class CriarContaPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(createAccountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createAccountButton)
-                    .addComponent(userRadio)
+                    .addComponent(usuarioRadio)
                     .addComponent(adminRadio))
                 .addContainerGap())
         );
@@ -148,12 +177,37 @@ public class CriarContaPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void criarConta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarConta
-        // TODO add your handling code here:
+
+        if (passwordField.getText().equals(confirmPasswordField.getText())) {
+            if (usuarioRadio.isSelected()) {
+                jlUsuarios.add(new Usuario(userField.getText(), passwordField.getText()));
+            } else if (adminRadio.isSelected()) {
+                jlUsuarios.add(new Admin(userField.getText(), passwordField.getText()));
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Senha nao confirmada");
+        }
+        
+        Persistence<User> contatoPersistence = new UsuarioPersistence();
+        contatoPersistence.save(listaUsuarios());
     }//GEN-LAST:event_criarConta
+
+    private void userFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userFieldActionPerformed
+
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldActionPerformed
+
+    private void usuarioRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioRadioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usuarioRadioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton adminRadio;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField confirmPasswordField;
     private javax.swing.JLabel confirmPasswordLabel;
     private javax.swing.JButton createAccountButton;
@@ -163,6 +217,6 @@ public class CriarContaPanel extends javax.swing.JPanel {
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField userField;
     private javax.swing.JLabel userLabel;
-    private javax.swing.JRadioButton userRadio;
+    private javax.swing.JRadioButton usuarioRadio;
     // End of variables declaration//GEN-END:variables
 }

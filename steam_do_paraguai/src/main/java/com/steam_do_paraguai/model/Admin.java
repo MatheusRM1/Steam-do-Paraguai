@@ -18,7 +18,11 @@ public class Admin extends User{
     
     @Override
     public String acessoAoSistema() {
-       return "Admin";
+       return "admin";
     }
     
+    @Override
+    public String toString(){
+        return "Nome: " + this.getNome() + ", Senha: " + this.getSenha() + ", Acesso: " + acessoAoSistema();
+    }  
 }

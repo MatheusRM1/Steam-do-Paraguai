@@ -4,6 +4,8 @@
  */
 package com.steam_do_paraguai.view;
 
+import com.google.gson.JsonObject;
+
 /**
  *
  * @author lukas-freitas
@@ -69,14 +71,12 @@ public class LoginPanel extends javax.swing.JPanel {
 
         userField.setBackground(new java.awt.Color(221, 221, 221));
         userField.setForeground(new java.awt.Color(30, 30, 29));
-        userField.setText("Insira o nome de usuário");
 
         passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
         passwordLabel.setText("Senha:");
 
         passwordField.setBackground(new java.awt.Color(221, 221, 221));
         passwordField.setForeground(new java.awt.Color(30, 30, 29));
-        passwordField.setText("Insira sua senha");
 
         javax.swing.GroupLayout loginAreaPanelLayout = new javax.swing.GroupLayout(loginAreaPanel);
         loginAreaPanel.setLayout(loginAreaPanelLayout);

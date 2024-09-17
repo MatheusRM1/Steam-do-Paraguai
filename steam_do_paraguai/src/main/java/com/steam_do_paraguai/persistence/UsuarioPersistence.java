@@ -18,7 +18,7 @@ import com.google.gson.reflect.TypeToken;
  */
 public class UsuarioPersistence implements Persistence<User>{
     
-    private static final String PATH = DIRECTORY +"/contatos.json";
+    private static final String PATH = DIRECTORY +"/usuarios.json";
     @Override
     public void save(List<User> itens) {
         Gson gson = new Gson();

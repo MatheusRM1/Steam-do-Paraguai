@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Usuario extends User{
 
     private int saldo;
-    private ArrayListt<Jogo> biblioteca;
+    private ArrayList<Jogo> biblioteca;
     
     public Usuario(String n, String s) {
         super(n, s);
@@ -33,13 +33,12 @@ public class Usuario extends User{
     
     @Override
     public String acessoAoSistema(){
-        return this.getNome();
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario";
-    }
+        return "usuario";
+    }    
     
+    @Override
+    public String toString(){
+        return "Nome: " + this.getNome() + ", Senha: " + this.getSenha() + ", Acesso: " + acessoAoSistema();
+    }    
     
 }
