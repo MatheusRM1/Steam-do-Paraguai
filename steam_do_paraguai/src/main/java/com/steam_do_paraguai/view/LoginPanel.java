@@ -5,6 +5,13 @@
 package com.steam_do_paraguai.view;
 
 import com.google.gson.JsonObject;
+import com.steam_do_paraguai.exception.UsuarioException;
+import com.steam_do_paraguai.model.*;
+import com.steam_do_paraguai.persistence.Persistence;
+import com.steam_do_paraguai.persistence.UsuarioPersistence;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,6 +19,7 @@ import com.google.gson.JsonObject;
  */
 public class LoginPanel extends javax.swing.JPanel {
 
+    private List<User> jlUsuarios = new ArrayList<>();
     /**
      * Creates new form LoginPanel
      */
@@ -141,9 +149,9 @@ public class LoginPanel extends javax.swing.JPanel {
 
     private void redirecionaParaCriarConta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redirecionaParaCriarConta
         CriarContaPanel criarConta = new CriarContaPanel();
-        criarConta.setSize(708,368);
-        criarConta.setLocation(0,0);
-        
+        criarConta.setSize(708, 368);
+        criarConta.setLocation(0, 0);
+
         this.removeAll();
         this.add(criarConta);
         this.revalidate();
@@ -152,6 +160,33 @@ public class LoginPanel extends javax.swing.JPanel {
 
     private void entraNaConta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entraNaConta
         
+        Persistence<User> usuarioPersistence = new UsuarioPersistence();
+        List<User> lista = usuarioPersistence.findAll();
+        
+        int existe = 0;
+        
+        for (User p : lista) {
+            if (p.getNome().equals(userField.getText())) {
+                existe = 1;
+                if (p.getSenha().equals(passwordField.getText())) {
+                    JOptionPane.showMessageDialog(loginAreaPanel, "Bem Vindo " + p.getNome() +" (" + p.acessoAoSistema() + ")" );
+                    
+                    LojaPanel loja = new LojaPanel();
+                    loja.setSize(708, 368);
+                    loja.setLocation(0, 0);
+
+                    this.removeAll();
+                    this.add(loja);
+                    this.revalidate();
+                    this.repaint();
+                    
+                } else
+                    JOptionPane.showMessageDialog(loginAreaPanel, "Senha Invalida");
+            }
+        }
+        
+        if(existe == 0)
+            JOptionPane.showMessageDialog(loginAreaPanel, "Usuario nao encontrado, crie uma conta");
     }//GEN-LAST:event_entraNaConta
 
 

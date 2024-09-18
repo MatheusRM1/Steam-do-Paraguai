@@ -4,6 +4,7 @@
  */
 package com.steam_do_paraguai.model;
 
+import com.steam_do_paraguai.exception.UsuarioException;
 import java.util.ArrayList;
 
 /**
@@ -13,10 +14,10 @@ import java.util.ArrayList;
 public class Usuario extends User{
 
     private int saldo;
-    private ArrayList<Jogo> biblioteca;
     
-    public Usuario(String n, String s) {
-        super(n, s);
+    
+    public Usuario(String n, String s, String a) throws UsuarioException{
+        super(n, s, a);
     }
     
     public void adicionaSaldo(int altera){
@@ -27,14 +28,14 @@ public class Usuario extends User{
         this.saldo -= saldo;
     }
     
-    public void adicionaJogo(Jogo joguinho){
-        biblioteca.add(joguinho);
+    public int getSaldo(){
+        return this.saldo;
     }
     
-    @Override
-    public String acessoAoSistema(){
-        return "usuario";
-    }    
+    public void adicionaJogo(){
+       
+    }
+    
     
     @Override
     public String toString(){

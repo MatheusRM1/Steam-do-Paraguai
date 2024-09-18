@@ -4,6 +4,7 @@
  */
 package com.steam_do_paraguai.model;
 
+import com.steam_do_paraguai.exception.UsuarioException;
 import java.util.ArrayList;
 
 /**
@@ -12,13 +13,8 @@ import java.util.ArrayList;
  */
 public class Admin extends User{
 
-    public Admin(String n, String s) {
-        super(n, s);
-    }
-    
-    @Override
-    public String acessoAoSistema() {
-       return "admin";
+    public Admin(String n, String s, String a) throws UsuarioException {
+        super(n, s, a);
     }
     
     @Override

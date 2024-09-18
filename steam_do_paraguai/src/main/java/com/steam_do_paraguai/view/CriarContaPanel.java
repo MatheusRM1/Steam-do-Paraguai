@@ -7,6 +7,7 @@ package com.steam_do_paraguai.view;
 import com.google.gson.JsonArray;
 import com.steam_do_paraguai.model.*;
 import com.google.gson.JsonObject;
+import com.steam_do_paraguai.exception.UsuarioException;
 import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
 import java.awt.event.WindowEvent;
@@ -22,17 +23,11 @@ import javax.swing.JOptionPane;
  */
 public class CriarContaPanel extends javax.swing.JPanel {
 
-    private List<User> jlUsuarios = new ArrayList<>();
-
     /**
      * Creates new form CriarContaPanel
      */
     public CriarContaPanel() {
         initComponents();
-    }
-    
-    public List<User> listaUsuarios(){
-        return jlUsuarios;
     }
 
     /**
@@ -177,19 +172,44 @@ public class CriarContaPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void criarConta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarConta
+        try {
+            Persistence<User> usuarioPersistence = new UsuarioPersistence();
+            List<User> lista = usuarioPersistence.findAll();
+            
+            if (passwordField.getText().equals(confirmPasswordField.getText())) {
+                if (usuarioRadio.isSelected()) {
+                    lista.add(new Usuario(userField.getText(), passwordField.getText(), "Usuario"));
+                    LoginPanel criarConta = new LoginPanel();
+                    criarConta.setSize(708, 368);
+                    criarConta.setLocation(0, 0);
 
-        if (passwordField.getText().equals(confirmPasswordField.getText())) {
-            if (usuarioRadio.isSelected()) {
-                jlUsuarios.add(new Usuario(userField.getText(), passwordField.getText()));
-            } else if (adminRadio.isSelected()) {
-                jlUsuarios.add(new Admin(userField.getText(), passwordField.getText()));
+                    this.removeAll();
+                    this.add(criarConta);
+                    this.revalidate();
+                    this.repaint();
+                } else if (adminRadio.isSelected()) {
+                    lista.add(new Admin(userField.getText(), passwordField.getText(), "Admin"));
+                    LoginPanel criarConta = new LoginPanel();
+                    criarConta.setSize(708, 368);
+                    criarConta.setLocation(0, 0);
+
+                    this.removeAll();
+                    this.add(criarConta);
+                    this.revalidate();
+                    this.repaint();
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Senha nao confirmada");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Senha nao confirmada");
+
+            
+            usuarioPersistence.save(lista);
+
+        } catch (UsuarioException e) {
+            JOptionPane.showMessageDialog(null, "Nome de usuario invalido(tem que ter obrigatoriamente uma letra) ou usuario ja existente");
         }
-        
-        Persistence<User> contatoPersistence = new UsuarioPersistence();
-        contatoPersistence.save(listaUsuarios());
+
     }//GEN-LAST:event_criarConta
 
     private void userFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFieldActionPerformed

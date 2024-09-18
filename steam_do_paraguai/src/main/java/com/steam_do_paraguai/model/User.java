@@ -4,34 +4,66 @@
  */
 package com.steam_do_paraguai.model;
 
+import com.steam_do_paraguai.exception.UsuarioException;
+import com.steam_do_paraguai.persistence.Persistence;
+import com.steam_do_paraguai.persistence.UsuarioPersistence;
+import java.util.List;
+
 /**
  *
  * @author mathe
  */
 public abstract class User {
+
     private String nome;
     private String senha;
-    
-    public User(String n, String s){
+    private String type;
+
+    public User(String n, String s, String a) throws UsuarioException {
+        if (!valido(n, s)) {
+            throw new UsuarioException();
+        }
+
         this.nome = n;
         this.senha = s;
+        this.type = a;
     }
-    
-    public String getNome(){
+
+    public boolean valido(String n, String s) {
+        String regex = "^[A-Za-z0-9]+$";
+        String regexLetra = ".*[A-Za-z]+.*";
+
+        Persistence<User> usuarioPersistence = new UsuarioPersistence();
+        List<User> lista = usuarioPersistence.findAll();
+
+        int existe = 0;
+        
+        for (User p : lista) {
+            if (p.getNome().equals(n)) {
+                   existe = 1;
+            }
+        }
+
+        return n.matches(regex) && n.matches(regexLetra) && s.matches(regex) && existe == 0;
+    }
+
+    public String getNome() {
         return this.nome;
     }
-    
-    public String getSenha(){
+
+    public String getSenha() {
         return this.senha;
     }
-    
-     public void setNome(String novoNome){
+
+    public void setNome(String novoNome) {
         this.nome = novoNome;
     }
-    
-    public void setSenha(String novaSenha){
+
+    public void setSenha(String novaSenha) {
         this.senha = novaSenha;
     }
-    
-    public abstract String acessoAoSistema();
+
+    public String acessoAoSistema() {
+        return this.type;
+    }
 }

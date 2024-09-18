@@ -4,13 +4,17 @@
  */
 package com.steam_do_paraguai.persistence;
 
+
 import com.steam_do_paraguai.model.User;
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+
+
 
 /**
  *
@@ -19,9 +23,13 @@ import com.google.gson.reflect.TypeToken;
 public class UsuarioPersistence implements Persistence<User>{
     
     private static final String PATH = DIRECTORY +"/usuarios.json";
+    
     @Override
     public void save(List<User> itens) {
-        Gson gson = new Gson();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(User.class, new UserAdapter());
+        
+        Gson gson = gsonBuilder.create();
         String json = gson.toJson(itens);
 
         File diretorio = new File(DIRECTORY);
@@ -35,7 +43,10 @@ public class UsuarioPersistence implements Persistence<User>{
 
     @Override
     public List<User> findAll() {
-        Gson gson = new Gson();
+        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(User.class, new UserAdapter());
+        Gson gson = gsonBuilder.create();
 
         String json = Arquivo.le(PATH);
 
