@@ -4,17 +4,40 @@
  */
 package com.steam_do_paraguai.view;
 
+import com.steam_do_paraguai.model.User;
+import com.steam_do_paraguai.model.Usuario;
+import com.steam_do_paraguai.persistence.Persistence;
+import com.steam_do_paraguai.persistence.UsuarioPersistence;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lukas-freitas
  */
 public class FundosPanel extends javax.swing.JPanel {
-
+private MenuPrincipal tela;
+private List<User> lista;
+private Persistence<User> usuarioPersistence;
     /**
      * Creates new form FundosPanel
      */
-    public FundosPanel() {
+    public FundosPanel(MenuPrincipal tela) {
+        this.tela = tela;
+        if(tela.getIndex()!= -1)
+        {
+            
+        this.usuarioPersistence = new UsuarioPersistence();
+        this.lista = usuarioPersistence.findAll();
         initComponents();
+        String valor = String.format("%.2f", this.lista.get(this.tela.getIndex()).getSaldo());
+        valor = valor.replaceAll("[.]",",");
+        this.valorSaldoLabel.setText(valor);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Inicie Sessao antes de ver fundos!");
+        }
     }
 
     /**
@@ -44,6 +67,11 @@ public class FundosPanel extends javax.swing.JPanel {
         mais10Button.setMaximumSize(new java.awt.Dimension(100, 36));
         mais10Button.setMinimumSize(new java.awt.Dimension(100, 36));
         mais10Button.setPreferredSize(new java.awt.Dimension(100, 36));
+        mais10Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mais10ButtonActionPerformed(evt);
+            }
+        });
 
         mais20Button.setBackground(new java.awt.Color(30, 30, 29));
         mais20Button.setForeground(new java.awt.Color(255, 255, 255));
@@ -117,12 +145,44 @@ public class FundosPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mais20ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mais20ButtonActionPerformed
-        // TODO add your handling code here:
+   
+        String valor =  this.valorSaldoLabel.getText();
+        Usuario novo = (Usuario) lista.get(this.tela.getIndex());
+        novo.adicionaSaldo(20);
+        lista.set(this.tela.getIndex(), novo);
+        usuarioPersistence.save(lista);
+        valor = String.format("%.2f", this.lista.get(this.tela.getIndex()).getSaldo());
+        
+        valor = valor.replaceAll("[.]",",");
+        this.valorSaldoLabel.setText(valor);
+        
     }//GEN-LAST:event_mais20ButtonActionPerformed
 
     private void mais50ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mais50ButtonActionPerformed
-        // TODO add your handling code here:
+
+        String valor =  this.valorSaldoLabel.getText();
+        Usuario novo = (Usuario) lista.get(this.tela.getIndex());
+        novo.adicionaSaldo(50);
+        lista.set(this.tela.getIndex(), novo);
+        usuarioPersistence.save(lista);
+        valor = String.format("%.2f", this.lista.get(this.tela.getIndex()).getSaldo());
+        
+        valor = valor.replaceAll("[.]",",");
+        this.valorSaldoLabel.setText(valor);
     }//GEN-LAST:event_mais50ButtonActionPerformed
+
+    private void mais10ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mais10ButtonActionPerformed
+        
+        String valor =  this.valorSaldoLabel.getText();
+        Usuario novo = (Usuario) lista.get(this.tela.getIndex());
+        novo.adicionaSaldo(10);
+        lista.set(this.tela.getIndex(), novo);
+        usuarioPersistence.save(lista);
+        valor = String.format("%.2f", this.lista.get(this.tela.getIndex()).getSaldo());
+        
+        valor = valor.replaceAll("[.]",",");
+        this.valorSaldoLabel.setText(valor);
+    }//GEN-LAST:event_mais10ButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

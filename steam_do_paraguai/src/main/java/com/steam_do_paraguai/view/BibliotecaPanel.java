@@ -12,11 +12,12 @@ import javax.swing.DefaultListModel;
  * @author lukas-freitas
  */
 public class BibliotecaPanel extends javax.swing.JPanel {
-
+    private MenuPrincipal tela;
     /**
      * Creates new form BibliotecaPanel
      */
-    public BibliotecaPanel() {
+    public BibliotecaPanel(MenuPrincipal tela) {
+        this.tela = tela;
         initComponents();
     }
 
@@ -88,18 +89,18 @@ public class BibliotecaPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-//    public void carregaLista(List<Jogos> jogos)
+//    public void carregaLista(List<Jogo> jogo)
 //    {
-//        DefaultListModel<Jogos> model = (DefaultListModel<Jogos>)gamesList.getModel();
-//        for(Jogos game: jogos)
+//        DefaultListModel<Jogo> model = (DefaultListModel<Jogo>)gamesList.getModel();
+//        for(Jogo game: jogo)
 //        {
 //            model.add(game);
 //        }
 //    }
     
 //    public List<Jogos> listaContatos(){
-//        DefaultListModel<Jogos> model = (DefaultListModel<Jogos>)gamesList.getModel();
-//        List<Jogos> jogos = new ArrayList<>();
+//        DefaultListModel<Jogo> model = (DefaultListModel<Jogo>)gamesList.getModel();
+//        List<Jogo> jogos = new ArrayList<>();
 //
 //        for (int i = 0; i < model.size(); i++) {
 //            jogos.add(model.get(i));

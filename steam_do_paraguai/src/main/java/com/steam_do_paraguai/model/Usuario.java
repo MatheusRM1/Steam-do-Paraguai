@@ -13,27 +13,8 @@ import java.util.ArrayList;
  */
 public class Usuario extends User{
 
-    private int saldo;
-    
-    
     public Usuario(String n, String s, String a) throws UsuarioException{
         super(n, s, a);
-    }
-    
-    public void adicionaSaldo(int altera){
-        this.saldo += saldo;
-    }
-    
-    public void removeSaldo(int altera){
-        this.saldo -= saldo;
-    }
-    
-    public int getSaldo(){
-        return this.saldo;
-    }
-    
-    public void adicionaJogo(){
-       
     }
     
     

@@ -17,6 +17,7 @@ public abstract class User {
 
     private String nome;
     private String senha;
+    private float saldo;
     private String type;
 
     public User(String n, String s, String a) throws UsuarioException {
@@ -66,4 +67,21 @@ public abstract class User {
     public String acessoAoSistema() {
         return this.type;
     }
+    
+    public void adicionaSaldo(float value){
+        this.saldo += value;
+    }
+    
+    public void removeSaldo(float value){
+        this.saldo -= value;
+    }
+    
+    public float getSaldo(){
+        return this.saldo;
+    }
+    
+    public void adicionaJogo(){
+       
+    }
+    
 }

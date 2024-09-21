@@ -21,20 +21,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
+        usuario = 0;
+        index = -1;
         initComponents();
 
         LoginPanel log = new LoginPanel(this);
-        log.setSize(708, 368);
-        log.setLocation(0, 0);
-
-        template.removeAll();
-        template.add(log);
-        template.validate();
-        template.repaint();
+        this.mudaPanel(log);
     }
 
     public int getIndex() {
         return this.index;
+    }
+    
+    private void mudaPanel(javax.swing.JPanel temp)
+    {
+        temp.setSize(708,368);
+        temp.setLocation(0,0);
+        template.removeAll();
+        template.add(temp);
+        template.revalidate();
+        template.repaint();
     }
 
     public void setDeslogado() {
@@ -52,12 +58,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         LoginPanel log = new LoginPanel(this);
-        log.setSize(708, 368);
-        log.setLocation(0, 0);
-        template.removeAll();
-        template.add(log);
-        template.revalidate();
-        template.repaint();
+        this.mudaPanel(log);
     }
 
     public void setUsuario(LoginPanel login) {
@@ -65,7 +66,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.index = login.getIndex();
 
         if (this.usuario == 1) {
-            iniciarSessaoButton.setText("Usuario");
+            iniciarSessaoButton.setText("USUARIO");
             java.awt.event.ActionListener[] acao = iniciarSessaoButton.getActionListeners();
             iniciarSessaoButton.removeActionListener(acao[0]);
             iniciarSessaoButton.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +77,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             });
 
         } else if (this.usuario == 2) {
-            iniciarSessaoButton.setText("Admin");
+            iniciarSessaoButton.setText("ADMIN");
             java.awt.event.ActionListener[] acao = iniciarSessaoButton.getActionListeners();
             iniciarSessaoButton.removeActionListener(acao[0]);
             iniciarSessaoButton.addActionListener(new java.awt.event.ActionListener() {
@@ -98,35 +99,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
 
         LojaPanel loja = new LojaPanel(this);
-        loja.setSize(708, 368);
-        loja.setLocation(0, 0);
-
-        template.removeAll();
-        template.add(loja);
-        template.validate();
-        template.repaint();
+        this.mudaPanel(loja);
     }
-
     private void userButtonActionPerformed(java.awt.event.ActionEvent evt) {
         EscolhaAdmin log = new EscolhaAdmin(this);
-        log.setSize(708, 368);
-        log.setLocation(0, 0);
-
-        template.removeAll();
-        template.add(log);
-        template.revalidate();
-        template.repaint();
+        this.mudaPanel(log);
     }
 
     private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {
         EscolhaAdmin log = new EscolhaAdmin(this);
-        log.setSize(708, 368);
-        log.setLocation(0, 0);
-
-        template.removeAll();
-        template.add(log);
-        template.revalidate();
-        template.repaint();
+        this.mudaPanel(log);
     }
 
     /**
@@ -311,56 +293,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void iniciarSessaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSessaoButtonActionPerformed
         LoginPanel log = new LoginPanel(this);
-        log.setSize(708, 368);
-        log.setLocation(0, 0);
-        template.removeAll();
-        template.add(log);
-        template.revalidate();
-        template.repaint();
+        this.mudaPanel(log);
     }//GEN-LAST:event_iniciarSessaoButtonActionPerformed
 
     private void bibliotecaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaButtonActionPerformed
-        BibliotecaPanel bib = new BibliotecaPanel();
-        bib.setSize(708, 368);
-        bib.setLocation(0, 0);
-
-        template.removeAll();
-        template.add(bib);
-        template.revalidate();
-        template.repaint();
+        BibliotecaPanel bib = new BibliotecaPanel(this);
+        this.mudaPanel(bib);
     }//GEN-LAST:event_bibliotecaButtonActionPerformed
 
     private void lojaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lojaButtonActionPerformed
         LojaPanel loja = new LojaPanel(this);
-        loja.setSize(708, 368);
-        loja.setLocation(0, 0);
-
-        template.removeAll();
-        template.add(loja);
-        template.validate();
-        template.repaint();
+        this.mudaPanel(loja);
     }//GEN-LAST:event_lojaButtonActionPerformed
 
     private void carrinhoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carrinhoButtonActionPerformed
-        CarrinhoPanel carrinho = new CarrinhoPanel();
-        carrinho.setSize(708, 368);
-        carrinho.setLocation(0, 0);
-
-        template.removeAll();
-        template.add(carrinho);
-        template.validate();
-        template.repaint();
+        CarrinhoPanel carrinho = new CarrinhoPanel(this);
+        this.mudaPanel(carrinho);
     }//GEN-LAST:event_carrinhoButtonActionPerformed
 
     private void fundosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fundosButtonActionPerformed
-        FundosPanel saldo = new FundosPanel();
-        saldo.setSize(708, 368);
-        saldo.setLocation(0, 0);
-
-        template.removeAll();
-        template.add(saldo);
-        template.validate();
-        template.repaint();
+        FundosPanel saldo = new FundosPanel(this);
+        this.mudaPanel(saldo);
     }//GEN-LAST:event_fundosButtonActionPerformed
 
     /**

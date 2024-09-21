@@ -9,11 +9,12 @@ package com.steam_do_paraguai.view;
  * @author lukas-freitas
  */
 public class AdminEditaJogo extends javax.swing.JPanel {
-
+private MenuPrincipal tela;
     /**
      * Creates new form AdminPanel
      */
-    public AdminEditaJogo() {
+    public AdminEditaJogo(MenuPrincipal tela) {
+        this.tela = tela;
         initComponents();
     }
 

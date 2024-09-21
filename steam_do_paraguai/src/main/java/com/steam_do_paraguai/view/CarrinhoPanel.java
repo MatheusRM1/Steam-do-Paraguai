@@ -11,12 +11,13 @@ import javax.swing.table.DefaultTableModel;
  * @author lukas-freitas
  */
 public class CarrinhoPanel extends javax.swing.JPanel {
-
+    private MenuPrincipal tela;
     /**
      * Creates new form CarrinhoPanel
      */
-    public CarrinhoPanel() {
-        initComponents();
+    public CarrinhoPanel(MenuPrincipal tela) {
+    this.tela = tela;
+    initComponents();
     }
 
     /**
