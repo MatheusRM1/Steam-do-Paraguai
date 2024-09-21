@@ -4,17 +4,27 @@
  */
 package com.steam_do_paraguai.view;
 
+import com.steam_do_paraguai.model.User;
+import com.steam_do_paraguai.persistence.Persistence;
+import com.steam_do_paraguai.persistence.UsuarioPersistence;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lukas-freitas
  */
 public class LojaPanel extends javax.swing.JPanel {
 
+    private MenuPrincipal tela;
     /**
      * Creates new form Loja
      */
-    public LojaPanel() {
+    public LojaPanel(MenuPrincipal t) {
+        this.tela = t;
+        
         initComponents();
+        
     }
 
     /**

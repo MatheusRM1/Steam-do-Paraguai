@@ -4,25 +4,128 @@
  */
 package com.steam_do_paraguai.view;
 
+import com.steam_do_paraguai.model.User;
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lukas-freitas
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
+    private int usuario;
+    private int index;
+
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
         initComponents();
-        
-        LojaPanel loja = new LojaPanel();
-        loja.setSize(708,368);
-        loja.setLocation(0,0);
-        
+
+        LoginPanel log = new LoginPanel(this);
+        log.setSize(708, 368);
+        log.setLocation(0, 0);
+
+        template.removeAll();
+        template.add(log);
+        template.validate();
+        template.repaint();
+    }
+
+    public int getIndex() {
+        return this.index;
+    }
+
+    public void setDeslogado() {
+        this.usuario = 0;
+        this.index = -1;
+
+        iniciarSessaoButton.setText("INICIAR SESSAO");
+        java.awt.event.ActionListener[] acao = iniciarSessaoButton.getActionListeners();
+        iniciarSessaoButton.removeActionListener(acao[0]);
+        iniciarSessaoButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                iniciarSessaoButtonActionPerformed(e);
+            }
+        });
+
+        LoginPanel log = new LoginPanel(this);
+        log.setSize(708, 368);
+        log.setLocation(0, 0);
+        template.removeAll();
+        template.add(log);
+        template.revalidate();
+        template.repaint();
+    }
+
+    public void setUsuario(LoginPanel login) {
+        this.usuario = login.getLog();
+        this.index = login.getIndex();
+
+        if (this.usuario == 1) {
+            iniciarSessaoButton.setText("Usuario");
+            java.awt.event.ActionListener[] acao = iniciarSessaoButton.getActionListeners();
+            iniciarSessaoButton.removeActionListener(acao[0]);
+            iniciarSessaoButton.addActionListener(new java.awt.event.ActionListener() {
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    userButtonActionPerformed(e);
+                }
+            });
+
+        } else if (this.usuario == 2) {
+            iniciarSessaoButton.setText("Admin");
+            java.awt.event.ActionListener[] acao = iniciarSessaoButton.getActionListeners();
+            iniciarSessaoButton.removeActionListener(acao[0]);
+            iniciarSessaoButton.addActionListener(new java.awt.event.ActionListener() {
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    adminButtonActionPerformed(e);
+                }
+            });
+        } else {
+            iniciarSessaoButton.setText("INICIAR SESSAO");
+            java.awt.event.ActionListener[] acao = iniciarSessaoButton.getActionListeners();
+            iniciarSessaoButton.removeActionListener(acao[0]);
+            iniciarSessaoButton.addActionListener(new java.awt.event.ActionListener() {
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    iniciarSessaoButtonActionPerformed(e);
+                }
+            });
+        }
+
+        LojaPanel loja = new LojaPanel(this);
+        loja.setSize(708, 368);
+        loja.setLocation(0, 0);
+
         template.removeAll();
         template.add(loja);
         template.validate();
+        template.repaint();
+    }
+
+    private void userButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        EscolhaAdmin log = new EscolhaAdmin(this);
+        log.setSize(708, 368);
+        log.setLocation(0, 0);
+
+        template.removeAll();
+        template.add(log);
+        template.revalidate();
+        template.repaint();
+    }
+
+    private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        EscolhaAdmin log = new EscolhaAdmin(this);
+        log.setSize(708, 368);
+        log.setLocation(0, 0);
+
+        template.removeAll();
+        template.add(log);
+        template.revalidate();
         template.repaint();
     }
 
@@ -46,7 +149,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         template = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(720, 480));
         setMinimumSize(new java.awt.Dimension(720, 480));
         setResizable(false);
 
@@ -208,10 +310,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void iniciarSessaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSessaoButtonActionPerformed
-        LoginPanel log = new LoginPanel();
-        log.setSize(708,368);
-        log.setLocation(0,0);
-        
+        LoginPanel log = new LoginPanel(this);
+        log.setSize(708, 368);
+        log.setLocation(0, 0);
         template.removeAll();
         template.add(log);
         template.revalidate();
@@ -220,9 +321,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void bibliotecaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaButtonActionPerformed
         BibliotecaPanel bib = new BibliotecaPanel();
-        bib.setSize(708,368);
-        bib.setLocation(0,0);
-        
+        bib.setSize(708, 368);
+        bib.setLocation(0, 0);
+
         template.removeAll();
         template.add(bib);
         template.revalidate();
@@ -230,9 +331,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bibliotecaButtonActionPerformed
 
     private void lojaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lojaButtonActionPerformed
-        LojaPanel loja = new LojaPanel();
-        loja.setSize(708,368);
-        loja.setLocation(0,0);
+        LojaPanel loja = new LojaPanel(this);
+        loja.setSize(708, 368);
+        loja.setLocation(0, 0);
 
         template.removeAll();
         template.add(loja);
@@ -242,8 +343,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void carrinhoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carrinhoButtonActionPerformed
         CarrinhoPanel carrinho = new CarrinhoPanel();
-        carrinho.setSize(708,368);
-        carrinho.setLocation(0,0);
+        carrinho.setSize(708, 368);
+        carrinho.setLocation(0, 0);
 
         template.removeAll();
         template.add(carrinho);
@@ -252,14 +353,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_carrinhoButtonActionPerformed
 
     private void fundosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fundosButtonActionPerformed
-       FundosPanel saldo = new FundosPanel();
-       saldo.setSize(708,368);
-       saldo.setLocation(0,0);
-       
-       template.removeAll();
-       template.add(saldo);
-       template.validate();
-       template.repaint();
+        FundosPanel saldo = new FundosPanel();
+        saldo.setSize(708, 368);
+        saldo.setLocation(0, 0);
+
+        template.removeAll();
+        template.add(saldo);
+        template.validate();
+        template.repaint();
     }//GEN-LAST:event_fundosButtonActionPerformed
 
     /**

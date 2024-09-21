@@ -23,10 +23,12 @@ import javax.swing.JOptionPane;
  */
 public class CriarContaPanel extends javax.swing.JPanel {
 
+    private MenuPrincipal tela;
     /**
      * Creates new form CriarContaPanel
      */
-    public CriarContaPanel() {
+    public CriarContaPanel(MenuPrincipal t) {
+        this.tela = t;
         initComponents();
     }
 
@@ -179,7 +181,7 @@ public class CriarContaPanel extends javax.swing.JPanel {
             if (passwordField.getText().equals(confirmPasswordField.getText())) {
                 if (usuarioRadio.isSelected()) {
                     lista.add(new Usuario(userField.getText(), passwordField.getText(), "Usuario"));
-                    LoginPanel criarConta = new LoginPanel();
+                    LoginPanel criarConta = new LoginPanel(this.tela);
                     criarConta.setSize(708, 368);
                     criarConta.setLocation(0, 0);
 
@@ -189,7 +191,7 @@ public class CriarContaPanel extends javax.swing.JPanel {
                     this.repaint();
                 } else if (adminRadio.isSelected()) {
                     lista.add(new Admin(userField.getText(), passwordField.getText(), "Admin"));
-                    LoginPanel criarConta = new LoginPanel();
+                    LoginPanel criarConta = new LoginPanel(this.tela);
                     criarConta.setSize(708, 368);
                     criarConta.setLocation(0, 0);
 

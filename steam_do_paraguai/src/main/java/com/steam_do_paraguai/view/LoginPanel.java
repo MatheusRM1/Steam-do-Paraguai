@@ -4,7 +4,6 @@
  */
 package com.steam_do_paraguai.view;
 
-import com.google.gson.JsonObject;
 import com.steam_do_paraguai.exception.UsuarioException;
 import com.steam_do_paraguai.model.*;
 import com.steam_do_paraguai.persistence.Persistence;
@@ -19,12 +18,24 @@ import javax.swing.JOptionPane;
  */
 public class LoginPanel extends javax.swing.JPanel {
 
-    private List<User> jlUsuarios = new ArrayList<>();
+    private int logado;
+    private MenuPrincipal tela;
+    private int index;
+
     /**
      * Creates new form LoginPanel
      */
-    public LoginPanel() {
+    public LoginPanel(MenuPrincipal l) {
+        this.tela = l;
         initComponents();
+    }
+
+    public int getLog() {
+        return this.logado;
+    }
+
+    public int getIndex() {
+        return this.index;
     }
 
     /**
@@ -148,7 +159,7 @@ public class LoginPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void redirecionaParaCriarConta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redirecionaParaCriarConta
-        CriarContaPanel criarConta = new CriarContaPanel();
+        CriarContaPanel criarConta = new CriarContaPanel(this.tela);
         criarConta.setSize(708, 368);
         criarConta.setLocation(0, 0);
 
@@ -159,34 +170,39 @@ public class LoginPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_redirecionaParaCriarConta
 
     private void entraNaConta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entraNaConta
-        
-        Persistence<User> usuarioPersistence = new UsuarioPersistence();
-        List<User> lista = usuarioPersistence.findAll();
-        
-        int existe = 0;
-        
-        for (User p : lista) {
-            if (p.getNome().equals(userField.getText())) {
-                existe = 1;
-                if (p.getSenha().equals(passwordField.getText())) {
-                    JOptionPane.showMessageDialog(loginAreaPanel, "Bem Vindo " + p.getNome() +" (" + p.acessoAoSistema() + ")" );
-                    
-                    LojaPanel loja = new LojaPanel();
-                    loja.setSize(708, 368);
-                    loja.setLocation(0, 0);
 
-                    this.removeAll();
-                    this.add(loja);
-                    this.revalidate();
-                    this.repaint();
-                    
-                } else
-                    JOptionPane.showMessageDialog(loginAreaPanel, "Senha Invalida");
+        if (this.logado == 0) {
+            Persistence<User> usuarioPersistence = new UsuarioPersistence();
+            List<User> lista = usuarioPersistence.findAll();
+
+            int existe = 0;
+            int i = 0;
+
+            for (User p : lista) {
+                i++;
+                if (p.getNome().equals(userField.getText().replaceAll("[\\s]", ""))) {
+                    existe = 1;
+                    if (p.getSenha().equals(passwordField.getText())) {
+                        JOptionPane.showMessageDialog(loginAreaPanel, "Bem Vindo " + p.getNome() + " (" + p.acessoAoSistema() + ")");
+
+                        if (p.acessoAoSistema().equals("Usuario")) {
+                            this.logado = 1;
+                        } else if (p.acessoAoSistema().equals("Admin")) {
+                            this.logado = 2;
+                        }
+                        this.index = i - 1;
+                        tela.setUsuario(this);
+                    } else {
+                        JOptionPane.showMessageDialog(loginAreaPanel, "Senha Invalida");
+                    }
+                }
             }
-        }
-        
-        if(existe == 0)
-            JOptionPane.showMessageDialog(loginAreaPanel, "Usuario nao encontrado, crie uma conta");
+
+            if (existe == 0) {
+                JOptionPane.showMessageDialog(loginAreaPanel, "Usuario nao encontrado, crie uma conta");
+            }
+        } else
+            JOptionPane.showMessageDialog(loginAreaPanel, "Usuario já esta logado");
     }//GEN-LAST:event_entraNaConta
 
 
@@ -200,4 +216,5 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JTextField userField;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
+
 }
