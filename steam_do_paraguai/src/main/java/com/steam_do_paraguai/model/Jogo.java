@@ -3,9 +3,9 @@ package com.steam_do_paraguai.model;
 public class Jogo {
     private String nome;
     private String descricao;
-    private String preco;
+    private float preco;
 
-    public Jogo(String nome, String descricao, String preco) {
+    public Jogo(String nome, String descricao, float preco) {
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
@@ -19,7 +19,7 @@ public class Jogo {
         return descricao;
     }
 
-    public String getPreco() {
+    public float getPreco() {
         return preco;
     }
 
@@ -31,12 +31,12 @@ public class Jogo {
         this.descricao = descricao;
     }
 
-    public void setPreco(String preco) {
+    public void setPreco(float preco) {
         this.preco = preco;
     }
 
     @Override
     public String toString() {
-        return "Nome: " + nome + ", Gênero: " + descricao + ", Preço: " + preco;
+        return this.nome;
     }
 }

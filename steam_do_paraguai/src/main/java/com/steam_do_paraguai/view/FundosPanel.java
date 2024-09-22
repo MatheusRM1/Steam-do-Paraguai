@@ -24,20 +24,12 @@ private Persistence<User> usuarioPersistence;
      */
     public FundosPanel(MenuPrincipal tela) {
         this.tela = tela;
-        if(tela.getIndex()!= -1)
-        {
-            
         this.usuarioPersistence = new UsuarioPersistence();
         this.lista = usuarioPersistence.findAll();
         initComponents();
         String valor = String.format("%.2f", this.lista.get(this.tela.getIndex()).getSaldo());
         valor = valor.replaceAll("[.]",",");
         this.valorSaldoLabel.setText(valor);
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Inicie Sessao antes de ver fundos!");
-        }
     }
 
     /**

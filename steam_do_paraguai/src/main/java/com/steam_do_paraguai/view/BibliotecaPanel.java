@@ -4,21 +4,32 @@
  */
 package com.steam_do_paraguai.view;
         
-        import java.util.List;
-        import java.util.ArrayList;
+import com.steam_do_paraguai.model.Jogo;
+import com.steam_do_paraguai.model.User;
+import com.steam_do_paraguai.persistence.JogoPersistence;
+import com.steam_do_paraguai.persistence.Persistence;
+import com.steam_do_paraguai.persistence.UsuarioPersistence;
+import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.ListSelectionModel;
+
 /**
  *
  * @author lukas-freitas
  */
 public class BibliotecaPanel extends javax.swing.JPanel {
     private MenuPrincipal tela;
+    private Persistence<User> usuarioPersistence;
+    private List<User> listaUsuarios;
     /**
      * Creates new form BibliotecaPanel
      */
     public BibliotecaPanel(MenuPrincipal tela) {
+        usuarioPersistence = new UsuarioPersistence();
+        this.listaUsuarios = usuarioPersistence.findAll();
         this.tela = tela;
         initComponents();
+        this.carregaJogos();
     }
 
     /**
@@ -31,8 +42,12 @@ public class BibliotecaPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         libraryDescriptionPanel = new javax.swing.JPanel();
+        gameName = new javax.swing.JLabel();
+        gameDescription = new javax.swing.JLabel();
+        gamePrice = new javax.swing.JLabel();
         gamesListLibrary = new javax.swing.JScrollPane();
-        gamesList = new javax.swing.JList<>();
+        DefaultListModel<Jogo> model = new DefaultListModel<>();
+        gamesList = new javax.swing.JList<>(model);
         librarySearchField = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(61, 122, 155));
@@ -44,21 +59,45 @@ public class BibliotecaPanel extends javax.swing.JPanel {
         libraryDescriptionPanel.setLayout(libraryDescriptionPanelLayout);
         libraryDescriptionPanelLayout.setHorizontalGroup(
             libraryDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
+            .addGroup(libraryDescriptionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(libraryDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(libraryDescriptionPanelLayout.createSequentialGroup()
+                        .addComponent(gamePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 369, Short.MAX_VALUE))
+                    .addComponent(gameName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(gameDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         libraryDescriptionPanelLayout.setVerticalGroup(
             libraryDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(libraryDescriptionPanelLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(gameName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(gameDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(gamePrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        gamesList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        gamesList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gamesListMouseClicked(evt);
+            }
         });
         gamesListLibrary.setViewportView(gamesList);
 
-        librarySearchField.setText("Pesquisar");
+        librarySearchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                librarySearchFieldActionPerformed(evt);
+            }
+        });
+        librarySearchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                librarySearchFieldKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -88,29 +127,61 @@ public class BibliotecaPanel extends javax.swing.JPanel {
                 .addGap(11, 11, 11))
         );
     }// </editor-fold>//GEN-END:initComponents
+    private void searchFilter(DefaultListModel<Jogo> games,String searchGame)
+    {
+        DefaultListModel<Jogo> modelNew = new DefaultListModel<Jogo>();
+        for(int i = 0; i<games.size(); i+=1)
+            {
+                if(games.get(i).getNome().toLowerCase().contains(searchGame.toLowerCase()))
+                {
+                    modelNew.addElement(games.get(i));
+                }
+            }
+        gamesList.setModel(modelNew);
+    }
 
-//    public void carregaLista(List<Jogo> jogo)
-//    {
-//        DefaultListModel<Jogo> model = (DefaultListModel<Jogo>)gamesList.getModel();
-//        for(Jogo game: jogo)
-//        {
-//            model.add(game);
-//        }
-//    }
+    private void librarySearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librarySearchFieldActionPerformed
+     
+    }//GEN-LAST:event_librarySearchFieldActionPerformed
+
+    private void librarySearchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_librarySearchFieldKeyReleased
+        this.searchFilter(this.listaJogos(),this.librarySearchField.getText());
+    }//GEN-LAST:event_librarySearchFieldKeyReleased
+
+    private void gamesListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gamesListMouseClicked
+        this.gameName.setText(this.gamesList.getSelectedValue().getNome());
+        this.gameDescription.setText(this.gamesList.getSelectedValue().getdescricao());
+        String preco = String.format("%.2f", this.gamesList.getSelectedValue().getPreco());
+        this.gamePrice.setText("R$ " + preco.replaceAll("[.]", ","));
+    }//GEN-LAST:event_gamesListMouseClicked
+
+    private DefaultListModel<Jogo> listaJogos()
+    {
+        DefaultListModel<Jogo> jogosModel= new DefaultListModel<Jogo>();
+        List<Jogo> jogos = this.listaUsuarios.get(this.tela.getIndex()).getJogos();
+        if(jogos.size()>0)
+        {
+            
+            for(Jogo game: jogos)
+            {
+                  jogosModel.addElement(game);
+            }
+        }
+        return jogosModel;
+    }
     
-//    public List<Jogos> listaContatos(){
-//        DefaultListModel<Jogo> model = (DefaultListModel<Jogo>)gamesList.getModel();
-//        List<Jogo> jogos = new ArrayList<>();
-//
-//        for (int i = 0; i < model.size(); i++) {
-//            jogos.add(model.get(i));
-//        }
-//
-//        return jogos;
-//    }
-
+   public void carregaJogos()
+    {
+            this.gamesList.setModel(this.listaJogos());
+    }
+   
+   
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> gamesList;
+    private javax.swing.JLabel gameDescription;
+    private javax.swing.JLabel gameName;
+    private javax.swing.JLabel gamePrice;
+    private javax.swing.JList<Jogo> gamesList;
     private javax.swing.JScrollPane gamesListLibrary;
     private javax.swing.JPanel libraryDescriptionPanel;
     private javax.swing.JTextField librarySearchField;

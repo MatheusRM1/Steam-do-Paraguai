@@ -37,8 +37,6 @@ public class UsuarioPersistence implements Persistence<User>{
             diretorio.mkdirs();
 
         Arquivo.salva(PATH, json);
-
-
     }
 
     @Override

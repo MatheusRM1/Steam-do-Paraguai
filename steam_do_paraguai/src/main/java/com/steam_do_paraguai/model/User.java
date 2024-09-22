@@ -8,6 +8,7 @@ import com.steam_do_paraguai.exception.UsuarioException;
 import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,7 +19,9 @@ public abstract class User {
     private String nome;
     private String senha;
     private float saldo;
+    private List<Jogo> jogos;
     private String type;
+    
 
     public User(String n, String s, String a) throws UsuarioException {
         if (!valido(n, s)) {
@@ -27,6 +30,7 @@ public abstract class User {
 
         this.nome = n;
         this.senha = s;
+        this.jogos = new ArrayList();
         this.type = a;
     }
 
@@ -80,8 +84,14 @@ public abstract class User {
         return this.saldo;
     }
     
-    public void adicionaJogo(){
-       
+    public List<Jogo> getJogos()
+    {
+        return this.jogos;
+    }
+    
+    public void setJogo(List<Jogo> jogo)
+    {
+        this.jogos = jogo;
     }
     
 }

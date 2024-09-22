@@ -297,23 +297,52 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_iniciarSessaoButtonActionPerformed
 
     private void bibliotecaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaButtonActionPerformed
-        BibliotecaPanel bib = new BibliotecaPanel(this);
-        this.mudaPanel(bib);
+        if(this.index != -1)
+        {
+            BibliotecaPanel bib = new BibliotecaPanel(this);
+            this.mudaPanel(bib);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Inicie sessao primeiro!");
+        }
     }//GEN-LAST:event_bibliotecaButtonActionPerformed
 
     private void lojaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lojaButtonActionPerformed
-        LojaPanel loja = new LojaPanel(this);
-        this.mudaPanel(loja);
+        if(this.index != -1)
+        {
+            LojaPanel loja = new LojaPanel(this);
+            this.mudaPanel(loja);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Inicie sessao primeiro!");
+        }
     }//GEN-LAST:event_lojaButtonActionPerformed
 
     private void carrinhoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carrinhoButtonActionPerformed
-        CarrinhoPanel carrinho = new CarrinhoPanel(this);
-        this.mudaPanel(carrinho);
+        if(this.index != -1)
+        {
+            CarrinhoPanel carrinho = new CarrinhoPanel(this);
+            this.mudaPanel(carrinho);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Inicie sessao primeiro!");
+        }
+        
     }//GEN-LAST:event_carrinhoButtonActionPerformed
 
     private void fundosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fundosButtonActionPerformed
-        FundosPanel saldo = new FundosPanel(this);
-        this.mudaPanel(saldo);
+        if(this.index != -1)
+        {
+            FundosPanel saldo = new FundosPanel(this);
+            this.mudaPanel(saldo);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Inicie Sessao primeiro!");
+        }
     }//GEN-LAST:event_fundosButtonActionPerformed
 
     /**
