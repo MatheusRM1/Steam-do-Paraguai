@@ -17,7 +17,6 @@ public class Usuario extends User{
         super(n, s, a);
     }
     
-    
     @Override
     public String toString(){
         return "Nome: " + this.getNome() + ", Senha: " + this.getSenha() + ", Acesso: " + acessoAoSistema();
