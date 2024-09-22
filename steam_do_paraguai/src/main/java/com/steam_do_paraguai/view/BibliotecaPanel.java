@@ -149,10 +149,13 @@ public class BibliotecaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_librarySearchFieldKeyReleased
 
     private void gamesListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gamesListMouseClicked
-        this.gameName.setText(this.gamesList.getSelectedValue().getNome());
-        this.gameDescription.setText(this.gamesList.getSelectedValue().getdescricao());
-        String preco = String.format("%.2f", this.gamesList.getSelectedValue().getPreco());
-        this.gamePrice.setText("R$ " + preco.replaceAll("[.]", ","));
+        if(this.gamesList.getSelectedValue() != null)
+        {
+            this.gameName.setText(this.gamesList.getSelectedValue().getNome());
+            this.gameDescription.setText(this.gamesList.getSelectedValue().getdescricao());
+            String preco = String.format("%.2f", this.gamesList.getSelectedValue().getPreco());
+            this.gamePrice.setText("R$ " + preco.replaceAll("[.]", ","));
+        }
     }//GEN-LAST:event_gamesListMouseClicked
 
     private DefaultListModel<Jogo> listaJogos()
