@@ -21,6 +21,7 @@ public abstract class User {
     private float saldo;
     private List<Jogo> jogos;
     private String type;
+    private Carrinho carrinho;
     
 
     public User(String n, String s, String a) throws UsuarioException {
@@ -32,6 +33,7 @@ public abstract class User {
         this.senha = s;
         this.jogos = new ArrayList();
         this.type = a;
+        this.carrinho = new Carrinho();
     }
 
     public boolean valido(String n, String s) {

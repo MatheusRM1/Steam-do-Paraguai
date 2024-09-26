@@ -1,1 +1,1 @@
-[{"nome":"Lk","senha":"1","saldo":0.0,"jogos":[{"nome":"Baldurs Gate 3","descricao":"RPG de turnos","preco":199.0},{"nome":"Fortnite","descricao":"Battle Royale","preco":0.0}],"type":"Usuario"},{"nome":"L","senha":"2","saldo":0.0,"jogos":[],"type":"Usuario"}]
+[{"nome":"Lk","senha":"1","saldo":20.0,"jogos":[{"nome":"Baldurs Gate 3","descricao":"RPG de turnos","preco":199.0},{"nome":"Fortnite","descricao":"Battle Royale","preco":0.0}],"type":"Usuario"},{"nome":"L","senha":"2","saldo":0.0,"jogos":[],"type":"Usuario"}]

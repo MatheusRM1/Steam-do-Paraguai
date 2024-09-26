@@ -4,6 +4,7 @@
  */
 package com.steam_do_paraguai.view;
 
+import com.steam_do_paraguai.model.Jogo;
 import com.steam_do_paraguai.model.User;
 import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
@@ -38,7 +39,8 @@ public class LojaPanel extends javax.swing.JPanel {
 
         shopTable = new javax.swing.JScrollPane();
         shopTableGames = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        searchShopField = new javax.swing.JTextField();
+        addToCartButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(61, 122, 155));
         setMaximumSize(new java.awt.Dimension(708, 368));
@@ -70,16 +72,28 @@ public class LojaPanel extends javax.swing.JPanel {
             shopTableGames.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jTextField1.setText("Pesquisar");
+        searchShopField.setText("Pesquisar");
+
+        addToCartButton.setText("Adicionar ao Carrinho");
+        addToCartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToCartButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(184, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(181, 181, 181))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(searchShopField, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(181, 181, 181))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(addToCartButton)
+                        .addContainerGap())))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -90,19 +104,31 @@ public class LojaPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addComponent(searchShopField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
+                .addComponent(addToCartButton)
+                .addGap(34, 34, 34))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(56, 56, 56)
-                    .addComponent(shopTable, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(2, Short.MAX_VALUE)))
+                    .addComponent(shopTable, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(74, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addToCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartButtonActionPerformed
+        int indexRow = this.shopTableGames.getSelectedRow();
+        String nome = this.shopTableGames.getValueAt(indexRow, 0).toString();
+        String descricao = this.shopTableGames.getValueAt(indexRow, 1).toString();
+        Float preco = Float.parseFloat(this.shopTableGames.getValueAt(indexRow, 2).toString());
+        Jogo jogo = new Jogo(nome, descricao, preco);
+        
+    }//GEN-LAST:event_addToCartButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton addToCartButton;
+    private javax.swing.JTextField searchShopField;
     private javax.swing.JScrollPane shopTable;
     private javax.swing.JTable shopTableGames;
     // End of variables declaration//GEN-END:variables
