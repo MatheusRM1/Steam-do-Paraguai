@@ -341,7 +341,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Inicie Sessao primeiro!");
+            JOptionPane.showMessageDialog(null, "Inicie s'essao primeiro!");
         }
     }//GEN-LAST:event_fundosButtonActionPerformed
 

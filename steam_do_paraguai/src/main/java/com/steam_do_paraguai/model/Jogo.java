@@ -15,7 +15,7 @@ public class Jogo {
         return nome;
     }
 
-    public String getdescricao() {
+    public String getDescricao() {
         return descricao;
     }
 

@@ -4,6 +4,12 @@
  */
 package com.steam_do_paraguai.view;
 
+import com.steam_do_paraguai.model.Jogo;
+import com.steam_do_paraguai.model.User;
+import com.steam_do_paraguai.persistence.Persistence;
+import com.steam_do_paraguai.persistence.UsuarioPersistence;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,12 +18,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CarrinhoPanel extends javax.swing.JPanel {
     private MenuPrincipal tela;
+    private Persistence<User> usuarioPersistence;
+    private List<User> lista;
     /**
      * Creates new form CarrinhoPanel
      */
     public CarrinhoPanel(MenuPrincipal tela) {
     this.tela = tela;
+    usuarioPersistence = new UsuarioPersistence();
+    this.lista = usuarioPersistence.findAll();
     initComponents();
+    this.carregaCarrinho();
+    this.carregaTotal();
     }
 
     /**
@@ -101,26 +113,72 @@ public class CarrinhoPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
-//        compraJogos();
+        compraJogos();
     }//GEN-LAST:event_buyButtonActionPerformed
 
-//    public void carregaCarrinho(List<Jogos> jogos)
-//    {
-//        DefaultTableModel model = (DefaultTableModel)tableCartGames.getModel();
-//        for(int i = 0; i<jogos.size(); i+=1)
-//        {
-//            model.addRow(new Object[]{jogos.get(i).getNome(), jogos.get(i).getDescricao, jogos.get(i).getPreco});
-//        }
-//    }
+    private void carregaCarrinho()
+    {
+        List<Jogo> jogos = this.lista.get(this.tela.getIndex()).getCarrinho().getJogos();
+        if(jogos.size()>0)
+        {
+            DefaultTableModel model = (DefaultTableModel)tableCartGames.getModel();
+            for(int i = 0; i<jogos.size(); i+=1)
+            {
+                model.addRow(new Object[]{jogos.get(i).getNome(), jogos.get(i).getDescricao(), jogos.get(i).getPreco()});
+            }
+        }
+    }
+
+    private void compraJogos() {
+        float total = 0;
+        List<Jogo> jogos =  this.lista.get(this.tela.getIndex()).getCarrinho().getJogos();
+        if(jogos.size()>0)
+        {
+            for(int i = 0; i<jogos.size(); i+=1)
+            {
+                total+=jogos.get(i).getPreco();
+            }
+            if(total<=this.lista.get(this.tela.getIndex()).getSaldo())
+            {
+                DefaultTableModel model = (DefaultTableModel)tableCartGames.getModel();
+                while(jogos.size()!=0)
+                {
+                    this.lista.get(this.tela.getIndex()).getJogos().add(jogos.get(0));
+                    this.lista.get(this.tela.getIndex()).removeSaldo(jogos.get(0).getPreco());
+                    this.lista.get(this.tela.getIndex()).getCarrinho().removeJogo(jogos.get(0));
+                    model.removeRow(0);
+                }
+                usuarioPersistence.save(lista);
+                this.lista = usuarioPersistence.findAll();
+                this.carregaTotal();
+                
+                this.carregaCarrinho();
+                
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Carrinho está vazio!");
+        }
+        
+    }
+    private void carregaTotal()
+    {
+        String textLabel = this.totalLabel.getText();
+        float total = 0;
+        List<Jogo> jogos =  this.lista.get(this.tela.getIndex()).getCarrinho().getJogos();
+        if(jogos.size()>0)
+        {
+            for(int i = 0; i<jogos.size(); i+=1)
+            {
+                total+=jogos.get(i).getPreco();
+            }
+        }
+        textLabel = "Total: R$" + String.format("%.2f", total);
+        textLabel.replaceAll("[.]", ",");
+        this.totalLabel.setText(textLabel);
+    }
     
-//    public List<Jogos> listaPessoas()
-//    {
-//        List<Jogos> jogos = new ArrayList<>();
-//
-//
-//        }
-//        return jogos;
-//    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -10,6 +10,7 @@ import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,14 +19,23 @@ import javax.swing.JOptionPane;
 public class LojaPanel extends javax.swing.JPanel {
 
     private MenuPrincipal tela;
+    private Persistence<User> usuarioPersistence;
+    private List<User> lista;
     /**
      * Creates new form Loja
      */
     public LojaPanel(MenuPrincipal t) {
         this.tela = t;
-        
+        usuarioPersistence = new UsuarioPersistence();
+        lista = usuarioPersistence.findAll();
         initComponents();
-        
+        DefaultTableModel model = (DefaultTableModel)this.shopTableGames.getModel();
+        model.addRow(new Object[]{"Baldur's Gate","Jogo de rpg", 199});
+        model.addRow(new Object[]{"Naruto storm","Jogo de naruto", 100});
+        model.addRow(new Object[]{"Hades I","Jogo rogue like", 50});
+        model.addRow(new Object[]{"Sparking zero","Jogo de dragon ball", 250});
+        model.addRow(new Object[]{"Terraria","Jogo de sandbox", 10});
+        model.addRow(new Object[]{"The sims 4","Jogo de simulação", 3000});
     }
 
     /**
@@ -118,13 +128,39 @@ public class LojaPanel extends javax.swing.JPanel {
 
     private void addToCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartButtonActionPerformed
         int indexRow = this.shopTableGames.getSelectedRow();
-        String nome = this.shopTableGames.getValueAt(indexRow, 0).toString();
-        String descricao = this.shopTableGames.getValueAt(indexRow, 1).toString();
-        Float preco = Float.parseFloat(this.shopTableGames.getValueAt(indexRow, 2).toString());
-        Jogo jogo = new Jogo(nome, descricao, preco);
-        
+        if(indexRow != -1)
+        {
+            String nome = this.shopTableGames.getValueAt(indexRow, 0).toString();
+            String descricao = this.shopTableGames.getValueAt(indexRow, 1).toString();
+            Float preco = Float.parseFloat(this.shopTableGames.getValueAt(indexRow, 2).toString());
+            Jogo jogo = new Jogo(nome, descricao, preco);
+            if(!verificaExistente(jogo))
+            {
+                  lista.get(this.tela.getIndex()).getCarrinho().adicionaJogo(jogo);
+                  usuarioPersistence.save(lista);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "O jogo já está presente na sua conta!");
+            }
+
+               
+            
+        }
     }//GEN-LAST:event_addToCartButtonActionPerformed
 
+    private boolean verificaExistente(Jogo jogo)
+    {
+        List<Jogo> jogos = this.lista.get(this.tela.getIndex()).getJogos();
+        for(int i = 0; i<jogos.size();i+=1)
+        {
+            if(jogos.get(i).getNome().toLowerCase().equals(jogo.getNome().toLowerCase()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToCartButton;

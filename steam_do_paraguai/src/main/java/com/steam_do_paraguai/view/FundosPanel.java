@@ -139,9 +139,9 @@ private Persistence<User> usuarioPersistence;
     private void mais20ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mais20ButtonActionPerformed
    
         String valor =  this.valorSaldoLabel.getText();
-        Usuario novo = (Usuario) lista.get(this.tela.getIndex());
-        novo.adicionaSaldo(20);
-        lista.set(this.tela.getIndex(), novo);
+       
+         lista.get(this.tela.getIndex()).adicionaSaldo(20);
+        lista.set(this.tela.getIndex(),  lista.get(this.tela.getIndex()));
         usuarioPersistence.save(lista);
         valor = String.format("%.2f", this.lista.get(this.tela.getIndex()).getSaldo());
         
@@ -153,9 +153,9 @@ private Persistence<User> usuarioPersistence;
     private void mais50ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mais50ButtonActionPerformed
 
         String valor =  this.valorSaldoLabel.getText();
-        Usuario novo = (Usuario) lista.get(this.tela.getIndex());
-        novo.adicionaSaldo(50);
-        lista.set(this.tela.getIndex(), novo);
+        
+         lista.get(this.tela.getIndex()).adicionaSaldo(50);
+        lista.set(this.tela.getIndex(),  lista.get(this.tela.getIndex()));
         usuarioPersistence.save(lista);
         valor = String.format("%.2f", this.lista.get(this.tela.getIndex()).getSaldo());
         
@@ -166,9 +166,9 @@ private Persistence<User> usuarioPersistence;
     private void mais10ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mais10ButtonActionPerformed
         
         String valor =  this.valorSaldoLabel.getText();
-        Usuario novo = (Usuario) lista.get(this.tela.getIndex());
-        novo.adicionaSaldo(10);
-        lista.set(this.tela.getIndex(), novo);
+        
+         lista.get(this.tela.getIndex()).adicionaSaldo(10);
+        lista.set(this.tela.getIndex(),  lista.get(this.tela.getIndex()));
         usuarioPersistence.save(lista);
         valor = String.format("%.2f", this.lista.get(this.tela.getIndex()).getSaldo());
         

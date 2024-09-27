@@ -96,4 +96,8 @@ public abstract class User {
         this.jogos = jogo;
     }
     
+    public Carrinho getCarrinho()
+    {
+        return this.carrinho;
+    }
 }

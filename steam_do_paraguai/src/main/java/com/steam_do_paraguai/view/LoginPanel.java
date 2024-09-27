@@ -3,12 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.steam_do_paraguai.view;
-
-import com.steam_do_paraguai.exception.UsuarioException;
 import com.steam_do_paraguai.model.*;
 import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 

@@ -152,7 +152,7 @@ public class BibliotecaPanel extends javax.swing.JPanel {
         if(this.gamesList.getSelectedValue() != null)
         {
             this.gameName.setText(this.gamesList.getSelectedValue().getNome());
-            this.gameDescription.setText(this.gamesList.getSelectedValue().getdescricao());
+            this.gameDescription.setText(this.gamesList.getSelectedValue().getDescricao());
             String preco = String.format("%.2f", this.gamesList.getSelectedValue().getPreco());
             this.gamePrice.setText("R$ " + preco.replaceAll("[.]", ","));
         }

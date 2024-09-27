@@ -16,7 +16,7 @@ public  class Carrinho {
     
     public Carrinho()
     {
-        this.jogos =  new ArrayList<>();
+        this.jogos =  new ArrayList();
     }
     
     public void adicionaJogo(Jogo game)
