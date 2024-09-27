@@ -102,7 +102,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.mudaPanel(loja);
     }
     private void userButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        EscolhaAdmin log = new EscolhaAdmin(this);
+        EscolhaUsuario log = new EscolhaUsuario(this);
         this.mudaPanel(log);
     }
 
