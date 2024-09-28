@@ -4,6 +4,7 @@
  */
 package com.steam_do_paraguai.view;
 
+import com.steam_do_paraguai.exception.JogoException;
 import com.steam_do_paraguai.model.Jogo;
 import com.steam_do_paraguai.model.User;
 import com.steam_do_paraguai.persistence.Persistence;
@@ -133,7 +134,15 @@ public class LojaPanel extends javax.swing.JPanel {
             String nome = this.shopTableGames.getValueAt(indexRow, 0).toString();
             String descricao = this.shopTableGames.getValueAt(indexRow, 1).toString();
             Float preco = Float.parseFloat(this.shopTableGames.getValueAt(indexRow, 2).toString());
-            Jogo jogo = new Jogo(nome, descricao, preco);
+            Jogo jogo = new Jogo();
+            try{
+                jogo.setNome(nome);
+                jogo.setDescricao(descricao);
+                jogo.setPreco(preco);
+            }
+            catch(JogoException e){
+                throw new RuntimeException("Erro ao adicionar o jogo");
+            }
             if(!verificaExistente(jogo))
             {
                   lista.get(this.tela.getIndex()).getCarrinho().adicionaJogo(jogo);
