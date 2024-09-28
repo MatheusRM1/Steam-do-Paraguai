@@ -36,7 +36,12 @@ public class EscolhaAdmin extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(708, 368));
         setPreferredSize(new java.awt.Dimension(708, 368));
 
-        jButton1.setText("Editar Jogos");
+        jButton1.setText("Editar loja");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarLojaActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Editar Usuários");
 
@@ -75,6 +80,11 @@ public class EscolhaAdmin extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.tela.setDeslogado();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void editarLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarLojaActionPerformed
+            AdminEditaJogo editarloja = new AdminEditaJogo(this.tela);
+            this.tela.mudaPanel(editarloja);
+    }//GEN-LAST:event_editarLojaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -33,7 +33,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         return this.index;
     }
     
-    private void mudaPanel(javax.swing.JPanel temp)
+    public void mudaPanel(javax.swing.JPanel temp)
     {
         temp.setSize(708,368);
         temp.setLocation(0,0);
