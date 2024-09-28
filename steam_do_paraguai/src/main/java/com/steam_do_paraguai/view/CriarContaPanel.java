@@ -65,7 +65,6 @@ public class CriarContaPanel extends javax.swing.JPanel {
 
         createAccountPane.setBackground(new java.awt.Color(30, 30, 29));
 
-        createAccountButton.setForeground(new java.awt.Color(0, 0, 0));
         createAccountButton.setText("Criar Conta");
         createAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,20 +75,8 @@ public class CriarContaPanel extends javax.swing.JPanel {
         userLabel.setForeground(new java.awt.Color(255, 255, 255));
         userLabel.setText("Usuário");
 
-        userField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userFieldActionPerformed(evt);
-            }
-        });
-
         passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
         passwordLabel.setText("Senha");
-
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
-            }
-        });
 
         confirmPasswordLabel.setForeground(new java.awt.Color(255, 255, 255));
         confirmPasswordLabel.setText("Confirmar Senha");
@@ -97,11 +84,6 @@ public class CriarContaPanel extends javax.swing.JPanel {
         buttonGroup1.add(usuarioRadio);
         usuarioRadio.setForeground(new java.awt.Color(255, 255, 255));
         usuarioRadio.setText("Usuário");
-        usuarioRadio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioRadioActionPerformed(evt);
-            }
-        });
 
         buttonGroup1.add(adminRadio);
         adminRadio.setForeground(new java.awt.Color(255, 255, 255));
@@ -213,18 +195,6 @@ public class CriarContaPanel extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_criarConta
-
-    private void userFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userFieldActionPerformed
-
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
-
-    private void usuarioRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioRadioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usuarioRadioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

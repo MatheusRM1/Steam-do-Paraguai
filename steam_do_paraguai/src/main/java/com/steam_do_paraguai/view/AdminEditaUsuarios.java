@@ -4,18 +4,49 @@
  */
 package com.steam_do_paraguai.view;
 
+import com.steam_do_paraguai.exception.UsuarioException;
+import com.steam_do_paraguai.model.Admin;
+import com.steam_do_paraguai.model.User;
+import com.steam_do_paraguai.model.Usuario;
+import com.steam_do_paraguai.persistence.Persistence;
+import com.steam_do_paraguai.persistence.UsuarioPersistence;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author lukas-freitas
  */
 public class AdminEditaUsuarios extends javax.swing.JPanel {
-private MenuPrincipal tela;
+
+    private MenuPrincipal tela;
+    private List<User> listaUsuarios = new ArrayList<>();
+    Persistence<User> usuarioPersistence = new UsuarioPersistence();
+
     /**
      * Creates new form AdminEditaUsuarios
      */
     public AdminEditaUsuarios(MenuPrincipal tela) {
         this.tela = tela;
+
+        listaUsuarios = usuarioPersistence.findAll();
         initComponents();
+    }
+
+    public void carregaUsuarios() {
+
+        DefaultTableModel model = (DefaultTableModel) jTabelaUsuarios.getModel();
+
+        for (User p : this.listaUsuarios) {
+            model.addRow(new Object[]{
+                p.getNome(),
+                p.getSenha(),
+                p.getSaldo(),
+                p.acessoAoSistema()
+            });
+        }
     }
 
     /**
@@ -27,40 +58,87 @@ private MenuPrincipal tela;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jEditButton = new javax.swing.JButton();
+        jRemoveButton = new javax.swing.JButton();
+        jAdicionaButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTabelaUsuarios = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jNomeField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jSenhaField = new javax.swing.JTextField();
+        jFundosField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        usuarioRadio = new javax.swing.JRadioButton();
+        adminRadio = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(61, 122, 155));
         setMaximumSize(new java.awt.Dimension(708, 368));
         setMinimumSize(new java.awt.Dimension(708, 368));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jEditButton.setText("Editar");
+        jEditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEditButtonActionPerformed(evt);
+            }
         });
-        jScrollPane1.setViewportView(jList1);
 
-        jLabel1.setText("Nome:");
+        jRemoveButton.setText("Remover");
+        jRemoveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRemoveButtonActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Senha:");
+        jAdicionaButton.setText("Adicionar");
+        jAdicionaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAdicionaButtonActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Editar");
+        jTabelaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jButton2.setText("Remover");
+            },
+            new String [] {
+                "Nome", "Senha", "Fundos", "Tipo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-        jButton3.setText("Adicionar");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTabelaUsuarios.getTableHeader().setReorderingAllowed(false);
+        jTabelaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTabelaUsuariosMouseReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTabelaUsuarios);
+        if (jTabelaUsuarios.getColumnModel().getColumnCount() > 0) {
+            jTabelaUsuarios.getColumnModel().getColumn(0).setResizable(false);
+            jTabelaUsuarios.getColumnModel().getColumn(1).setResizable(false);
+            jTabelaUsuarios.getColumnModel().getColumn(2).setResizable(false);
+            jTabelaUsuarios.getColumnModel().getColumn(3).setResizable(false);
+        }
 
-        jLabel3.setText("Fundos");
+        jLabel4.setText("Nome");
+
+        jLabel1.setText("Senha");
+
+        jLabel2.setText("Fundos");
+
+        buttonGroup1.add(usuarioRadio);
+        usuarioRadio.setText("Usuario");
+
+        buttonGroup1.add(adminRadio);
+        adminRadio.setText("Admin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -68,65 +146,189 @@ private MenuPrincipal tela;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton3))
-                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
+                    .addComponent(jNomeField)
+                    .addComponent(jSenhaField)
+                    .addComponent(jFundosField)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(usuarioRadio)
+                            .addComponent(adminRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 76, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jRemoveButton)
+                        .addGap(83, 83, 83)
+                        .addComponent(jEditButton)
+                        .addGap(88, 88, 88)
+                        .addComponent(jAdicionaButton)
+                        .addGap(87, 87, 87))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3)
-                            .addComponent(jButton2)))
+                        .addComponent(jNomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSenhaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFundosField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(usuarioRadio))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRemoveButton)
+                            .addComponent(jEditButton)
+                            .addComponent(jAdicionaButton))
+                        .addGap(64, 64, 64))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(adminRadio)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jRemoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRemoveButtonActionPerformed
+
+        DefaultTableModel model = (DefaultTableModel) jTabelaUsuarios.getModel();
+
+        if (jTabelaUsuarios.getSelectedRow() != -1) {
+            listaUsuarios.remove(jTabelaUsuarios.getSelectedRow());
+            model.removeRow(jTabelaUsuarios.getSelectedRow());
+        } else {
+            JOptionPane.showMessageDialog(jNomeField, "Selecione um Usuario para remover");
+        }
+
+        usuarioPersistence.save(listaUsuarios);
+    }//GEN-LAST:event_jRemoveButtonActionPerformed
+
+    private void jEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditButtonActionPerformed
+        if (jTabelaUsuarios.getSelectedRow() != -1) {
+                  
+            try {
+
+                User p = listaUsuarios.get(jTabelaUsuarios.getSelectedRow());
+                
+                
+                if(p.acessoAoSistema().equals("Usuario")){
+                    if(adminRadio.isSelected() == true){
+                        adminRadio.setSelected(false);
+                        usuarioRadio.setSelected(true);
+                        JOptionPane.showMessageDialog(jNomeField, "Não é possível mudar o tipo de usuario");
+                    }
+                } else if(p.acessoAoSistema().equals("Admin")){
+                    if(usuarioRadio.isSelected() == true){
+                        JOptionPane.showMessageDialog(jNomeField, "Não é possível mudar o tipo de usuario");
+                        adminRadio.setSelected(true);
+                        usuarioRadio.setSelected(false);
+                    }
+                }
+                
+
+                if (jNomeField.getText().equals(p.getNome())) {
+                    if (jSenhaField.getText().equals(p.getSenha())) {
+                        p.setSaldo(Float.parseFloat(jFundosField.getText()));
+                    } else {
+                        p.setSenha(jSenhaField.getText());
+                        p.setSaldo(Float.parseFloat(jFundosField.getText()));
+                    }
+                } else {
+                    p.setNome(jNomeField.getText());
+                    p.setSenha(jSenhaField.getText());
+                    p.setSaldo(Float.parseFloat(jFundosField.getText()));
+                }
+
+                jTabelaUsuarios.setValueAt(jNomeField.getText(), jTabelaUsuarios.getSelectedRow(), 0);
+                jTabelaUsuarios.setValueAt(jSenhaField.getText(), jTabelaUsuarios.getSelectedRow(), 1);
+                jTabelaUsuarios.setValueAt(jFundosField.getText(), jTabelaUsuarios.getSelectedRow(), 2);
+
+            } catch (UsuarioException e) {
+                JOptionPane.showMessageDialog(jNomeField, "Usuario Invalido");
+            }
+        }
+
+        usuarioPersistence.save(listaUsuarios);
+    }//GEN-LAST:event_jEditButtonActionPerformed
+
+    private void jAdicionaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdicionaButtonActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTabelaUsuarios.getModel();
+
+        try {
+            if (usuarioRadio.isSelected()) {
+                User p = new Usuario(jNomeField.getText(), jSenhaField.getText(), "Usuario");
+                listaUsuarios.add(p);
+                model.addRow(new Object[]{
+                    p.getNome(),
+                    p.getSenha(),
+                    p.getSaldo(),
+                    p.acessoAoSistema()
+                });
+            } else if (adminRadio.isSelected()) {
+                User p = new Admin(jNomeField.getText(), jSenhaField.getText(), "Admin");
+                listaUsuarios.add(p);
+                model.addRow(new Object[]{
+                    p.getNome(),
+                    p.getSenha(),
+                    p.getSaldo(),
+                    p.acessoAoSistema()
+                });
+            }
+        } catch (UsuarioException e) {
+            JOptionPane.showMessageDialog(jNomeField, "Usuario Invalido");
+        }
+
+        usuarioPersistence.save(listaUsuarios);
+    }//GEN-LAST:event_jAdicionaButtonActionPerformed
+
+    private void jTabelaUsuariosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelaUsuariosMouseReleased
+        if (jTabelaUsuarios.getSelectedRow() != -1) {
+            jNomeField.setText(jTabelaUsuarios.getValueAt(jTabelaUsuarios.getSelectedRow(), 0).toString());
+            jSenhaField.setText(jTabelaUsuarios.getValueAt(jTabelaUsuarios.getSelectedRow(), 1).toString());
+            jFundosField.setText(jTabelaUsuarios.getValueAt(jTabelaUsuarios.getSelectedRow(), 2).toString());
+            
+            if (jTabelaUsuarios.getValueAt(jTabelaUsuarios.getSelectedRow(), 3).toString().equals("Usuario")) {
+                usuarioRadio.setSelected(true);
+                adminRadio.setSelected(false);
+            } else if (jTabelaUsuarios.getValueAt(jTabelaUsuarios.getSelectedRow(), 3).toString().equals("Admin")) {
+                usuarioRadio.setSelected(false);
+                adminRadio.setSelected(true);
+            }
+        }
+    }//GEN-LAST:event_jTabelaUsuariosMouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JRadioButton adminRadio;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jAdicionaButton;
+    private javax.swing.JButton jEditButton;
+    private javax.swing.JTextField jFundosField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField jNomeField;
+    private javax.swing.JButton jRemoveButton;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jSenhaField;
+    private javax.swing.JTable jTabelaUsuarios;
+    private javax.swing.JRadioButton usuarioRadio;
     // End of variables declaration//GEN-END:variables
 }

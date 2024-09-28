@@ -25,18 +25,15 @@ public abstract class User {
     
 
     public User(String n, String s, String a) throws UsuarioException {
-        if (!valido(n, s)) {
-            throw new UsuarioException();
-        }
-
-        this.nome = n;
-        this.senha = s;
+        
+        setNome(n);
+        setSenha(s);
         this.jogos = new ArrayList();
         this.type = a;
         this.carrinho = new Carrinho();
     }
 
-    public boolean valido(String n, String s) {
+    private boolean validoNome(String n) {
         String regex = "^[A-Za-z0-9]+$";
         String regexLetra = ".*[A-Za-z]+.*";
 
@@ -51,7 +48,13 @@ public abstract class User {
             }
         }
 
-        return n.matches(regex) && n.matches(regexLetra) && s.matches(regex) && existe == 0;
+        return n.matches(regex) && n.matches(regexLetra) && existe == 0;
+    }
+    
+    private boolean validoSenha(String s){
+        String regex = "^[A-Za-z0-9]+$";
+        
+        return  s.matches(regex);
     }
 
     public String getNome() {
@@ -62,11 +65,17 @@ public abstract class User {
         return this.senha;
     }
 
-    public void setNome(String novoNome) {
+    public void setNome(String novoNome) throws UsuarioException{
+        if(!validoNome(novoNome))
+            throw new UsuarioException();
+        
         this.nome = novoNome;
     }
 
-    public void setSenha(String novaSenha) {
+    public void setSenha(String novaSenha) throws UsuarioException{
+        if(!validoSenha(novaSenha))
+            throw new UsuarioException();
+        
         this.senha = novaSenha;
     }
 
@@ -80,6 +89,10 @@ public abstract class User {
     
     public void removeSaldo(float value){
         this.saldo -= value;
+    }
+    
+    public void setSaldo(float value){
+        this.saldo = value;
     }
     
     public float getSaldo(){

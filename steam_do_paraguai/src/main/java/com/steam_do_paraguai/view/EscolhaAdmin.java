@@ -44,6 +44,11 @@ public class EscolhaAdmin extends javax.swing.JPanel {
         });
 
         jButton2.setText("Editar Usuários");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEditaUsuarioActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Deslogar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +90,12 @@ public class EscolhaAdmin extends javax.swing.JPanel {
             AdminEditaJogo editarloja = new AdminEditaJogo(this.tela);
             this.tela.mudaPanel(editarloja);
     }//GEN-LAST:event_editarLojaActionPerformed
+
+    private void jEditaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditaUsuarioActionPerformed
+        AdminEditaUsuarios editausuarios = new AdminEditaUsuarios(this.tela);
+        this.tela.mudaPanel(editausuarios);
+        editausuarios.carregaUsuarios();
+    }//GEN-LAST:event_jEditaUsuarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

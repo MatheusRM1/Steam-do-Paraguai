@@ -143,9 +143,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="userField">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userFieldActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="passwordLabel">
           <Properties>
@@ -156,9 +153,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="passwordField">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordFieldActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="confirmPasswordLabel">
           <Properties>
@@ -180,9 +174,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usuarioRadioActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="adminRadio">
           <Properties>
