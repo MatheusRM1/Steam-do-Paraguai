@@ -13,8 +13,11 @@ public class JogoPersistence implements Persistence<Jogo> {
     private static final String PATH = DIRECTORY + "/jogos.json";
 
     @Override
-    public void save(List<Jogo> itens){
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    public void save(List<Jogo> itens){        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Jogo.class, new UserAdapter());
+        
+        Gson gson = gsonBuilder.create();
         String json = gson.toJson(itens);
 
         File diretorio = new File(DIRECTORY);
