@@ -4,19 +4,48 @@
  */
 package com.steam_do_paraguai.view;
 
+import com.steam_do_paraguai.exception.JogoException;
+import com.steam_do_paraguai.model.Jogo;
+import com.steam_do_paraguai.persistence.JogoPersistence;
+import com.steam_do_paraguai.persistence.Persistence;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author lukas-freitas
  */
 public class AdminEditaJogo extends javax.swing.JPanel {
-private MenuPrincipal tela;
+    private MenuPrincipal tela;
+    private List<Jogo> listaJogos = new ArrayList<>();
+    Persistence<Jogo> jogoPersistence = new JogoPersistence();
     /**
      * Creates new form AdminPanel
      */
     public AdminEditaJogo(MenuPrincipal tela) {
         this.tela = tela;
+        
+        listaJogos = jogoPersistence.findAll();
+        
         initComponents();
+        carregaJogos();
     }
+    
+    public void carregaJogos(){
+        
+        DefaultListModel<String> model = new DefaultListModel<>();
+        
+        for (Jogo jogo : this.listaJogos) {
+            model.addElement(jogo.getNome());
+        }
+    
+        gamesList.setModel(model);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,6 +80,11 @@ private MenuPrincipal tela;
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        gamesList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                gamesListMouseReleased(evt);
+            }
+        });
         adminGamesList.setViewportView(gamesList);
 
         nomeField.setBackground(new java.awt.Color(30, 30, 29));
@@ -69,14 +103,29 @@ private MenuPrincipal tela;
         adicionarButton.setBackground(new java.awt.Color(30, 30, 29));
         adicionarButton.setForeground(new java.awt.Color(255, 255, 255));
         adicionarButton.setText("Adicionar");
+        adicionarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarButtonActionPerformed(evt);
+            }
+        });
 
         editarButton.setBackground(new java.awt.Color(30, 30, 29));
         editarButton.setForeground(new java.awt.Color(255, 255, 255));
         editarButton.setText("Editar");
+        editarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarButtonActionPerformed(evt);
+            }
+        });
 
         removerButton.setBackground(new java.awt.Color(30, 30, 29));
         removerButton.setForeground(new java.awt.Color(255, 255, 255));
         removerButton.setText("Remover");
+        removerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerButtonActionPerformed(evt);
+            }
+        });
 
         descricaoField.setBackground(new java.awt.Color(30, 30, 29));
         descricaoField.setForeground(new java.awt.Color(255, 255, 255));
@@ -140,6 +189,86 @@ private MenuPrincipal tela;
                 .addGap(14, 14, 14))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void gamesListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gamesListMouseReleased
+        if (gamesList.getSelectedIndex() != -1) {
+            Jogo jogoSelecionado = listaJogos.get(gamesList.getSelectedIndex());
+
+            nomeField.setText(jogoSelecionado.getNome());
+            descricaoField.setText(jogoSelecionado.getDescricao());
+            preçoField.setText(String.valueOf(jogoSelecionado.getPreco()));
+        }
+    }//GEN-LAST:event_gamesListMouseReleased
+
+    private void removerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerButtonActionPerformed
+        int selectedIndex = gamesList.getSelectedIndex();
+
+        if (selectedIndex != -1) {
+            listaJogos.remove(selectedIndex);
+            jogoPersistence.save(listaJogos);
+            carregaJogos();
+            javax.swing.JOptionPane.showMessageDialog(this, "Jogo removido com sucesso!", "Sucesso", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
+        else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecione um jogo para remover.", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_removerButtonActionPerformed
+
+    private void editarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButtonActionPerformed
+        int selectedIndex = gamesList.getSelectedIndex();
+        
+        if (selectedIndex != -1) {
+            Jogo jogoSelecionado = listaJogos.get(selectedIndex);
+            
+            try{
+                String nome = nomeField.getText();
+                String descricao = descricaoField.getText();
+                float preco = Float.parseFloat(preçoField.getText());
+                
+                jogoSelecionado.setNome(nome);
+                jogoSelecionado.setDescricao(descricao);
+                jogoSelecionado.setPreco(preco);
+                
+                jogoPersistence.save(listaJogos);
+                carregaJogos();
+                javax.swing.JOptionPane.showMessageDialog(this, "Jogo atualizado com sucesso!", "Sucesso", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch(JogoException e){
+                javax.swing.JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+            catch(NumberFormatException e){
+                javax.swing.JOptionPane.showMessageDialog(this, "Preço inválido! Por favor, insira um valor válido", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else{
+             javax.swing.JOptionPane.showMessageDialog(this, "Selecione um jogo para editar.", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_editarButtonActionPerformed
+
+    private void adicionarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarButtonActionPerformed
+        try {
+            String nome = nomeField.getText();
+            String descricao = descricaoField.getText();
+            float preco = Float.parseFloat(preçoField.getText());
+
+            Jogo novoJogo = new Jogo();
+            novoJogo.setNome(nome);
+            novoJogo.setDescricao(descricao);
+            novoJogo.setPreco(preco);
+
+            listaJogos.add(novoJogo);
+            jogoPersistence.save(listaJogos);
+            carregaJogos();
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Jogo adicionado com sucesso!", "Sucesso", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch (JogoException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Preço inválido! Por favor, insira um valor válido", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_adicionarButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
