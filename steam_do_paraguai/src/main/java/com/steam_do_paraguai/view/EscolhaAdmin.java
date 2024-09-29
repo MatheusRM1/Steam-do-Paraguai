@@ -27,41 +27,41 @@ public class EscolhaAdmin extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jEditaAdmin = new javax.swing.JButton();
+        editaLojaButton = new javax.swing.JButton();
+        editaUserButton = new javax.swing.JButton();
+        sairDaContaButton = new javax.swing.JButton();
+        editaAdminsButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(61, 122, 155));
         setMaximumSize(new java.awt.Dimension(708, 368));
         setMinimumSize(new java.awt.Dimension(708, 368));
         setPreferredSize(new java.awt.Dimension(708, 368));
 
-        jButton1.setText("Editar loja");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        editaLojaButton.setText("Editar loja");
+        editaLojaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarLojaActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Editar Usuários");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        editaUserButton.setText("Editar Usuários");
+        editaUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jEditaUsuarioActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Deslogar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        sairDaContaButton.setText("Sair da conta");
+        sairDaContaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                sairDaContaButtonActionPerformed(evt);
             }
         });
 
-        jEditaAdmin.setText("Editar Admins");
-        jEditaAdmin.addActionListener(new java.awt.event.ActionListener() {
+        editaAdminsButton.setText("Editar Admins");
+        editaAdminsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jEditaAdminActionPerformed(evt);
+                editaAdminsButtonActionPerformed(evt);
             }
         });
 
@@ -72,30 +72,30 @@ public class EscolhaAdmin extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(153, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
-                    .addComponent(jEditaAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(editaUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                    .addComponent(editaAdminsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editaLojaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sairDaContaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(191, 191, 191))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jEditaAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE)
+                .addComponent(editaUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addComponent(editaAdminsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(editaLojaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(sairDaContaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void sairDaContaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairDaContaButtonActionPerformed
         this.tela.setDeslogado();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_sairDaContaButtonActionPerformed
 
     private void editarLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarLojaActionPerformed
             AdminEditaJogo editarloja = new AdminEditaJogo(this.tela);
@@ -108,17 +108,17 @@ public class EscolhaAdmin extends javax.swing.JPanel {
        
     }//GEN-LAST:event_jEditaUsuarioActionPerformed
 
-    private void jEditaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditaAdminActionPerformed
+    private void editaAdminsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editaAdminsButtonActionPerformed
         AdminEditaAdmin editaadmins = new AdminEditaAdmin(this.tela);
         this.tela.mudaPanel(editaadmins);
         
-    }//GEN-LAST:event_jEditaAdminActionPerformed
+    }//GEN-LAST:event_editaAdminsButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jEditaAdmin;
+    private javax.swing.JButton editaAdminsButton;
+    private javax.swing.JButton editaLojaButton;
+    private javax.swing.JButton editaUserButton;
+    private javax.swing.JButton sairDaContaButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,7 +9,6 @@ import com.steam_do_paraguai.model.Usuario;
 import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
 import java.util.List;
-import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,6 +30,9 @@ public class CarrinhoPanel extends javax.swing.JPanel {
     initComponents();
     this.carregaCarrinho();
     this.carregaTotal();
+    String valor = String.format("%.2f", ((Usuario) this.tela.getUsuario()).getSaldo());
+    valor = valor.replaceAll("[.]",",");
+    this.saldoValueLabel.setText(valor);
     }
 
     /**
@@ -46,6 +48,8 @@ public class CarrinhoPanel extends javax.swing.JPanel {
         tableCartGames = new javax.swing.JTable();
         buyButton = new javax.swing.JButton();
         totalLabel = new javax.swing.JLabel();
+        saldoTextLabel = new javax.swing.JLabel();
+        saldoValueLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(61, 122, 155));
         setMaximumSize(new java.awt.Dimension(708, 368));
@@ -87,6 +91,12 @@ public class CarrinhoPanel extends javax.swing.JPanel {
         totalLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalLabel.setText("TOTAL: R$0,00");
 
+        saldoTextLabel.setForeground(new java.awt.Color(255, 255, 255));
+        saldoTextLabel.setText("Saldo: R$");
+
+        saldoValueLabel.setForeground(new java.awt.Color(255, 255, 255));
+        saldoValueLabel.setText("0,00");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,6 +108,10 @@ public class CarrinhoPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(totalLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(saldoTextLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saldoValueLabel)
+                        .addGap(98, 98, 98)
                         .addComponent(buyButton)))
                 .addContainerGap())
         );
@@ -108,7 +122,9 @@ public class CarrinhoPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalLabel)
-                    .addComponent(buyButton))
+                    .addComponent(buyButton)
+                    .addComponent(saldoTextLabel)
+                    .addComponent(saldoValueLabel))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -163,7 +179,14 @@ public class CarrinhoPanel extends javax.swing.JPanel {
                 this.carregaTotal();
                 
                 this.carregaCarrinho();
+                String valor = String.format("%.2f", ((Usuario) this.tela.getUsuario()).getSaldo());
+                valor = valor.replaceAll("[.]",",");
+                this.saldoValueLabel.setText(valor);
                 
+            }
+            else
+            {
+                 JOptionPane.showMessageDialog(null, "Saldo insuficiente!");
             }
         }
         else
@@ -194,6 +217,8 @@ public class CarrinhoPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buyButton;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel saldoTextLabel;
+    private javax.swing.JLabel saldoValueLabel;
     private javax.swing.JTable tableCartGames;
     private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables

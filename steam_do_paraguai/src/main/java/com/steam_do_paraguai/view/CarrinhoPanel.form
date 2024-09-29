@@ -37,6 +37,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="totalLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="saldoTextLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="saldoValueLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                       <Component id="buyButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -52,6 +56,8 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="totalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buyButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="saldoTextLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="saldoValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
@@ -118,6 +124,22 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="TOTAL: R$0,00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="saldoTextLabel">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Saldo: R$"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="saldoValueLabel">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="0,00"/>
       </Properties>
     </Component>
   </SubComponents>

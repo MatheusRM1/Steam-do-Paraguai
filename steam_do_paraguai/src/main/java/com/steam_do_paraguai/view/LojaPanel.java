@@ -5,15 +5,15 @@
 package com.steam_do_paraguai.view;
 
 import com.steam_do_paraguai.exception.JogoException;
+import com.steam_do_paraguai.model.Admin;
 import com.steam_do_paraguai.model.Jogo;
-import com.steam_do_paraguai.model.User;
 import com.steam_do_paraguai.model.Usuario;
 import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author lukas-freitas
@@ -28,16 +28,18 @@ public class LojaPanel extends javax.swing.JPanel {
      */
     public LojaPanel(MenuPrincipal t) {
         this.tela = t;
+        
         usuarioPersistence = new UsuarioPersistence();
         lista = usuarioPersistence.findAll();
         initComponents();
-        DefaultTableModel model = (DefaultTableModel)this.shopTableGames.getModel();
-        model.addRow(new Object[]{"Baldur's Gate","Jogo de rpg", 199});
-        model.addRow(new Object[]{"Naruto storm","Jogo de naruto", 100});
-        model.addRow(new Object[]{"Hades I","Jogo rogue like", 50});
-        model.addRow(new Object[]{"Sparking zero","Jogo de dragon ball", 250});
-        model.addRow(new Object[]{"Terraria","Jogo de sandbox", 10});
-        model.addRow(new Object[]{"The sims 4","Jogo de simulação", 3000});
+        if(this.tela.getUsuario() instanceof Admin)
+        {
+            this.addToCartButton.setVisible(false);
+        }
+        else
+        {
+            this.addToCartButton.setVisible(true);
+        }
     }
 
     /**
@@ -59,7 +61,10 @@ public class LojaPanel extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(708, 368));
         setPreferredSize(new java.awt.Dimension(708, 368));
 
-        shopTableGames.setBackground(new java.awt.Color(221, 221, 221));
+        shopTable.setBorder(null);
+        shopTable.setForeground(new java.awt.Color(40, 40, 40));
+
+        shopTableGames.setForeground(new java.awt.Color(40, 40, 40));
         shopTableGames.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -76,6 +81,12 @@ public class LojaPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        shopTableGames.setGridColor(new java.awt.Color(40, 40, 40));
+        shopTableGames.setMaximumSize(new java.awt.Dimension(696, 240));
+        shopTableGames.setMinimumSize(new java.awt.Dimension(696, 240));
+        shopTableGames.setOpaque(false);
+        shopTableGames.setSelectionBackground(new java.awt.Color(40, 40, 40));
+        shopTableGames.setSelectionForeground(new java.awt.Color(255, 255, 255));
         shopTableGames.getTableHeader().setReorderingAllowed(false);
         shopTable.setViewportView(shopTableGames);
         if (shopTableGames.getColumnModel().getColumnCount() > 0) {
@@ -109,7 +120,7 @@ public class LojaPanel extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(shopTable)
+                    .addComponent(shopTable, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -123,8 +134,8 @@ public class LojaPanel extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(56, 56, 56)
-                    .addComponent(shopTable, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(74, Short.MAX_VALUE)))
+                    .addComponent(shopTable, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(72, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -144,10 +155,19 @@ public class LojaPanel extends javax.swing.JPanel {
             catch(JogoException e){
                 throw new RuntimeException("Erro ao adicionar o jogo");
             }
-            if(!verificaExistente(jogo))
+            if(!verificaJogosUsuario(jogo))
             {
-                  ((Usuario) this.tela.getUsuario()).getCarrinho().adicionaJogo(jogo);
-                  usuarioPersistence.save(lista);
+                  if(!verificaCarrinhoUsuario(jogo))
+                  {
+                      ((Usuario) this.tela.getUsuario()).getCarrinho().adicionaJogo(jogo);
+                      usuarioPersistence.save(lista);
+                      JOptionPane.showMessageDialog(null, "Jogo adicionado ao carrinho!");
+                  }
+                  else
+                  {
+                      JOptionPane.showMessageDialog(null, "O jogo já está no seu carrinho!");
+                  }
+                  
             }
             else
             {
@@ -159,9 +179,21 @@ public class LojaPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_addToCartButtonActionPerformed
 
-    private boolean verificaExistente(Jogo jogo)
+    private boolean verificaJogosUsuario(Jogo jogo)
     {
         List<Jogo> jogos = ((Usuario) this.tela.getUsuario()).getJogos();
+        for(int i = 0; i<jogos.size();i+=1)
+        {
+            if(jogos.get(i).getNome().toLowerCase().equals(jogo.getNome().toLowerCase()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    private boolean verificaCarrinhoUsuario(Jogo jogo)
+    {
+        List<Jogo> jogos = ((Usuario) this.tela.getUsuario()).getCarrinho().getJogos();
         for(int i = 0; i<jogos.size();i+=1)
         {
             if(jogos.get(i).getNome().toLowerCase().equals(jogo.getNome().toLowerCase()))

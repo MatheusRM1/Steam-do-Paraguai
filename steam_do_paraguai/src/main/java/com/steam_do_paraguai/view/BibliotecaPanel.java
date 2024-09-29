@@ -5,14 +5,10 @@
 package com.steam_do_paraguai.view;
         
 import com.steam_do_paraguai.model.Jogo;
-import com.steam_do_paraguai.model.User;
+
 import com.steam_do_paraguai.model.Usuario;
-import com.steam_do_paraguai.persistence.JogoPersistence;
-import com.steam_do_paraguai.persistence.Persistence;
-import com.steam_do_paraguai.persistence.UsuarioPersistence;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -52,6 +48,15 @@ public class BibliotecaPanel extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(708, 368));
         setPreferredSize(new java.awt.Dimension(708, 368));
 
+        gameName.setFont(new java.awt.Font("SansSerif", 1, 60)); // NOI18N
+
+        gameDescription.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
+        gameDescription.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        gameDescription.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        gamePrice.setFont(new java.awt.Font("Source Sans Pro", 0, 36)); // NOI18N
+        gamePrice.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
         javax.swing.GroupLayout libraryDescriptionPanelLayout = new javax.swing.GroupLayout(libraryDescriptionPanel);
         libraryDescriptionPanel.setLayout(libraryDescriptionPanelLayout);
         libraryDescriptionPanelLayout.setHorizontalGroup(
@@ -59,22 +64,23 @@ public class BibliotecaPanel extends javax.swing.JPanel {
             .addGroup(libraryDescriptionPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(libraryDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(libraryDescriptionPanelLayout.createSequentialGroup()
-                        .addComponent(gamePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 369, Short.MAX_VALUE))
                     .addComponent(gameName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(gameDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(libraryDescriptionPanelLayout.createSequentialGroup()
+                        .addComponent(gameDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(libraryDescriptionPanelLayout.createSequentialGroup()
+                        .addComponent(gamePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 242, Short.MAX_VALUE))))
         );
         libraryDescriptionPanelLayout.setVerticalGroup(
             libraryDescriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(libraryDescriptionPanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(gameName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(gameName, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(gameDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(gamePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(gamePrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(gameDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -103,7 +109,7 @@ public class BibliotecaPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gamesListLibrary)
+                    .addComponent(gamesListLibrary, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                     .addComponent(librarySearchField, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(libraryDescriptionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

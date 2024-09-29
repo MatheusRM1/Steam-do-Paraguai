@@ -84,7 +84,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="lojaButton" min="-2" pref="205" max="-2" attributes="0"/>
+                              <Component id="lojaButton" pref="205" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="bibliotecaButton" min="-2" pref="205" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lojaButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lojaButton" alignment="3" max="32767" attributes="0"/>
                           <Component id="bibliotecaButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="carrinhoButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="fundosButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -191,10 +191,16 @@
                 </Property>
                 <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[708, 22]"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lojaButtonActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="MenuPrincipal_lojaButton"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="iniciarSessaoButton">
               <Properties>

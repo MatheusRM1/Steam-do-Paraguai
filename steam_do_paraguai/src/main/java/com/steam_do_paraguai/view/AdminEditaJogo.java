@@ -10,8 +10,6 @@ import com.steam_do_paraguai.persistence.JogoPersistence;
 import com.steam_do_paraguai.persistence.Persistence;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 /**
@@ -75,11 +73,6 @@ public class AdminEditaJogo extends javax.swing.JPanel {
 
         gamesList.setBackground(new java.awt.Color(30, 30, 29));
         gamesList.setForeground(new java.awt.Color(255, 255, 255));
-        gamesList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         gamesList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 gamesListMouseReleased(evt);
@@ -103,6 +96,10 @@ public class AdminEditaJogo extends javax.swing.JPanel {
         adicionarButton.setBackground(new java.awt.Color(30, 30, 29));
         adicionarButton.setForeground(new java.awt.Color(255, 255, 255));
         adicionarButton.setText("Adicionar");
+        adicionarButton.setBorderPainted(false);
+        adicionarButton.setMaximumSize(new java.awt.Dimension(110, 37));
+        adicionarButton.setMinimumSize(new java.awt.Dimension(110, 37));
+        adicionarButton.setPreferredSize(new java.awt.Dimension(110, 37));
         adicionarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adicionarButtonActionPerformed(evt);
@@ -112,6 +109,9 @@ public class AdminEditaJogo extends javax.swing.JPanel {
         editarButton.setBackground(new java.awt.Color(30, 30, 29));
         editarButton.setForeground(new java.awt.Color(255, 255, 255));
         editarButton.setText("Editar");
+        editarButton.setMaximumSize(new java.awt.Dimension(110, 37));
+        editarButton.setMinimumSize(new java.awt.Dimension(110, 37));
+        editarButton.setPreferredSize(new java.awt.Dimension(110, 37));
         editarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarButtonActionPerformed(evt);
@@ -121,6 +121,9 @@ public class AdminEditaJogo extends javax.swing.JPanel {
         removerButton.setBackground(new java.awt.Color(30, 30, 29));
         removerButton.setForeground(new java.awt.Color(255, 255, 255));
         removerButton.setText("Remover");
+        removerButton.setMaximumSize(new java.awt.Dimension(110, 37));
+        removerButton.setMinimumSize(new java.awt.Dimension(110, 37));
+        removerButton.setPreferredSize(new java.awt.Dimension(110, 37));
         removerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removerButtonActionPerformed(evt);
@@ -129,7 +132,12 @@ public class AdminEditaJogo extends javax.swing.JPanel {
 
         descricaoField.setBackground(new java.awt.Color(30, 30, 29));
         descricaoField.setForeground(new java.awt.Color(255, 255, 255));
-        descricaoField.setText("Descrição do jogo~");
+        descricaoField.setText("Descrição do jogo");
+        descricaoField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descricaoFieldActionPerformed(evt);
+            }
+        });
 
         preçoField.setBackground(new java.awt.Color(30, 30, 29));
         preçoField.setForeground(new java.awt.Color(255, 255, 255));
@@ -145,12 +153,12 @@ public class AdminEditaJogo extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 135, Short.MAX_VALUE)
-                        .addComponent(removerButton)
+                        .addGap(0, 117, Short.MAX_VALUE)
+                        .addComponent(removerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(editarButton)
+                        .addComponent(editarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(adicionarButton))
+                        .addComponent(adicionarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(nomeField)
                     .addComponent(descricaoField)
                     .addGroup(layout.createSequentialGroup()
@@ -164,10 +172,6 @@ public class AdminEditaJogo extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(adminGamesList)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(nomeLabel)
@@ -181,12 +185,16 @@ public class AdminEditaJogo extends javax.swing.JPanel {
                 .addComponent(preçoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(preçoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(removerButton)
-                    .addComponent(editarButton)
-                    .addComponent(adicionarButton))
-                .addGap(14, 14, 14))
+                    .addComponent(adicionarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(adminGamesList, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -269,6 +277,10 @@ public class AdminEditaJogo extends javax.swing.JPanel {
             javax.swing.JOptionPane.showMessageDialog(this, "Preço inválido! Por favor, insira um valor válido", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_adicionarButtonActionPerformed
+
+    private void descricaoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descricaoFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_descricaoFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

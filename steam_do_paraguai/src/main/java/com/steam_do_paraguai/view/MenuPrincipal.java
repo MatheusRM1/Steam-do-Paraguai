@@ -23,7 +23,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal() {
         this.usuario = null;
         initComponents();
-
         LoginPanel log = new LoginPanel(this);
         this.mudaPanel(log);
     }
@@ -57,6 +56,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         LoginPanel log = new LoginPanel(this);
         this.mudaPanel(log);
+        this.configurarLayoutUsuario();
     }
 
     public void setUsuario(LoginPanel login) {
@@ -75,8 +75,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     userButtonActionPerformed(e);
                 }
             });
-
+            
         } else if (login.getUsuario() instanceof Admin) {
+            
             this.usuario = (Admin) this.usuario;
             Admin user = (Admin) login.getUsuario();
             this.usuario = user;
@@ -89,6 +90,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     adminButtonActionPerformed(e);
                 }
             });
+           this.configurarLayoutAdmin();
+           
         } else {
             iniciarSessaoButton.setText("INICIAR SESSAO");
             java.awt.event.ActionListener[] acao = iniciarSessaoButton.getActionListeners();
@@ -113,6 +116,171 @@ public class MenuPrincipal extends javax.swing.JFrame {
         EscolhaAdmin log = new EscolhaAdmin(this);
         this.mudaPanel(log);
     }
+    
+    private void configurarLayoutAdmin() {
+        this.fundosButton.setVisible(false);
+        this.bibliotecaButton.setVisible(false);
+         this.carrinhoButton.setVisible(false);
+        lojaButton.setPreferredSize(new java.awt.Dimension(708, 22));
+        javax.swing.GroupLayout barraSuperiorPanelLayout = new javax.swing.GroupLayout(barraSuperiorPanel);
+        barraSuperiorPanel.setLayout(barraSuperiorPanelLayout);
+        barraSuperiorPanelLayout.setHorizontalGroup(
+            barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
+                .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(steamLabel)
+                        .addGap(53, 53, 53)
+                        .addComponent(iniciarSessaoButton, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))
+                    .addComponent(lojaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        barraSuperiorPanelLayout.setVerticalGroup(
+            barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(iniciarSessaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(steamLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lojaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        template.setBackground(new java.awt.Color(30, 30, 29));
+
+        javax.swing.GroupLayout templateLayout = new javax.swing.GroupLayout(template);
+        template.setLayout(templateLayout);
+        templateLayout.setHorizontalGroup(
+            templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        templateLayout.setVerticalGroup(
+            templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 368, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout fundoPanelLayout = new javax.swing.GroupLayout(fundoPanel);
+        fundoPanel.setLayout(fundoPanelLayout);
+        fundoPanelLayout.setHorizontalGroup(
+            fundoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(barraSuperiorPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(fundoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(template, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        fundoPanelLayout.setVerticalGroup(
+            fundoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fundoPanelLayout.createSequentialGroup()
+                .addComponent(barraSuperiorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(template, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fundoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fundoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+    }
+    
+    private void configurarLayoutUsuario()
+    {
+        this.bibliotecaButton.setVisible(true);
+        this.fundosButton.setVisible(true);
+        this.carrinhoButton.setVisible(true);
+        javax.swing.GroupLayout barraSuperiorPanelLayout = new javax.swing.GroupLayout(barraSuperiorPanel);
+        barraSuperiorPanel.setLayout(barraSuperiorPanelLayout);
+        barraSuperiorPanelLayout.setHorizontalGroup(
+            barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
+                        .addComponent(lojaButton, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bibliotecaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barraSuperiorPanelLayout.createSequentialGroup()
+                        .addComponent(steamLabel)
+                        .addGap(53, 53, 53)))
+                .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(carrinhoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fundosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(iniciarSessaoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        barraSuperiorPanelLayout.setVerticalGroup(
+            barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(iniciarSessaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(steamLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lojaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bibliotecaButton)
+                    .addComponent(carrinhoButton)
+                    .addComponent(fundosButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        template.setBackground(new java.awt.Color(30, 30, 29));
+
+        javax.swing.GroupLayout templateLayout = new javax.swing.GroupLayout(template);
+        template.setLayout(templateLayout);
+        templateLayout.setHorizontalGroup(
+            templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        templateLayout.setVerticalGroup(
+            templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 368, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout fundoPanelLayout = new javax.swing.GroupLayout(fundoPanel);
+        fundoPanel.setLayout(fundoPanelLayout);
+        fundoPanelLayout.setHorizontalGroup(
+            fundoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(barraSuperiorPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(fundoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(template, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        fundoPanelLayout.setVerticalGroup(
+            fundoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fundoPanelLayout.createSequentialGroup()
+                .addComponent(barraSuperiorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(template, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fundoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fundoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+    }
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,6 +344,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lojaButton.setBorder(null);
         lojaButton.setBorderPainted(false);
         lojaButton.setContentAreaFilled(false);
+        lojaButton.setMaximumSize(new java.awt.Dimension(708, 22));
         lojaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lojaButtonActionPerformed(evt);
@@ -215,7 +384,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(barraSuperiorPanelLayout.createSequentialGroup()
-                        .addComponent(lojaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lojaButton, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bibliotecaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
@@ -240,7 +409,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(steamLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(barraSuperiorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lojaButton)
+                    .addComponent(lojaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bibliotecaButton)
                     .addComponent(carrinhoButton)
                     .addComponent(fundosButton))
@@ -299,18 +468,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.mudaPanel(log);
     }//GEN-LAST:event_iniciarSessaoButtonActionPerformed
 
-    private void bibliotecaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaButtonActionPerformed
-        if(this.usuario != null)
-        {
-            BibliotecaPanel bib = new BibliotecaPanel(this);
-            this.mudaPanel(bib);
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Inicie sessao primeiro!");
-        }
-    }//GEN-LAST:event_bibliotecaButtonActionPerformed
-
     private void lojaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lojaButtonActionPerformed
         if(this.usuario != null)
         {
@@ -323,21 +480,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lojaButtonActionPerformed
 
-    private void carrinhoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carrinhoButtonActionPerformed
-        if(this.usuario != null)
-        {
-            CarrinhoPanel carrinho = new CarrinhoPanel(this);
-            this.mudaPanel(carrinho);
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Inicie sessao primeiro!");
-        }
-        
-    }//GEN-LAST:event_carrinhoButtonActionPerformed
-
     private void fundosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fundosButtonActionPerformed
-        if(this.usuario != null)
+        if(this.usuario != null && !(this.usuario instanceof Admin))
         {
             FundosPanel saldo = new FundosPanel(this);
             this.mudaPanel(saldo);
@@ -347,6 +491,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Inicie s'essao primeiro!");
         }
     }//GEN-LAST:event_fundosButtonActionPerformed
+
+    private void carrinhoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carrinhoButtonActionPerformed
+        if(this.usuario != null && !(this.usuario instanceof Admin))
+        {
+            CarrinhoPanel carrinho = new CarrinhoPanel(this);
+            this.mudaPanel(carrinho);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Inicie sessao primeiro!");
+        }
+    }//GEN-LAST:event_carrinhoButtonActionPerformed
+
+    private void bibliotecaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaButtonActionPerformed
+         if(this.usuario != null && !(this.usuario instanceof Admin))
+        {
+            BibliotecaPanel bib = new BibliotecaPanel(this);
+            this.mudaPanel(bib);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Inicie sessao primeiro!");
+        }
+    }//GEN-LAST:event_bibliotecaButtonActionPerformed
 
     /**
      * @param args the command line arguments

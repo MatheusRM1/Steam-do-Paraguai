@@ -70,9 +70,9 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
         jAdicionaButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTabelaUsuarios = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
+        nomeLabel = new javax.swing.JLabel();
         jNomeField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        senhaLabel = new javax.swing.JLabel();
         jSenhaField = new javax.swing.JTextField();
         jFundosField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -82,6 +82,9 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(708, 368));
 
         jEditButton.setText("Editar");
+        jEditButton.setMaximumSize(new java.awt.Dimension(110, 37));
+        jEditButton.setMinimumSize(new java.awt.Dimension(110, 37));
+        jEditButton.setPreferredSize(new java.awt.Dimension(110, 37));
         jEditButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jEditButtonActionPerformed(evt);
@@ -89,6 +92,9 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
         });
 
         jRemoveButton.setText("Remover");
+        jRemoveButton.setMaximumSize(new java.awt.Dimension(110, 37));
+        jRemoveButton.setMinimumSize(new java.awt.Dimension(110, 37));
+        jRemoveButton.setPreferredSize(new java.awt.Dimension(110, 37));
         jRemoveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRemoveButtonActionPerformed(evt);
@@ -96,6 +102,9 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
         });
 
         jAdicionaButton.setText("Adicionar");
+        jAdicionaButton.setMaximumSize(new java.awt.Dimension(110, 37));
+        jAdicionaButton.setMinimumSize(new java.awt.Dimension(110, 37));
+        jAdicionaButton.setPreferredSize(new java.awt.Dimension(110, 37));
         jAdicionaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jAdicionaButtonActionPerformed(evt);
@@ -131,9 +140,15 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
             jTabelaUsuarios.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jLabel4.setText("Nome");
+        nomeLabel.setText("Nome");
 
-        jLabel1.setText("Senha");
+        jNomeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNomeFieldActionPerformed(evt);
+            }
+        });
+
+        senhaLabel.setText("Senha");
 
         jLabel2.setText("Fundos");
 
@@ -144,52 +159,50 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jNomeField)
-                    .addComponent(jSenhaField)
-                    .addComponent(jFundosField)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 94, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jNomeField, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                .addComponent(jSenhaField))
+                            .addComponent(jFundosField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(senhaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jRemoveButton)
-                        .addGap(83, 83, 83)
-                        .addComponent(jEditButton)
-                        .addGap(88, 88, 88)
-                        .addComponent(jAdicionaButton)
-                        .addGap(87, 87, 87))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jRemoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jAdicionaButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
+                        .addComponent(nomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
                         .addComponent(jNomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
+                        .addComponent(senhaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jSenhaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jFundosField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRemoveButton)
-                    .addComponent(jEditButton)
-                    .addComponent(jAdicionaButton))
-                .addGap(64, 64, 64))
+                    .addComponent(jAdicionaButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRemoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -268,19 +281,23 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTabelaUsuariosMouseReleased
 
+    private void jNomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNomeFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNomeFieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jAdicionaButton;
     private javax.swing.JButton jEditButton;
     private javax.swing.JTextField jFundosField;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jNomeField;
     private javax.swing.JButton jRemoveButton;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jSenhaField;
     private javax.swing.JTable jTabelaUsuarios;
+    private javax.swing.JLabel nomeLabel;
+    private javax.swing.JLabel senhaLabel;
     // End of variables declaration//GEN-END:variables
 }

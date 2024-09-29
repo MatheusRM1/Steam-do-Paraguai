@@ -26,7 +26,14 @@ public class Usuario extends User {
     }
 
     public void adicionaSaldo(float value) {
-        this.saldo += value;
+        if(this.saldo+value > 100000)
+        {
+            this.saldo = 100000;
+        }
+        else
+        {
+            this.saldo += value;
+        }
     }
 
     public void removeSaldo(float value) {
@@ -34,7 +41,15 @@ public class Usuario extends User {
     }
 
     public void setSaldo(float value) {
-        this.saldo = value;
+        if(value<= 100000)
+        {
+            this.saldo = value;
+        }
+        else
+        {
+            this.saldo = 100000;
+        }
+        
     }
 
     public float getSaldo() {
