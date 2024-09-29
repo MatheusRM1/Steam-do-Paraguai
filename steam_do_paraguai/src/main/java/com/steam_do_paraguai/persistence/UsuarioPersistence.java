@@ -5,13 +5,11 @@
 package com.steam_do_paraguai.persistence;
 
 
-import com.steam_do_paraguai.model.User;
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.steam_do_paraguai.model.Usuario;
 

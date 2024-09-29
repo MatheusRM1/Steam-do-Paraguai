@@ -40,6 +40,13 @@ public class LojaPanel extends javax.swing.JPanel {
         {
             this.addToCartButton.setVisible(true);
         }
+        DefaultTableModel model = (DefaultTableModel)this.shopTableGames.getModel();
+        model.addRow(new Object[]{"Baldur's Gate","Jogo de rpg", 199});
+        model.addRow(new Object[]{"Naruto storm","Jogo de naruto", 100});
+        model.addRow(new Object[]{"Hades I","Jogo rogue like", 50});
+        model.addRow(new Object[]{"Sparking zero","Jogo de dragon ball", 250});
+        model.addRow(new Object[]{"Terraria","Jogo de sandbox", 10});
+        model.addRow(new Object[]{"The sims 4","Jogo de simulação", 3000});
     }
 
     /**
@@ -153,13 +160,18 @@ public class LojaPanel extends javax.swing.JPanel {
                 jogo.setPreco(preco);
             }
             catch(JogoException e){
-                throw new RuntimeException("Erro ao adicionar o jogo");
+                JOptionPane.showMessageDialog(null,"Erro ao adicionar o jogo");
             }
             if(!verificaJogosUsuario(jogo))
             {
                   if(!verificaCarrinhoUsuario(jogo))
                   {
                       ((Usuario) this.tela.getUsuario()).getCarrinho().adicionaJogo(jogo);
+                      int indice = this.indiceUser();
+                      if(indice!=-1)
+                      {
+                          this.lista.get(this.indiceUser()).getCarrinho().adicionaJogo(jogo);
+                      }
                       usuarioPersistence.save(lista);
                       JOptionPane.showMessageDialog(null, "Jogo adicionado ao carrinho!");
                   }
@@ -179,6 +191,17 @@ public class LojaPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_addToCartButtonActionPerformed
 
+    private int indiceUser()
+    {
+        for(int i = 0; i<this.lista.size(); i+=1)
+        {
+            if(this.tela.getUsuario().getNome().equals(this.lista.get(i).getNome()))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
     private boolean verificaJogosUsuario(Jogo jogo)
     {
         List<Jogo> jogos = ((Usuario) this.tela.getUsuario()).getJogos();
