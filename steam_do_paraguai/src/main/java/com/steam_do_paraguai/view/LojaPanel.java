@@ -7,6 +7,7 @@ package com.steam_do_paraguai.view;
 import com.steam_do_paraguai.exception.JogoException;
 import com.steam_do_paraguai.model.Jogo;
 import com.steam_do_paraguai.model.User;
+import com.steam_do_paraguai.model.Usuario;
 import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
 import java.util.List;
@@ -20,8 +21,8 @@ import javax.swing.table.DefaultTableModel;
 public class LojaPanel extends javax.swing.JPanel {
 
     private MenuPrincipal tela;
-    private Persistence<User> usuarioPersistence;
-    private List<User> lista;
+    private Persistence<Usuario> usuarioPersistence;
+    private List<Usuario> lista;
     /**
      * Creates new form Loja
      */
@@ -145,7 +146,7 @@ public class LojaPanel extends javax.swing.JPanel {
             }
             if(!verificaExistente(jogo))
             {
-                  lista.get(this.tela.getIndex()).getCarrinho().adicionaJogo(jogo);
+                  ((Usuario) this.tela.getUsuario()).getCarrinho().adicionaJogo(jogo);
                   usuarioPersistence.save(lista);
             }
             else
@@ -160,7 +161,7 @@ public class LojaPanel extends javax.swing.JPanel {
 
     private boolean verificaExistente(Jogo jogo)
     {
-        List<Jogo> jogos = this.lista.get(this.tela.getIndex()).getJogos();
+        List<Jogo> jogos = ((Usuario) this.tela.getUsuario()).getJogos();
         for(int i = 0; i<jogos.size();i+=1)
         {
             if(jogos.get(i).getNome().toLowerCase().equals(jogo.getNome().toLowerCase()))

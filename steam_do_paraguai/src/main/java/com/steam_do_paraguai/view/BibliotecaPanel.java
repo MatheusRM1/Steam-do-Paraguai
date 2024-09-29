@@ -6,6 +6,7 @@ package com.steam_do_paraguai.view;
         
 import com.steam_do_paraguai.model.Jogo;
 import com.steam_do_paraguai.model.User;
+import com.steam_do_paraguai.model.Usuario;
 import com.steam_do_paraguai.persistence.JogoPersistence;
 import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
@@ -19,14 +20,10 @@ import javax.swing.ListSelectionModel;
  */
 public class BibliotecaPanel extends javax.swing.JPanel {
     private MenuPrincipal tela;
-    private Persistence<User> usuarioPersistence;
-    private List<User> listaUsuarios;
     /**
      * Creates new form BibliotecaPanel
      */
     public BibliotecaPanel(MenuPrincipal tela) {
-        usuarioPersistence = new UsuarioPersistence();
-        this.listaUsuarios = usuarioPersistence.findAll();
         this.tela = tela;
         initComponents();
         this.carregaJogos();
@@ -161,7 +158,7 @@ public class BibliotecaPanel extends javax.swing.JPanel {
     private DefaultListModel<Jogo> listaJogos()
     {
         DefaultListModel<Jogo> jogosModel= new DefaultListModel<Jogo>();
-        List<Jogo> jogos = this.listaUsuarios.get(this.tela.getIndex()).getJogos();
+        List<Jogo> jogos = ((Usuario)this.tela.getUsuario()).getJogos();
         if(jogos.size()>0)
         {
             

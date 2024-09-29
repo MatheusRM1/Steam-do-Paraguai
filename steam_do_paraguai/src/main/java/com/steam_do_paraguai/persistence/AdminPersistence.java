@@ -4,29 +4,24 @@
  */
 package com.steam_do_paraguai.persistence;
 
-
-import com.steam_do_paraguai.model.User;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.steam_do_paraguai.model.Admin;
+import static com.steam_do_paraguai.persistence.Persistence.DIRECTORY;
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.steam_do_paraguai.model.Usuario;
-
-
 
 /**
  *
- * @author mathe
+ * @author Matheus-PC
  */
-public class UsuarioPersistence implements Persistence<Usuario>{
-    
-    private static final String PATH = DIRECTORY +"/usuarios.json";
+public class AdminPersistence implements Persistence<Admin>{
+    private static final String PATH = DIRECTORY +"/admins.json";
     
     @Override
-    public void save(List<Usuario> itens) {
+    public void save(List<Admin> itens) {
         Gson gson = new Gson();
         String json = gson.toJson(itens);
 
@@ -40,15 +35,15 @@ public class UsuarioPersistence implements Persistence<Usuario>{
     }
 
     @Override
-    public List<Usuario> findAll() {
+    public List<Admin> findAll() {
         Gson gson = new Gson();
 
         String json = Arquivo.le(PATH);
 
-        List<Usuario> usuarios = new ArrayList<>();
+        List<Admin> usuarios = new ArrayList<>();
         if(!json.trim().equals("")) {
 
-            Type tipoLista = new TypeToken<List<Usuario>>() {
+            Type tipoLista = new TypeToken<List<Admin>>() {
             }.getType();
         usuarios = gson.fromJson(json, tipoLista);
 

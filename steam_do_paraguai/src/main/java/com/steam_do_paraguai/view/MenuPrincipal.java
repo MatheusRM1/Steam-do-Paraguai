@@ -4,8 +4,9 @@
  */
 package com.steam_do_paraguai.view;
 
+import com.steam_do_paraguai.model.Admin;
 import com.steam_do_paraguai.model.User;
-import java.awt.event.ActionEvent;
+import com.steam_do_paraguai.model.Usuario;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,23 +15,21 @@ import javax.swing.JOptionPane;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    private int usuario;
-    private int index;
+    private User usuario;
 
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
-        usuario = 0;
-        index = -1;
+        this.usuario = null;
         initComponents();
 
         LoginPanel log = new LoginPanel(this);
         this.mudaPanel(log);
     }
 
-    public int getIndex() {
-        return this.index;
+    public User getUsuario() {
+            return this.usuario;
     }
     
     public void mudaPanel(javax.swing.JPanel temp)
@@ -44,8 +43,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     public void setDeslogado() {
-        this.usuario = 0;
-        this.index = -1;
+        this.usuario = null;
 
         iniciarSessaoButton.setText("INICIAR SESSAO");
         java.awt.event.ActionListener[] acao = iniciarSessaoButton.getActionListeners();
@@ -62,10 +60,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     public void setUsuario(LoginPanel login) {
-        this.usuario = login.getLog();
-        this.index = login.getIndex();
+        
 
-        if (this.usuario == 1) {
+        if (login.getUsuario() instanceof Usuario) {
+            this.usuario = (Admin) this.usuario;
+            Usuario user = (Usuario) login.getUsuario();
+            this.usuario = user;
             iniciarSessaoButton.setText("USUARIO");
             java.awt.event.ActionListener[] acao = iniciarSessaoButton.getActionListeners();
             iniciarSessaoButton.removeActionListener(acao[0]);
@@ -76,7 +76,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 }
             });
 
-        } else if (this.usuario == 2) {
+        } else if (login.getUsuario() instanceof Admin) {
+            this.usuario = (Admin) this.usuario;
+            Admin user = (Admin) login.getUsuario();
+            this.usuario = user;
             iniciarSessaoButton.setText("ADMIN");
             java.awt.event.ActionListener[] acao = iniciarSessaoButton.getActionListeners();
             iniciarSessaoButton.removeActionListener(acao[0]);
@@ -297,7 +300,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_iniciarSessaoButtonActionPerformed
 
     private void bibliotecaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaButtonActionPerformed
-        if(this.index != -1)
+        if(this.usuario != null)
         {
             BibliotecaPanel bib = new BibliotecaPanel(this);
             this.mudaPanel(bib);
@@ -309,7 +312,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bibliotecaButtonActionPerformed
 
     private void lojaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lojaButtonActionPerformed
-        if(this.index != -1)
+        if(this.usuario != null)
         {
             LojaPanel loja = new LojaPanel(this);
             this.mudaPanel(loja);
@@ -321,7 +324,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_lojaButtonActionPerformed
 
     private void carrinhoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carrinhoButtonActionPerformed
-        if(this.index != -1)
+        if(this.usuario != null)
         {
             CarrinhoPanel carrinho = new CarrinhoPanel(this);
             this.mudaPanel(carrinho);
@@ -334,7 +337,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_carrinhoButtonActionPerformed
 
     private void fundosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fundosButtonActionPerformed
-        if(this.index != -1)
+        if(this.usuario != null)
         {
             FundosPanel saldo = new FundosPanel(this);
             this.mudaPanel(saldo);

@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class FundosPanel extends javax.swing.JPanel {
 private MenuPrincipal tela;
-private List<User> lista;
-private Persistence<User> usuarioPersistence;
+private List<Usuario> lista;
+private Persistence<Usuario> usuarioPersistence;
     /**
      * Creates new form FundosPanel
      */
@@ -27,7 +27,7 @@ private Persistence<User> usuarioPersistence;
         this.usuarioPersistence = new UsuarioPersistence();
         this.lista = usuarioPersistence.findAll();
         initComponents();
-        String valor = String.format("%.2f", this.lista.get(this.tela.getIndex()).getSaldo());
+        String valor = String.format("%.2f", ((Usuario) this.tela.getUsuario()).getSaldo());
         valor = valor.replaceAll("[.]",",");
         this.valorSaldoLabel.setText(valor);
     }
@@ -140,10 +140,17 @@ private Persistence<User> usuarioPersistence;
    
         String valor =  this.valorSaldoLabel.getText();
        
-         lista.get(this.tela.getIndex()).adicionaSaldo(20);
-        lista.set(this.tela.getIndex(),  lista.get(this.tela.getIndex()));
+        ((Usuario) this.tela.getUsuario()).adicionaSaldo(20);
+        for(int i = 0; i< lista.size(); i+=1)
+        {
+            if(this.tela.getUsuario().getNome().equals(lista.get(i).getNome()))
+            {
+                lista.set(i, (Usuario) this.tela.getUsuario());
+
+            }
+        }
         usuarioPersistence.save(lista);
-        valor = String.format("%.2f", this.lista.get(this.tela.getIndex()).getSaldo());
+        valor = String.format("%.2f", ((Usuario) this.tela.getUsuario()).getSaldo());
         
         valor = valor.replaceAll("[.]",",");
         this.valorSaldoLabel.setText(valor);
@@ -154,10 +161,17 @@ private Persistence<User> usuarioPersistence;
 
         String valor =  this.valorSaldoLabel.getText();
         
-         lista.get(this.tela.getIndex()).adicionaSaldo(50);
-        lista.set(this.tela.getIndex(),  lista.get(this.tela.getIndex()));
+        ((Usuario) this.tela.getUsuario()).adicionaSaldo(50);
+        for(int i = 0; i< lista.size(); i+=1)
+        {
+            if(this.tela.getUsuario().getNome().equals(lista.get(i).getNome()))
+            {
+                lista.set(i, (Usuario) this.tela.getUsuario());
+
+            }
+        }
         usuarioPersistence.save(lista);
-        valor = String.format("%.2f", this.lista.get(this.tela.getIndex()).getSaldo());
+        valor = String.format("%.2f", ((Usuario) this.tela.getUsuario()).getSaldo());
         
         valor = valor.replaceAll("[.]",",");
         this.valorSaldoLabel.setText(valor);
@@ -167,10 +181,17 @@ private Persistence<User> usuarioPersistence;
         
         String valor =  this.valorSaldoLabel.getText();
         
-         lista.get(this.tela.getIndex()).adicionaSaldo(10);
-        lista.set(this.tela.getIndex(),  lista.get(this.tela.getIndex()));
+        ((Usuario) this.tela.getUsuario()).adicionaSaldo(10);
+        for(int i = 0; i< lista.size(); i+=1)
+        {
+            if(this.tela.getUsuario().getNome().equals(lista.get(i).getNome()))
+            {
+                lista.set(i, (Usuario) this.tela.getUsuario());
+
+            }
+        }
         usuarioPersistence.save(lista);
-        valor = String.format("%.2f", this.lista.get(this.tela.getIndex()).getSaldo());
+        valor = String.format("%.2f", ((Usuario) this.tela.getUsuario()).getSaldo());
         
         valor = valor.replaceAll("[.]",",");
         this.valorSaldoLabel.setText(valor);

@@ -4,6 +4,7 @@ import com.steam_do_paraguai.model.Jogo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import static com.steam_do_paraguai.persistence.Persistence.DIRECTORY;
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -13,19 +14,17 @@ public class JogoPersistence implements Persistence<Jogo> {
     private static final String PATH = DIRECTORY + "/jogos.json";
 
     @Override
-    public void save(List<Jogo> itens){        
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(Jogo.class, new UserAdapter());
-        
-        Gson gson = gsonBuilder.create();
+    public void save(List<Jogo> itens) {
+        Gson gson = new Gson();
         String json = gson.toJson(itens);
 
         File diretorio = new File(DIRECTORY);
-        if (!diretorio.exists()) {
+        if(!diretorio.exists())
             diretorio.mkdirs();
-        }
 
         Arquivo.salva(PATH, json);
+
+
     }
 
     @Override

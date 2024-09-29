@@ -5,10 +5,11 @@
 package com.steam_do_paraguai.view;
 
 import com.steam_do_paraguai.model.Jogo;
-import com.steam_do_paraguai.model.User;
+import com.steam_do_paraguai.model.Usuario;
 import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
 import java.util.List;
+import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,8 +19,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CarrinhoPanel extends javax.swing.JPanel {
     private MenuPrincipal tela;
-    private Persistence<User> usuarioPersistence;
-    private List<User> lista;
+    private Persistence<Usuario> usuarioPersistence;
+    private List<Usuario> lista;
     /**
      * Creates new form CarrinhoPanel
      */
@@ -118,7 +119,8 @@ public class CarrinhoPanel extends javax.swing.JPanel {
 
     private void carregaCarrinho()
     {
-        List<Jogo> jogos = this.lista.get(this.tela.getIndex()).getCarrinho().getJogos();
+            List<Jogo> jogos = ((Usuario) this.tela.getUsuario()).getCarrinho().getJogos();
+            
         if(jogos.size()>0)
         {
             DefaultTableModel model = (DefaultTableModel)tableCartGames.getModel();
@@ -131,22 +133,30 @@ public class CarrinhoPanel extends javax.swing.JPanel {
 
     private void compraJogos() {
         float total = 0;
-        List<Jogo> jogos =  this.lista.get(this.tela.getIndex()).getCarrinho().getJogos();
+        List<Jogo> jogos =  ((Usuario) this.tela.getUsuario()).getCarrinho().getJogos();
         if(jogos.size()>0)
         {
             for(int i = 0; i<jogos.size(); i+=1)
             {
                 total+=jogos.get(i).getPreco();
             }
-            if(total<=this.lista.get(this.tela.getIndex()).getSaldo())
+            if(total<=((Usuario) this.tela.getUsuario()).getSaldo())
             {
                 DefaultTableModel model = (DefaultTableModel)tableCartGames.getModel();
                 while(jogos.size()!=0)
                 {
-                    this.lista.get(this.tela.getIndex()).getJogos().add(jogos.get(0));
-                    this.lista.get(this.tela.getIndex()).removeSaldo(jogos.get(0).getPreco());
-                    this.lista.get(this.tela.getIndex()).getCarrinho().removeJogo(jogos.get(0));
+                    ((Usuario) this.tela.getUsuario()).getJogos().add(jogos.get(0));
+                    ((Usuario) this.tela.getUsuario()).removeSaldo(jogos.get(0).getPreco());
+                    ((Usuario) this.tela.getUsuario()).getCarrinho().removeJogo(jogos.get(0));
                     model.removeRow(0);
+                }
+                for(int i = 0; i< lista.size(); i+=1)
+                {
+                    if(this.tela.getUsuario().getNome().equals(lista.get(i).getNome()))
+                    {
+                        lista.set(i, (Usuario) this.tela.getUsuario());
+                        
+                    }
                 }
                 usuarioPersistence.save(lista);
                 this.lista = usuarioPersistence.findAll();
@@ -166,7 +176,7 @@ public class CarrinhoPanel extends javax.swing.JPanel {
     {
         String textLabel = this.totalLabel.getText();
         float total = 0;
-        List<Jogo> jogos =  this.lista.get(this.tela.getIndex()).getCarrinho().getJogos();
+        List<Jogo> jogos =  ((Usuario) this.tela.getUsuario()).getCarrinho().getJogos();
         if(jogos.size()>0)
         {
             for(int i = 0; i<jogos.size(); i+=1)

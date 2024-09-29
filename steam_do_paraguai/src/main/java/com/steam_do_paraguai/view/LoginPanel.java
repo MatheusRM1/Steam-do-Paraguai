@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.steam_do_paraguai.view;
+
 import com.steam_do_paraguai.model.*;
+import com.steam_do_paraguai.persistence.AdminPersistence;
 import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
 import java.util.List;
@@ -15,24 +17,19 @@ import javax.swing.JOptionPane;
  */
 public class LoginPanel extends javax.swing.JPanel {
 
-    private int logado;
+    private User usuario;
     private MenuPrincipal tela;
-    private int index;
 
     /**
      * Creates new form LoginPanel
      */
-    public LoginPanel(MenuPrincipal l) {
-        this.tela = l;
+    public LoginPanel(MenuPrincipal t) {
+        this.tela = t;
         initComponents();
     }
 
-    public int getLog() {
-        return this.logado;
-    }
-
-    public int getIndex() {
-        return this.index;
+    public User getUsuario() {
+        return this.usuario;
     }
 
     /**
@@ -168,38 +165,48 @@ public class LoginPanel extends javax.swing.JPanel {
 
     private void entraNaConta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entraNaConta
 
-        if (this.logado == 0) {
-            Persistence<User> usuarioPersistence = new UsuarioPersistence();
-            List<User> lista = usuarioPersistence.findAll();
+        if (this.tela.getUsuario() == null) {
+            Persistence<Usuario> usuarioPersistence = new UsuarioPersistence();
+            List<Usuario> listaUsuarios = usuarioPersistence.findAll();
 
-            int existe = 0;
-            int i = 0;
+            Persistence<Admin> adminPersistence = new AdminPersistence();
+            List<Admin> listaAdmin = adminPersistence.findAll();
 
-            for (User p : lista) {
-                i++;
+            
+            for (Usuario p : listaUsuarios) {
                 if (p.getNome().equals(userField.getText().replaceAll("[\\s]", ""))) {
-                    existe = 1;
+                    
                     if (p.getSenha().equals(passwordField.getText())) {
-                        JOptionPane.showMessageDialog(loginAreaPanel, "Bem Vindo " + p.getNome() + " (" + p.acessoAoSistema() + ")");
+                        JOptionPane.showMessageDialog(loginAreaPanel, "Bem Vindo " + p.getNome() + " (Usuario)");
 
-                        if (p.acessoAoSistema().equals("Usuario")) {
-                            this.logado = 1;
-                        } else if (p.acessoAoSistema().equals("Admin")) {
-                            this.logado = 2;
-                        }
-                        this.index = i - 1;
+                        this.usuario = p;
+
                         tela.setUsuario(this);
+                        return;
                     } else {
                         JOptionPane.showMessageDialog(loginAreaPanel, "Senha Invalida");
+                        return;
                     }
                 }
             }
 
-            if (existe == 0) {
-                JOptionPane.showMessageDialog(loginAreaPanel, "Usuario nao encontrado, crie uma conta");
+            for (Admin p : listaAdmin) {
+                if (p.getNome().equals(userField.getText().replaceAll("[\\s]", ""))) {
+                    if (p.getSenha().equals(passwordField.getText())) {
+                        JOptionPane.showMessageDialog(loginAreaPanel, "Bem Vindo " + p.getNome() + " (Admin)");
+                        this.usuario = p;
+                        tela.setUsuario(this);
+                        return;
+                    } else {
+                        JOptionPane.showMessageDialog(loginAreaPanel, "Senha Invalida");
+                        return;
+                    }
+                }
             }
-        } else
-            JOptionPane.showMessageDialog(loginAreaPanel, "Usuario já esta logado");
+            
+                JOptionPane.showMessageDialog(loginAreaPanel, "Usuario nao encontrado, crie uma conta");
+        }
+
     }//GEN-LAST:event_entraNaConta
 
 

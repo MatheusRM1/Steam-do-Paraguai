@@ -4,17 +4,16 @@
  */
 package com.steam_do_paraguai.view;
 
-import com.google.gson.JsonArray;
+
 import com.steam_do_paraguai.model.*;
-import com.google.gson.JsonObject;
+
 import com.steam_do_paraguai.exception.UsuarioException;
+import com.steam_do_paraguai.persistence.AdminPersistence;
 import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
+
 import java.util.List;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +23,7 @@ import javax.swing.JOptionPane;
 public class CriarContaPanel extends javax.swing.JPanel {
 
     private MenuPrincipal tela;
+
     /**
      * Creates new form CriarContaPanel
      */
@@ -157,12 +157,13 @@ public class CriarContaPanel extends javax.swing.JPanel {
 
     private void criarConta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarConta
         try {
-            Persistence<User> usuarioPersistence = new UsuarioPersistence();
-            List<User> lista = usuarioPersistence.findAll();
-            
+
             if (passwordField.getText().equals(confirmPasswordField.getText())) {
                 if (usuarioRadio.isSelected()) {
-                    lista.add(new Usuario(userField.getText(), passwordField.getText(), "Usuario"));
+                    Persistence<Usuario> usuarioPersistence = new UsuarioPersistence();
+                    List<Usuario> listaUsuarios = usuarioPersistence.findAll();
+                    
+                    listaUsuarios.add(new Usuario(userField.getText(), passwordField.getText(), "Usuario"));
                     LoginPanel criarConta = new LoginPanel(this.tela);
                     criarConta.setSize(708, 368);
                     criarConta.setLocation(0, 0);
@@ -171,8 +172,14 @@ public class CriarContaPanel extends javax.swing.JPanel {
                     this.add(criarConta);
                     this.revalidate();
                     this.repaint();
+
+                    usuarioPersistence.save(listaUsuarios);
+
                 } else if (adminRadio.isSelected()) {
-                    lista.add(new Admin(userField.getText(), passwordField.getText(), "Admin"));
+                    Persistence<Admin> adminPersistence = new AdminPersistence();
+                    List<Admin> listaAdmin = adminPersistence.findAll();
+                    
+                    listaAdmin.add(new Admin(userField.getText(), passwordField.getText(), "Admin"));
                     LoginPanel criarConta = new LoginPanel(this.tela);
                     criarConta.setSize(708, 368);
                     criarConta.setLocation(0, 0);
@@ -181,14 +188,13 @@ public class CriarContaPanel extends javax.swing.JPanel {
                     this.add(criarConta);
                     this.revalidate();
                     this.repaint();
+                    
+                    adminPersistence.save(listaAdmin);
                 }
 
             } else {
                 JOptionPane.showMessageDialog(null, "Senha nao confirmada");
             }
-
-            
-            usuarioPersistence.save(lista);
 
         } catch (UsuarioException e) {
             JOptionPane.showMessageDialog(null, "Nome de usuario invalido(tem que ter obrigatoriamente uma letra) ou usuario ja existente");

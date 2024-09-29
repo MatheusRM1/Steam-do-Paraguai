@@ -6,13 +6,14 @@ package com.steam_do_paraguai.view;
 
 import com.steam_do_paraguai.exception.UsuarioException;
 import com.steam_do_paraguai.model.Admin;
-import com.steam_do_paraguai.model.User;
 import com.steam_do_paraguai.model.Usuario;
+import com.steam_do_paraguai.persistence.AdminPersistence;
 import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,24 +23,29 @@ import javax.swing.table.DefaultTableModel;
 public class AdminEditaUsuarios extends javax.swing.JPanel {
 
     private MenuPrincipal tela;
-    private List<User> listaUsuarios = new ArrayList<>();
-    Persistence<User> usuarioPersistence = new UsuarioPersistence();
+    private List<Usuario> listaUsuarios;
+    Persistence<Usuario> usuarioPersistence;
 
     /**
      * Creates new form AdminEditaUsuarios
      */
     public AdminEditaUsuarios(MenuPrincipal tela) {
         this.tela = tela;
-
+        listaUsuarios = new ArrayList<>();
+        usuarioPersistence = new UsuarioPersistence();
         listaUsuarios = usuarioPersistence.findAll();
+        
+
         initComponents();
+        
+        carregaUsuarios();
     }
 
-    public void carregaUsuarios() {
+    private void carregaUsuarios() {
 
         DefaultTableModel model = (DefaultTableModel) jTabelaUsuarios.getModel();
 
-        for (User p : this.listaUsuarios) {
+        for (Usuario p : this.listaUsuarios) {
             model.addRow(new Object[]{
                 p.getNome(),
                 p.getSenha(),
@@ -70,8 +76,6 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
         jSenhaField = new javax.swing.JTextField();
         jFundosField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        usuarioRadio = new javax.swing.JRadioButton();
-        adminRadio = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(61, 122, 155));
         setMaximumSize(new java.awt.Dimension(708, 368));
@@ -103,11 +107,11 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Nome", "Senha", "Fundos", "Tipo"
+                "Nome", "Senha", "Fundos"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -125,7 +129,6 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
             jTabelaUsuarios.getColumnModel().getColumn(0).setResizable(false);
             jTabelaUsuarios.getColumnModel().getColumn(1).setResizable(false);
             jTabelaUsuarios.getColumnModel().getColumn(2).setResizable(false);
-            jTabelaUsuarios.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jLabel4.setText("Nome");
@@ -133,12 +136,6 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
         jLabel1.setText("Senha");
 
         jLabel2.setText("Fundos");
-
-        buttonGroup1.add(usuarioRadio);
-        usuarioRadio.setText("Usuario");
-
-        buttonGroup1.add(adminRadio);
-        adminRadio.setText("Admin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -154,10 +151,8 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usuarioRadio)
-                            .addComponent(adminRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 76, Short.MAX_VALUE)))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 94, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -175,7 +170,7 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 12, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -187,22 +182,14 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFundosField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(usuarioRadio))
+                        .addComponent(jFundosField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRemoveButton)
-                            .addComponent(jEditButton)
-                            .addComponent(jAdicionaButton))
-                        .addGap(64, 64, 64))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(adminRadio)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRemoveButton)
+                    .addComponent(jEditButton)
+                    .addComponent(jAdicionaButton))
+                .addGap(64, 64, 64))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -211,37 +198,21 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTabelaUsuarios.getModel();
 
         if (jTabelaUsuarios.getSelectedRow() != -1) {
+
             listaUsuarios.remove(jTabelaUsuarios.getSelectedRow());
             model.removeRow(jTabelaUsuarios.getSelectedRow());
+            usuarioPersistence.save(listaUsuarios);
         } else {
             JOptionPane.showMessageDialog(jNomeField, "Selecione um Usuario para remover");
         }
-
-        usuarioPersistence.save(listaUsuarios);
     }//GEN-LAST:event_jRemoveButtonActionPerformed
 
     private void jEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditButtonActionPerformed
         if (jTabelaUsuarios.getSelectedRow() != -1) {
-                  
-            try {
 
-                User p = listaUsuarios.get(jTabelaUsuarios.getSelectedRow());
-                
-                
-                if(p.acessoAoSistema().equals("Usuario")){
-                    if(adminRadio.isSelected() == true){
-                        adminRadio.setSelected(false);
-                        usuarioRadio.setSelected(true);
-                        JOptionPane.showMessageDialog(jNomeField, "Não é possível mudar o tipo de usuario");
-                    }
-                } else if(p.acessoAoSistema().equals("Admin")){
-                    if(usuarioRadio.isSelected() == true){
-                        JOptionPane.showMessageDialog(jNomeField, "Não é possível mudar o tipo de usuario");
-                        adminRadio.setSelected(true);
-                        usuarioRadio.setSelected(false);
-                    }
-                }
-                
+            Usuario p = listaUsuarios.get(jTabelaUsuarios.getSelectedRow());
+
+            try {
 
                 if (jNomeField.getText().equals(p.getNome())) {
                     if (jSenhaField.getText().equals(p.getSenha())) {
@@ -260,42 +231,33 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
                 jTabelaUsuarios.setValueAt(jSenhaField.getText(), jTabelaUsuarios.getSelectedRow(), 1);
                 jTabelaUsuarios.setValueAt(jFundosField.getText(), jTabelaUsuarios.getSelectedRow(), 2);
 
+                usuarioPersistence.save(listaUsuarios);
             } catch (UsuarioException e) {
                 JOptionPane.showMessageDialog(jNomeField, "Usuario Invalido");
             }
         }
 
-        usuarioPersistence.save(listaUsuarios);
+
     }//GEN-LAST:event_jEditButtonActionPerformed
 
     private void jAdicionaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdicionaButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) jTabelaUsuarios.getModel();
 
         try {
-            if (usuarioRadio.isSelected()) {
-                User p = new Usuario(jNomeField.getText(), jSenhaField.getText(), "Usuario");
-                listaUsuarios.add(p);
-                model.addRow(new Object[]{
-                    p.getNome(),
-                    p.getSenha(),
-                    p.getSaldo(),
-                    p.acessoAoSistema()
-                });
-            } else if (adminRadio.isSelected()) {
-                User p = new Admin(jNomeField.getText(), jSenhaField.getText(), "Admin");
-                listaUsuarios.add(p);
-                model.addRow(new Object[]{
-                    p.getNome(),
-                    p.getSenha(),
-                    p.getSaldo(),
-                    p.acessoAoSistema()
-                });
-            }
+            Usuario p = new Usuario(jNomeField.getText(), jSenhaField.getText(), "Usuario");
+            listaUsuarios.add(p);
+            model.addRow(new Object[]{
+                p.getNome(),
+                p.getSenha(),
+                p.getSaldo(),
+                p.acessoAoSistema()
+            });
+            usuarioPersistence.save(listaUsuarios);
         } catch (UsuarioException e) {
             JOptionPane.showMessageDialog(jNomeField, "Usuario Invalido");
         }
 
-        usuarioPersistence.save(listaUsuarios);
+
     }//GEN-LAST:event_jAdicionaButtonActionPerformed
 
     private void jTabelaUsuariosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelaUsuariosMouseReleased
@@ -303,20 +265,11 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
             jNomeField.setText(jTabelaUsuarios.getValueAt(jTabelaUsuarios.getSelectedRow(), 0).toString());
             jSenhaField.setText(jTabelaUsuarios.getValueAt(jTabelaUsuarios.getSelectedRow(), 1).toString());
             jFundosField.setText(jTabelaUsuarios.getValueAt(jTabelaUsuarios.getSelectedRow(), 2).toString());
-            
-            if (jTabelaUsuarios.getValueAt(jTabelaUsuarios.getSelectedRow(), 3).toString().equals("Usuario")) {
-                usuarioRadio.setSelected(true);
-                adminRadio.setSelected(false);
-            } else if (jTabelaUsuarios.getValueAt(jTabelaUsuarios.getSelectedRow(), 3).toString().equals("Admin")) {
-                usuarioRadio.setSelected(false);
-                adminRadio.setSelected(true);
-            }
         }
     }//GEN-LAST:event_jTabelaUsuariosMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton adminRadio;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jAdicionaButton;
     private javax.swing.JButton jEditButton;
@@ -329,6 +282,5 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jSenhaField;
     private javax.swing.JTable jTabelaUsuarios;
-    private javax.swing.JRadioButton usuarioRadio;
     // End of variables declaration//GEN-END:variables
 }

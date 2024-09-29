@@ -34,7 +34,7 @@ public class AdminEditaJogo extends javax.swing.JPanel {
         carregaJogos();
     }
     
-    public void carregaJogos(){
+    private void carregaJogos(){
         
         DefaultListModel<String> model = new DefaultListModel<>();
         
