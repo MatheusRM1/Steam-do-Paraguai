@@ -10,7 +10,7 @@ import com.steam_do_paraguai.exception.CupomException;
  *
  * @author lukas-freitas
  */
-public class CupomPorcentagem extends Cupom implements Desconto {
+public class CupomPorcentagem extends Cupom {
     
     public CupomPorcentagem(String codigoCupom) throws CupomException
     {

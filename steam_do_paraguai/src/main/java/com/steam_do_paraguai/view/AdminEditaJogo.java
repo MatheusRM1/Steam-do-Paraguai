@@ -17,32 +17,41 @@ import javax.swing.DefaultListModel;
  * @author lukas-freitas
  */
 public class AdminEditaJogo extends javax.swing.JPanel {
+
     private MenuPrincipal tela;
     private List<Jogo> listaJogos = new ArrayList<>();
     Persistence<Jogo> jogoPersistence = new JogoPersistence();
+
     /**
      * Creates new form AdminPanel
      */
     public AdminEditaJogo(MenuPrincipal tela) {
         this.tela = tela;
-        
+
         listaJogos = jogoPersistence.findAll();
-        
+
         initComponents();
         carregaJogos();
     }
-    
-    private void carregaJogos(){
-        
+
+    private void carregaJogos() {
+
         DefaultListModel<String> model = new DefaultListModel<>();
-        
+
         for (Jogo jogo : this.listaJogos) {
             model.addElement(jogo.getNome());
         }
-    
+
         gamesList.setModel(model);
     }
-    
+
+    private void nomeValido(String nome) throws JogoException {
+        for (Jogo jogo : this.listaJogos) {
+            if (jogo.getNome().equals(nome)) {
+                throw new JogoException("Já existe um jogo com esse nome");
+            }
+        }
+    }
     
 
     /**
@@ -216,40 +225,45 @@ public class AdminEditaJogo extends javax.swing.JPanel {
             jogoPersistence.save(listaJogos);
             carregaJogos();
             javax.swing.JOptionPane.showMessageDialog(this, "Jogo removido com sucesso!", "Sucesso", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        }
-        else {
+        } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Selecione um jogo para remover.", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_removerButtonActionPerformed
 
     private void editarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButtonActionPerformed
         int selectedIndex = gamesList.getSelectedIndex();
-        
+
         if (selectedIndex != -1) {
             Jogo jogoSelecionado = listaJogos.get(selectedIndex);
-            
-            try{
+
+            try {
                 String nome = nomeField.getText();
                 String descricao = descricaoField.getText();
                 float preco = Float.parseFloat(preçoField.getText());
-                
-                jogoSelecionado.setNome(nome);
-                jogoSelecionado.setDescricao(descricao);
-                jogoSelecionado.setPreco(preco);
-                
+
+                if (nomeField.getText().equals(jogoSelecionado.getNome())) {
+                    if (descricaoField.getText().equals(jogoSelecionado.getDescricao())) {
+                        jogoSelecionado.setPreco(preco);
+                    } else {
+                        jogoSelecionado.setDescricao(descricao);
+                        jogoSelecionado.setPreco(preco);
+                    }
+                } else {
+                    jogoSelecionado.setNome(nome);
+                    jogoSelecionado.setDescricao(descricao);
+                    jogoSelecionado.setPreco(preco);
+                }
+               
                 jogoPersistence.save(listaJogos);
                 carregaJogos();
                 javax.swing.JOptionPane.showMessageDialog(this, "Jogo atualizado com sucesso!", "Sucesso", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            }
-            catch(JogoException e){
+            } catch (JogoException e) {
                 javax.swing.JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
-            }
-            catch(NumberFormatException e){
+            } catch (NumberFormatException e) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Preço inválido! Por favor, insira um valor válido", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
             }
-        }
-        else{
-             javax.swing.JOptionPane.showMessageDialog(this, "Selecione um jogo para editar.", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecione um jogo para editar.", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_editarButtonActionPerformed
 
@@ -258,6 +272,7 @@ public class AdminEditaJogo extends javax.swing.JPanel {
             String nome = nomeField.getText();
             String descricao = descricaoField.getText();
             float preco = Float.parseFloat(preçoField.getText());
+            this.nomeValido(nome);
 
             Jogo novoJogo = new Jogo();
             novoJogo.setNome(nome);
@@ -269,11 +284,9 @@ public class AdminEditaJogo extends javax.swing.JPanel {
             carregaJogos();
 
             javax.swing.JOptionPane.showMessageDialog(this, "Jogo adicionado com sucesso!", "Sucesso", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        }
-        catch (JogoException e) {
+        } catch (JogoException e) {
             javax.swing.JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             javax.swing.JOptionPane.showMessageDialog(this, "Preço inválido! Por favor, insira um valor válido", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_adicionarButtonActionPerformed

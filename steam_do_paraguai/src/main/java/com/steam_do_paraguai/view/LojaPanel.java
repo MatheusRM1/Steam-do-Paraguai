@@ -8,12 +8,15 @@ import com.steam_do_paraguai.exception.JogoException;
 import com.steam_do_paraguai.model.Admin;
 import com.steam_do_paraguai.model.Jogo;
 import com.steam_do_paraguai.model.Usuario;
+import com.steam_do_paraguai.persistence.JogoPersistence;
 import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author lukas-freitas
@@ -23,30 +26,72 @@ public class LojaPanel extends javax.swing.JPanel {
     private MenuPrincipal tela;
     private Persistence<Usuario> usuarioPersistence;
     private List<Usuario> lista;
+    private List<Jogo> listaJogos;
+    private Persistence<Jogo> jogoPersistence;
+
     /**
      * Creates new form Loja
      */
     public LojaPanel(MenuPrincipal t) {
         this.tela = t;
-        
+
+        listaJogos = new ArrayList<>();
+        jogoPersistence = new JogoPersistence();
+        listaJogos = jogoPersistence.findAll();
         usuarioPersistence = new UsuarioPersistence();
         lista = usuarioPersistence.findAll();
         initComponents();
-        if(this.tela.getUsuario() instanceof Admin)
-        {
+        if (this.tela.getUsuario() instanceof Admin) {
             this.addToCartButton.setVisible(false);
-        }
-        else
-        {
+            carregaJogos();
+        } else {
             this.addToCartButton.setVisible(true);
+            carregaJogos();
         }
-        DefaultTableModel model = (DefaultTableModel)this.shopTableGames.getModel();
-        model.addRow(new Object[]{"Baldur's Gate","Jogo de rpg", 199});
-        model.addRow(new Object[]{"Naruto storm","Jogo de naruto", 100});
-        model.addRow(new Object[]{"Hades I","Jogo rogue like", 50});
-        model.addRow(new Object[]{"Sparking zero","Jogo de dragon ball", 250});
-        model.addRow(new Object[]{"Terraria","Jogo de sandbox", 10});
-        model.addRow(new Object[]{"The sims 4","Jogo de simulação", 3000});
+    }
+
+    private void carregaJogos() {
+
+        DefaultTableModel model = (DefaultTableModel) shopTableGames.getModel();
+
+        for (Jogo p : this.listaJogos) {
+            model.addRow(new Object[]{
+                p.getNome(),
+                p.getDescricao(),
+                p.getPreco(),});
+        }
+    }
+
+    private DefaultTableModel modelListaJogos() {
+        DefaultTableModel jogosModel = new DefaultTableModel(new String[]{"Nome", "Gênero", "Preço"}, 0);
+
+        if (listaJogos.size() > 0) {
+            for (Jogo game : listaJogos) {
+                Object[] row = {game.getNome(), game.getDescricao(), game.getPreco()};
+                jogosModel.addRow(row);
+            }
+        }
+
+        return jogosModel;
+    }
+
+    private void searchFilter(DefaultTableModel gamesModel, String searchGame) {
+        DefaultTableModel modelNew = new DefaultTableModel(new String[]{"Nome", "Gênero", "Preço"}, 0);
+
+        for (int i = 0; i < gamesModel.getRowCount(); i++) {
+            String gameName = gamesModel.getValueAt(i, 0).toString().toLowerCase();
+
+            if (gameName.contains(searchGame.toLowerCase())) {
+                Object[] row = {
+                    gamesModel.getValueAt(i, 0),
+                    gamesModel.getValueAt(i, 1),
+                    gamesModel.getValueAt(i, 2)
+                };
+                modelNew.addRow(row);
+            }
+        }
+
+        shopTableGames.setModel(modelNew);
     }
 
     /**
@@ -102,7 +147,11 @@ public class LojaPanel extends javax.swing.JPanel {
             shopTableGames.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        searchShopField.setText("Pesquisar");
+        searchShopField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchShopFieldKeyReleased(evt);
+            }
+        });
 
         addToCartButton.setText("Adicionar ao Carrinho");
         addToCartButton.addActionListener(new java.awt.event.ActionListener() {
@@ -148,79 +197,65 @@ public class LojaPanel extends javax.swing.JPanel {
 
     private void addToCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartButtonActionPerformed
         int indexRow = this.shopTableGames.getSelectedRow();
-        if(indexRow != -1)
-        {
+        if (indexRow != -1) {
             String nome = this.shopTableGames.getValueAt(indexRow, 0).toString();
             String descricao = this.shopTableGames.getValueAt(indexRow, 1).toString();
             Float preco = Float.parseFloat(this.shopTableGames.getValueAt(indexRow, 2).toString());
             Jogo jogo = new Jogo();
-            try{
+            try {
                 jogo.setNome(nome);
                 jogo.setDescricao(descricao);
                 jogo.setPreco(preco);
+            } catch (JogoException e) {
+                JOptionPane.showMessageDialog(null, "Erro ao adicionar o jogo");
             }
-            catch(JogoException e){
-                JOptionPane.showMessageDialog(null,"Erro ao adicionar o jogo");
-            }
-            if(!verificaJogosUsuario(jogo))
-            {
-                  if(!verificaCarrinhoUsuario(jogo))
-                  {
-                      ((Usuario) this.tela.getUsuario()).getCarrinho().adicionaJogo(jogo);
-                      int indice = this.indiceUser();
-                      if(indice!=-1)
-                      {
-                          this.lista.get(this.indiceUser()).getCarrinho().adicionaJogo(jogo);
-                      }
-                      usuarioPersistence.save(lista);
-                      JOptionPane.showMessageDialog(null, "Jogo adicionado ao carrinho!");
-                  }
-                  else
-                  {
-                      JOptionPane.showMessageDialog(null, "O jogo já está no seu carrinho!");
-                  }
-                  
-            }
-            else
-            {
+            if (!verificaJogosUsuario(jogo)) {
+                if (!verificaCarrinhoUsuario(jogo)) {
+                    ((Usuario) this.tela.getUsuario()).getCarrinho().adicionaJogo(jogo);
+                    int indice = this.indiceUser();
+                    if (indice != -1) {
+                        this.lista.get(this.indiceUser()).getCarrinho().adicionaJogo(jogo);
+                    }
+                    usuarioPersistence.save(lista);
+                    JOptionPane.showMessageDialog(null, "Jogo adicionado ao carrinho!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "O jogo já está no seu carrinho!");
+                }
+
+            } else {
                 JOptionPane.showMessageDialog(null, "O jogo já está presente na sua conta!");
             }
 
-               
-            
         }
     }//GEN-LAST:event_addToCartButtonActionPerformed
 
-    private int indiceUser()
-    {
-        for(int i = 0; i<this.lista.size(); i+=1)
-        {
-            if(this.tela.getUsuario().getNome().equals(this.lista.get(i).getNome()))
-            {
+    private void searchShopFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchShopFieldKeyReleased
+        this.searchFilter(this.modelListaJogos(),this.searchShopField.getText());
+    }//GEN-LAST:event_searchShopFieldKeyReleased
+
+    private int indiceUser() {
+        for (int i = 0; i < this.lista.size(); i += 1) {
+            if (this.tela.getUsuario().getNome().equals(this.lista.get(i).getNome())) {
                 return i;
             }
         }
         return -1;
     }
-    private boolean verificaJogosUsuario(Jogo jogo)
-    {
+
+    private boolean verificaJogosUsuario(Jogo jogo) {
         List<Jogo> jogos = ((Usuario) this.tela.getUsuario()).getJogos();
-        for(int i = 0; i<jogos.size();i+=1)
-        {
-            if(jogos.get(i).getNome().toLowerCase().equals(jogo.getNome().toLowerCase()))
-            {
+        for (int i = 0; i < jogos.size(); i += 1) {
+            if (jogos.get(i).getNome().toLowerCase().equals(jogo.getNome().toLowerCase())) {
                 return true;
             }
         }
         return false;
     }
-    private boolean verificaCarrinhoUsuario(Jogo jogo)
-    {
+
+    private boolean verificaCarrinhoUsuario(Jogo jogo) {
         List<Jogo> jogos = ((Usuario) this.tela.getUsuario()).getCarrinho().getJogos();
-        for(int i = 0; i<jogos.size();i+=1)
-        {
-            if(jogos.get(i).getNome().toLowerCase().equals(jogo.getNome().toLowerCase()))
-            {
+        for (int i = 0; i < jogos.size(); i += 1) {
+            if (jogos.get(i).getNome().toLowerCase().equals(jogo.getNome().toLowerCase())) {
                 return true;
             }
         }
