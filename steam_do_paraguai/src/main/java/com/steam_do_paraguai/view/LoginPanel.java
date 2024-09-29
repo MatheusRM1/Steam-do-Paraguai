@@ -174,7 +174,7 @@ public class LoginPanel extends javax.swing.JPanel {
 
             
             for (Usuario p : listaUsuarios) {
-                if (p.getNome().equals(userField.getText().replaceAll("[\\s]", ""))) {
+                if (p.getNome().equals(userField.getText())) {
                     
                     if (p.getSenha().equals(passwordField.getText())) {
                         JOptionPane.showMessageDialog(loginAreaPanel, "Bem Vindo " + p.getNome() + " (Usuario)");
@@ -191,7 +191,7 @@ public class LoginPanel extends javax.swing.JPanel {
             }
 
             for (Admin p : listaAdmin) {
-                if (p.getNome().equals(userField.getText().replaceAll("[\\s]", ""))) {
+                if (p.getNome().equals(userField.getText())) {
                     if (p.getSenha().equals(passwordField.getText())) {
                         JOptionPane.showMessageDialog(loginAreaPanel, "Bem Vindo " + p.getNome() + " (Admin)");
                         this.usuario = p;

@@ -31,7 +31,8 @@ public abstract class User {
         String regex = "^[A-Za-z0-9]+$";
         String regexLetra = ".*[A-Za-z]+.*";
         
-        if(!n.matches(regex) && !n.matches(regexLetra))
+        
+        if((!n.matches(regex) && !n.matches(regexLetra)) || n.contains(" "))
             return false;
 
         Persistence<Usuario> usuarioPersistence = new UsuarioPersistence();
@@ -58,7 +59,10 @@ public abstract class User {
     private boolean validoSenha(String s){
         String regex = "^[A-Za-z0-9]+$";
         
-        return  s.matches(regex);
+        if(!s.matches(regex) || s.contains(" "))
+            return false;
+        
+        return true;
     }
 
     public String getNome() {
