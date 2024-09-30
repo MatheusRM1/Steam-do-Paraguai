@@ -1,15 +1,12 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+Nome: Lukas Freitas de Carvalho - Matrícula: 202376033
+Nome: Matheus Ribeiro Menezes - Matrícula: 202376023
+Nome: João Víctor Nicácio Silva - Matrícula: 202365565C
+*/
 package com.steam_do_paraguai.model;
 
 import com.steam_do_paraguai.exception.CupomException;
 
-/**
- *
- * @author lukas-freitas
- */
 public class CupomFixo extends Cupom{
     
     public CupomFixo(String codigoCupom) throws CupomException
@@ -18,7 +15,7 @@ public class CupomFixo extends Cupom{
     }
     
     @Override
-    public float desconto(float valorTotal) {
+    public float calculaDesconto(float valorTotal) {
         if((valorTotal - this.getDesconto())>=0)
         {
             return valorTotal - this.getDesconto();

@@ -1,7 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+Nome: Lukas Freitas de Carvalho - Matrícula: 202376033
+Nome: Matheus Ribeiro Menezes - Matrícula: 202376023
+Nome: João Víctor Nicácio Silva - Matrícula: 202365565C
+*/
 package com.steam_do_paraguai.persistence;
 
 import com.google.gson.Gson;
@@ -13,10 +14,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Matheus-PC
- */
 public class AdminPersistence implements Persistence<Admin>{
     private static final String PATH = DIRECTORY +"/admins.json";
     

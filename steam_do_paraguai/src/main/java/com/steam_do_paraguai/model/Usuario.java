@@ -1,17 +1,14 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+Nome: Lukas Freitas de Carvalho - Matrícula: 202376033
+Nome: Matheus Ribeiro Menezes - Matrícula: 202376023
+Nome: João Víctor Nicácio Silva - Matrícula: 202365565C
+*/
 package com.steam_do_paraguai.model;
 
 import com.steam_do_paraguai.exception.UsuarioException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author mathe
- */
 public class Usuario extends User {
 
     private float saldo;
@@ -25,8 +22,9 @@ public class Usuario extends User {
         this.saldo = 0;
     }
 
+    
     public void adicionaSaldo(float value) {
-        if(this.saldo+value > 100000)
+        if(this.saldo+value > 100000) //Foi definido um limite de 100.000 so para nao quebrar os JLabels e estragar a visualizaçao
         {
             this.saldo = 100000;
         }

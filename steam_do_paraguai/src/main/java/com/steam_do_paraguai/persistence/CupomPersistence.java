@@ -1,7 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+Nome: Lukas Freitas de Carvalho - Matrícula: 202376033
+Nome: Matheus Ribeiro Menezes - Matrícula: 202376023
+Nome: João Víctor Nicácio Silva - Matrícula: 202365565C
+*/
 package com.steam_do_paraguai.persistence;
 
 import com.google.gson.Gson;
@@ -18,15 +19,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-/**
- *
- * @author lukas-freitas
- */
 public class CupomPersistence  implements Persistence<Cupom> {
      private static final String PATH = DIRECTORY +"/cupons.json";
-    
-    @Override
+     
+     /***
+      * Utiliza um Map para salvar separadamente os objetos CupomFixo e CupomPorcentagem no Json
+      * @param cupons 
+      */
+     @Override
     public void save(List<Cupom> cupons) {
     List<Map<String, Object>> cuponsComTipo = new ArrayList<>();
 
@@ -47,6 +47,10 @@ public class CupomPersistence  implements Persistence<Cupom> {
     Arquivo.salva(PATH, json);
 }
 
+    /***
+     * Utiliza um Map para listar e identificar os tipos de cada cupom separdamente e adiciona-los a lista de cupons
+     * @return 
+     */
     @Override
 public List<Cupom> findAll() {
     List<Cupom> cupons = new ArrayList<>();

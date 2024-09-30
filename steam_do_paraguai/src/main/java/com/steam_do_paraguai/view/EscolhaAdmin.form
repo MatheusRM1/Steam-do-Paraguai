@@ -34,12 +34,10 @@
               <EmptySpace pref="153" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="cupomButton" pref="364" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="editaUserButton" pref="364" max="32767" attributes="0"/>
-                      <Component id="editaAdminsButton" alignment="0" max="32767" attributes="0"/>
-                      <Component id="editaLojaButton" alignment="0" max="32767" attributes="0"/>
-                      <Component id="sairDaContaButton" alignment="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="editaUserButton" alignment="0" pref="364" max="32767" attributes="0"/>
+                  <Component id="editaAdminsButton" alignment="0" max="32767" attributes="0"/>
+                  <Component id="editaLojaButton" alignment="0" max="32767" attributes="0"/>
+                  <Component id="sairDaContaButton" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
           </Group>

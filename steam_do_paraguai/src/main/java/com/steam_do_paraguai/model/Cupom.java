@@ -1,28 +1,31 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+Nome: Lukas Freitas de Carvalho - Matrícula: 202376033
+Nome: Matheus Ribeiro Menezes - Matrícula: 202376023
+Nome: João Víctor Nicácio Silva - Matrícula: 202365565C
+*/
 package com.steam_do_paraguai.model;
 
 import com.steam_do_paraguai.exception.CupomException;
 
-/**
- *
- * @author lukas-freitas
- */
+
 public abstract class Cupom implements Desconto {
     private String codigoCupom;
     private float valorDesconto;
     
+    /***
+     * Construtor que faz com que o codigo do cupom tenha obrigatoriamente uma letra e 3 digitos, fazendo o valor do desconto ser referente aos 3 digitos.
+     * @param codigoCupom
+     * @throws CupomException 
+     */
     public Cupom(String codigoCupom) throws CupomException
     {
         codigoCupom = codigoCupom.toUpperCase();
-        if(!codigoCupom.matches("^[A-Z]\\d{3}$"))
+        if(!codigoCupom.matches("^[A-Z]\\d{3}$")) 
         {
             throw new CupomException();
         }
         this.codigoCupom = codigoCupom;
-        this.valorDesconto = Float.parseFloat(codigoCupom.split("\\D+")[1]);
+        this.valorDesconto = Float.parseFloat(codigoCupom.split("\\D+")[1]); //Pega os numeros da string
     }
     
     public String getCodigo()
@@ -45,8 +48,9 @@ public abstract class Cupom implements Desconto {
         this.valorDesconto = Float.parseFloat(codigoCupom.split("\\D+")[1]);
     }
     
-    @Override
-    public abstract float desconto(float valorTotal);
+    
+    @Override //Faz com que todos os filhos da classe abstrata cupom tenham que implementar o metodo calculaDesconto da interface Desconto
+    public abstract float calculaDesconto(float valorTotal);
 
     @Override
     public String toString() {

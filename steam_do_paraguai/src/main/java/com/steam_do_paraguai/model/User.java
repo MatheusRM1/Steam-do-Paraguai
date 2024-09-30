@@ -1,7 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+Nome: Lukas Freitas de Carvalho - Matrícula: 202376033
+Nome: Matheus Ribeiro Menezes - Matrícula: 202376023
+Nome: João Víctor Nicácio Silva - Matrícula: 202365565C
+*/
 package com.steam_do_paraguai.model;
 
 import com.steam_do_paraguai.exception.UsuarioException;
@@ -10,10 +11,6 @@ import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
 import java.util.List;
 
-/**
- *
- * @author mathe
- */
 public abstract class User {
 
     private String nome;
@@ -26,9 +23,13 @@ public abstract class User {
         setSenha(s);
         this.type = a;
     }
-
+    /***
+     * Valida o nome, devendo conter ao menos uma letra e pode conter numeros sem espaços
+     * @param n
+     * @return 
+     */
     private boolean validoNome(String n) {
-        String regex = "^[A-Za-z0-9]+$";
+        String regex = "^[A-Za-z0-9]+$"; 
         String regexLetra = ".*[A-Za-z]+.*";
         
         
@@ -55,7 +56,11 @@ public abstract class User {
 
         return true;
     }
-    
+    /***
+     * Valida a senha podendo conter qualquer caractere exceto o espaço
+     * @param s
+     * @return 
+     */
     private boolean validoSenha(String s){
         String regex = "^[A-Za-z0-9]+$";
         
@@ -86,7 +91,7 @@ public abstract class User {
         
         this.senha = novaSenha;
     }
-
+    //O type e utilizado para identificar quem esta acessando o sistema sendo ou usuario ou admin
     public String acessoAoSistema() {
         return this.type;
     }

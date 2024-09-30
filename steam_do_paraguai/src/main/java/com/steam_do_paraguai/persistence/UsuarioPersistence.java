@@ -1,10 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+Nome: Lukas Freitas de Carvalho - Matrícula: 202376033
+Nome: Matheus Ribeiro Menezes - Matrícula: 202376023
+Nome: João Víctor Nicácio Silva - Matrícula: 202365565C
+*/
 package com.steam_do_paraguai.persistence;
-
-
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -13,12 +12,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.steam_do_paraguai.model.Usuario;
 
-
-
-/**
- *
- * @author mathe
- */
 public class UsuarioPersistence implements Persistence<Usuario>{
     
     private static final String PATH = DIRECTORY +"/usuarios.json";

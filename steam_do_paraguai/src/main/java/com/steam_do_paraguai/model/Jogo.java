@@ -1,3 +1,8 @@
+/*
+Nome: Lukas Freitas de Carvalho - Matrícula: 202376033
+Nome: Matheus Ribeiro Menezes - Matrícula: 202376023
+Nome: João Víctor Nicácio Silva - Matrícula: 202365565C
+*/
 package com.steam_do_paraguai.model;
 
 import com.steam_do_paraguai.exception.JogoException;
@@ -22,6 +27,11 @@ public class Jogo {
         return preco;
     }
     
+    /***
+     * Verifica se alem do nome ser valido, se existem outros jogos com o mesmo nome na lista de jogos.
+     * @param nome
+     * @return 
+     */
     private boolean valido(String nome){
         
         if(nome == null || nome.isEmpty())
@@ -38,7 +48,7 @@ public class Jogo {
         
         return true;
     }
-
+    
     public void setNome(String nome) throws JogoException {
         if(!valido(nome))
             throw new JogoException("O nome não pode ser nulo");

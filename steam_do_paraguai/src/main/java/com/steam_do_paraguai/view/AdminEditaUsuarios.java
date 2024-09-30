@@ -1,13 +1,12 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+Nome: Lukas Freitas de Carvalho - Matrícula: 202376033
+Nome: Matheus Ribeiro Menezes - Matrícula: 202376023
+Nome: João Víctor Nicácio Silva - Matrícula: 202365565C
+*/
 package com.steam_do_paraguai.view;
 
 import com.steam_do_paraguai.exception.UsuarioException;
-import com.steam_do_paraguai.model.Admin;
 import com.steam_do_paraguai.model.Usuario;
-import com.steam_do_paraguai.persistence.AdminPersistence;
 import com.steam_do_paraguai.persistence.Persistence;
 import com.steam_do_paraguai.persistence.UsuarioPersistence;
 import java.util.ArrayList;
@@ -15,20 +14,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import javax.swing.table.DefaultTableModel;
-
-/**
- *
- * @author lukas-freitas
- */
 public class AdminEditaUsuarios extends javax.swing.JPanel {
 
     private MenuPrincipal tela;
     private List<Usuario> listaUsuarios;
     Persistence<Usuario> usuarioPersistence;
 
-    /**
-     * Creates new form AdminEditaUsuarios
-     */
     public AdminEditaUsuarios(MenuPrincipal tela) {
         this.tela = tela;
         listaUsuarios = new ArrayList<>();
@@ -273,6 +264,10 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jAdicionaButtonActionPerformed
 
+    /***
+     * Faz com que ao clicar na tabela, sejam atualizados os campos
+     * @param evt 
+     */
     private void jTabelaUsuariosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelaUsuariosMouseReleased
         if (jTabelaUsuarios.getSelectedRow() != -1) {
             jNomeField.setText(jTabelaUsuarios.getValueAt(jTabelaUsuarios.getSelectedRow(), 0).toString());
