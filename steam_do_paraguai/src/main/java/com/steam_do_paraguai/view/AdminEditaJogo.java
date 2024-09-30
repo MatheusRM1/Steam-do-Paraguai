@@ -129,15 +129,13 @@ public class AdminEditaJogo extends javax.swing.JPanel {
 
         descricaoField.setBackground(new java.awt.Color(30, 30, 29));
         descricaoField.setForeground(new java.awt.Color(255, 255, 255));
-<<<<<<< HEAD
         descricaoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                descricaoFieldActionPerformed(evt);
+                actionPerformed(evt);
             }
         });
-=======
+
         descricaoField.setText("Descrição do jogo");
->>>>>>> origin/main
 
         preçoField.setBackground(new java.awt.Color(30, 30, 29));
         preçoField.setForeground(new java.awt.Color(255, 255, 255));
