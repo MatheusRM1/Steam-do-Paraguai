@@ -9,7 +9,16 @@ public class Jogo {
     private String nome;
     private String descricao;
     private float preco;
-
+    
+    public Jogo(String nome, String descricao, float preco)throws JogoException
+    {
+        System.out.println(nome);
+        this.setNome(nome);
+        this.setDescricao(descricao);
+        this.setPreco(preco);
+        
+    }
+    
     public String getNome(){
         return nome;
     }
@@ -24,7 +33,7 @@ public class Jogo {
     
     private boolean valido(String nome){
         
-        if(nome == null || nome.isEmpty())
+        if(nome.isEmpty())
             return false;
         
         Persistence<Jogo> jogoPersistence = new JogoPersistence();
@@ -47,7 +56,7 @@ public class Jogo {
     }
 
     public void setDescricao(String descricao) throws JogoException {
-         if(descricao == null || descricao.isEmpty())
+         if(descricao.isEmpty())
             throw new JogoException("A descrição não pode ser nula");
                 
         this.descricao = descricao;

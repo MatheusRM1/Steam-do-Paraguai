@@ -198,17 +198,7 @@ public class LojaPanel extends javax.swing.JPanel {
     private void addToCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartButtonActionPerformed
         int indexRow = this.shopTableGames.getSelectedRow();
         if (indexRow != -1) {
-            String nome = this.shopTableGames.getValueAt(indexRow, 0).toString();
-            String descricao = this.shopTableGames.getValueAt(indexRow, 1).toString();
-            Float preco = Float.parseFloat(this.shopTableGames.getValueAt(indexRow, 2).toString());
-            Jogo jogo = new Jogo();
-            try {
-                jogo.setNome(nome);
-                jogo.setDescricao(descricao);
-                jogo.setPreco(preco);
-            } catch (JogoException e) {
-                JOptionPane.showMessageDialog(null, "Erro ao adicionar o jogo");
-            }
+            Jogo jogo = this.listaJogos.get(indexRow);
             if (!verificaJogosUsuario(jogo)) {
                 if (!verificaCarrinhoUsuario(jogo)) {
                     ((Usuario) this.tela.getUsuario()).getCarrinho().adicionaJogo(jogo);
@@ -244,6 +234,7 @@ public class LojaPanel extends javax.swing.JPanel {
 
     private boolean verificaJogosUsuario(Jogo jogo) {
         List<Jogo> jogos = ((Usuario) this.tela.getUsuario()).getJogos();
+        
         for (int i = 0; i < jogos.size(); i += 1) {
             if (jogos.get(i).getNome().toLowerCase().equals(jogo.getNome().toLowerCase())) {
                 return true;
@@ -255,6 +246,7 @@ public class LojaPanel extends javax.swing.JPanel {
     private boolean verificaCarrinhoUsuario(Jogo jogo) {
         List<Jogo> jogos = ((Usuario) this.tela.getUsuario()).getCarrinho().getJogos();
         for (int i = 0; i < jogos.size(); i += 1) {
+            System.out.println(jogos.get(i).getNome());
             if (jogos.get(i).getNome().toLowerCase().equals(jogo.getNome().toLowerCase())) {
                 return true;
             }

@@ -274,11 +274,7 @@ public class AdminEditaJogo extends javax.swing.JPanel {
             float preco = Float.parseFloat(preçoField.getText());
             this.nomeValido(nome);
 
-            Jogo novoJogo = new Jogo();
-            novoJogo.setNome(nome);
-            novoJogo.setDescricao(descricao);
-            novoJogo.setPreco(preco);
-
+            Jogo novoJogo = new Jogo(nome,descricao,preco);
             listaJogos.add(novoJogo);
             jogoPersistence.save(listaJogos);
             carregaJogos();
