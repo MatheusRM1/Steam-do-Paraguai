@@ -1,7 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+Nome: Lukas Freitas de Carvalho - Matrícula: 202376033
+Nome: Matheus Ribeiro Menezes - Matrícula: 202376023
+Nome: João Víctor Nicácio Silva - Matrícula: 202365565C
+*/
 package com.steam_do_paraguai.view;
 
 import com.steam_do_paraguai.model.Cupom;
@@ -16,10 +17,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author lukas-freitas
- */
 public class CarrinhoPanel extends javax.swing.JPanel {
     private MenuPrincipal tela;
     private Persistence<Usuario> usuarioPersistence;
@@ -28,9 +25,7 @@ public class CarrinhoPanel extends javax.swing.JPanel {
     private Persistence<Cupom> cupomPersistence;
     private float total;
     private Cupom cupomAplicado;
-    /**
-     * Creates new form CarrinhoPanel
-     */
+
     public CarrinhoPanel(MenuPrincipal tela) {
     this.tela = tela;
     usuarioPersistence = new UsuarioPersistence();
@@ -43,7 +38,7 @@ public class CarrinhoPanel extends javax.swing.JPanel {
     
     initComponents();
     this.carregaCarrinho();
-    this.carregaTotal();
+    this.calculaTotal();
     this.exibeTotal();
     String valor = String.format("%.2f", ((Usuario) this.tela.getUsuario()).getSaldo());
     valor = valor.replaceAll("[.]",",");
@@ -182,6 +177,7 @@ public class CarrinhoPanel extends javax.swing.JPanel {
         compraJogos();
     }//GEN-LAST:event_buyButtonActionPerformed
 
+    
     private void validaCupomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validaCupomButtonActionPerformed
          if(!this.cupomTextField.getText().isEmpty())
         {
@@ -191,9 +187,9 @@ public class CarrinhoPanel extends javax.swing.JPanel {
                 {
                     if(this.cupomAplicado != null)
                     {
-                        this.carregaTotal();
+                        this.calculaTotal();
                     }
-                    this.total = this.cupons.get(i).desconto(total);
+                    this.total = this.cupons.get(i).calculaDesconto(total);
                     this.exibeTotal();
                     
                     if(this.cupons.get(i) instanceof CupomFixo)
@@ -217,6 +213,7 @@ public class CarrinhoPanel extends javax.swing.JPanel {
          
     }//GEN-LAST:event_validaCupomButtonActionPerformed
 
+    
     private void carregaCarrinho()
     {
             List<Jogo> jogos = ((Usuario) this.tela.getUsuario()).getCarrinho().getJogos();
@@ -255,7 +252,7 @@ public class CarrinhoPanel extends javax.swing.JPanel {
                 }
                 usuarioPersistence.save(lista);
                 this.lista = usuarioPersistence.findAll();
-                this.carregaTotal();
+                this.calculaTotal();
                 this.exibeTotal();
                 
                 this.carregaCarrinho();
@@ -275,7 +272,7 @@ public class CarrinhoPanel extends javax.swing.JPanel {
         }
         
     }
-    private void carregaTotal()
+    private void calculaTotal()
     {
         
         this.total = 0;
@@ -289,6 +286,7 @@ public class CarrinhoPanel extends javax.swing.JPanel {
         }
         
     }
+    
     private void exibeTotal()
     {
         String textLabel = this.totalLabel.getText();

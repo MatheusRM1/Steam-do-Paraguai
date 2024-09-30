@@ -1,7 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+Nome: Lukas Freitas de Carvalho - Matrícula: 202376033
+Nome: Matheus Ribeiro Menezes - Matrícula: 202376023
+Nome: João Víctor Nicácio Silva - Matrícula: 202365565C
+*/
 package com.steam_do_paraguai.view;
 
 import com.steam_do_paraguai.model.Admin;
@@ -9,42 +10,40 @@ import com.steam_do_paraguai.model.User;
 import com.steam_do_paraguai.model.Usuario;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author lukas-freitas
- */
 public class MenuPrincipal extends javax.swing.JFrame {
-
+    
     private User usuario;
-
-    /**
-     * Creates new form MenuPrincipal
-     */
+    
     public MenuPrincipal() {
         this.usuario = null;
         initComponents();
         LoginPanel log = new LoginPanel(this);
-        this.mudaPanel(log);
+        this.mudaPanel(log); //Muda painel para o Login no inicio
     }
 
     public User getUsuario() {
             return this.usuario;
     }
     
+    /***
+     * Muda o painel do template
+     * @param temp 
+     */
     public void mudaPanel(javax.swing.JPanel temp)
     {
         temp.setSize(708,368);
         temp.setLocation(0,0);
-        template.removeAll();
+        template.removeAll(); //O template e o panel cinza escuro no MenuPrincipal que permite que as outras telas sejam substituidas por ele
         template.add(temp);
         template.revalidate();
         template.repaint();
     }
 
+    
     public void setDeslogado() {
         this.usuario = null;
 
-        iniciarSessaoButton.setText("INICIAR SESSAO");
+        iniciarSessaoButton.setText("INICIAR SESSAO"); //Redefine o botao de iniciar sessao
         java.awt.event.ActionListener[] acao = iniciarSessaoButton.getActionListeners();
         iniciarSessaoButton.removeActionListener(acao[0]);
         iniciarSessaoButton.addActionListener(new java.awt.event.ActionListener() {
@@ -107,16 +106,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         LojaPanel loja = new LojaPanel(this);
         this.mudaPanel(loja);
     }
-    private void userButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        EscolhaUsuario log = new EscolhaUsuario(this);
-        this.mudaPanel(log);
-    }
-
-    private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        EscolhaAdmin log = new EscolhaAdmin(this);
-        this.mudaPanel(log);
-    }
-    
+    /***
+     * Faz com que o botao da loja fique centralizado e esconde os outros botoes para o Admin
+     */
     private void configurarLayoutAdmin() {
         this.fundosButton.setVisible(false);
         this.bibliotecaButton.setVisible(false);
@@ -192,6 +184,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
     }
     
+    
+    /***
+     * Retoma os botoes da NavBar para o usuario
+     */
     private void configurarLayoutUsuario()
     {
         this.bibliotecaButton.setVisible(true);
@@ -516,6 +512,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bibliotecaButtonActionPerformed
 
+      private void userButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        EscolhaUsuario log = new EscolhaUsuario(this);
+        this.mudaPanel(log);
+    }
+
+    private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        EscolhaAdmin log = new EscolhaAdmin(this);
+        this.mudaPanel(log);
+    }
     /**
      * @param args the command line arguments
      */
@@ -550,7 +555,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraSuperiorPanel;
     private javax.swing.JButton bibliotecaButton;

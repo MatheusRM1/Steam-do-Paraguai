@@ -102,7 +102,7 @@
         <Component class="javax.swing.JLabel" name="gameName">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="SansSerif" size="60" style="1"/>
+              <Font name="SansSerif" size="48" style="1"/>
             </Property>
           </Properties>
         </Component>
@@ -151,7 +151,6 @@
     </Container>
     <Component class="javax.swing.JTextField" name="librarySearchField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="librarySearchFieldActionPerformed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="librarySearchFieldKeyReleased"/>
       </Events>
     </Component>
