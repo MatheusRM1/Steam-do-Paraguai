@@ -246,7 +246,6 @@ public class LojaPanel extends javax.swing.JPanel {
     private boolean verificaCarrinhoUsuario(Jogo jogo) {
         List<Jogo> jogos = ((Usuario) this.tela.getUsuario()).getCarrinho().getJogos();
         for (int i = 0; i < jogos.size(); i += 1) {
-            System.out.println(jogos.get(i).getNome());
             if (jogos.get(i).getNome().toLowerCase().equals(jogo.getNome().toLowerCase())) {
                 return true;
             }
