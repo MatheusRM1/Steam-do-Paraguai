@@ -61,8 +61,8 @@ public class AdminEditaJogo extends javax.swing.JPanel {
         adicionarButton = new javax.swing.JButton();
         editarButton = new javax.swing.JButton();
         removerButton = new javax.swing.JButton();
-        descricaoField = new javax.swing.JTextField();
         preçoField = new javax.swing.JTextField();
+        descricaoField = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(61, 122, 155));
         setMaximumSize(new java.awt.Dimension(708, 368));
@@ -127,18 +127,11 @@ public class AdminEditaJogo extends javax.swing.JPanel {
             }
         });
 
-        descricaoField.setBackground(new java.awt.Color(30, 30, 29));
-        descricaoField.setForeground(new java.awt.Color(255, 255, 255));
-        descricaoField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actionPerformed(evt);
-            }
-        });
-
-        descricaoField.setText("Descrição do jogo");
-
         preçoField.setBackground(new java.awt.Color(30, 30, 29));
         preçoField.setForeground(new java.awt.Color(255, 255, 255));
+
+        descricaoField.setBackground(new java.awt.Color(30, 30, 29));
+        descricaoField.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -157,14 +150,14 @@ public class AdminEditaJogo extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(adicionarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(nomeField)
-                    .addComponent(descricaoField)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nomeLabel)
                             .addComponent(descricaoLabel)
                             .addComponent(preçoLabel)
                             .addComponent(preçoField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(descricaoField))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -192,7 +185,7 @@ public class AdminEditaJogo extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(adminGamesList, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

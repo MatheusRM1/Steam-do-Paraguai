@@ -38,7 +38,7 @@ public class BibliotecaPanel extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(708, 368));
         setPreferredSize(new java.awt.Dimension(708, 368));
 
-        gameName.setFont(new java.awt.Font("SansSerif", 1, 48)); // NOI18N
+        gameName.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
 
         gameDescription.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
         gameDescription.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);

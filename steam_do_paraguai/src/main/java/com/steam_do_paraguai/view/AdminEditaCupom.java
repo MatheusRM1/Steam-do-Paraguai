@@ -62,7 +62,7 @@ public class AdminEditaCupom extends javax.swing.JPanel {
         codigoLabel.setForeground(new java.awt.Color(255, 255, 255));
         codigoLabel.setText("Código no formato A000:");
 
-        codigoTextField.setBackground(new java.awt.Color(30, 30, 30));
+        codigoTextField.setForeground(new java.awt.Color(0, 0, 0));
 
         descontoLabel.setForeground(new java.awt.Color(255, 255, 255));
         descontoLabel.setText("Desconto");
@@ -172,14 +172,22 @@ public class AdminEditaCupom extends javax.swing.JPanel {
      */
     private boolean verificaExistente()
     {
+        int cont = 0;
         for(int i = 0; i<this.listaCupons.size();i+=1)
         {
             if(this.codigoTextField.getText().equals(this.listaCupons.get(i).getCodigo()))
             {
-                return true;
+                cont+=1;
             }
         }
-        return false;
+        if(cont <= 1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
     
     private void removerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerButtonActionPerformed

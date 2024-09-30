@@ -102,7 +102,7 @@
         <Component class="javax.swing.JLabel" name="gameName">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="SansSerif" size="48" style="1"/>
+              <Font name="SansSerif" size="36" style="1"/>
             </Property>
           </Properties>
         </Component>

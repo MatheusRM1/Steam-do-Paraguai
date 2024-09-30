@@ -17,7 +17,6 @@ public class Jogo {
     
     public Jogo(String nome, String descricao, float preco)throws JogoException
     {
-        System.out.println(nome);
         this.setNome(nome);
         this.setDescricao(descricao);
         this.setPreco(preco);
