@@ -259,6 +259,7 @@ public class CarrinhoPanel extends javax.swing.JPanel {
                 String valor = String.format("%.2f", ((Usuario) this.tela.getUsuario()).getSaldo());
                 valor = valor.replaceAll("[.]",",");
                 this.saldoValueLabel.setText(valor);
+                JOptionPane.showMessageDialog(null, "Jogo(s) adquirido(s) com sucesso");
                 
             }
             else
