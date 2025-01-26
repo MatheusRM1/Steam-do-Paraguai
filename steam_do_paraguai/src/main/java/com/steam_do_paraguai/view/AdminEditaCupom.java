@@ -172,22 +172,14 @@ public class AdminEditaCupom extends javax.swing.JPanel {
      */
     private boolean verificaExistente()
     {
-        int cont = 0;
         for(int i = 0; i<this.listaCupons.size();i+=1)
         {
-            if(this.codigoTextField.getText().equals(this.listaCupons.get(i).getCodigo()))
+            if(this.codigoTextField.getText().toUpperCase().equals(this.listaCupons.get(i).getCodigo()))
             {
-                cont+=1;
+                return true;
             }
         }
-        if(cont <= 1)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return false;
     }
     
     private void removerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerButtonActionPerformed

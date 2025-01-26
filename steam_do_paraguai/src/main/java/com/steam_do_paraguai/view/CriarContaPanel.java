@@ -36,11 +36,11 @@ public class CriarContaPanel extends javax.swing.JPanel {
         userLabel = new javax.swing.JLabel();
         userField = new javax.swing.JTextField();
         passwordLabel = new javax.swing.JLabel();
-        passwordField = new javax.swing.JTextField();
         confirmPasswordLabel = new javax.swing.JLabel();
-        confirmPasswordField = new javax.swing.JTextField();
         usuarioRadio = new javax.swing.JRadioButton();
         adminRadio = new javax.swing.JRadioButton();
+        passwordField = new javax.swing.JPasswordField();
+        confirmPasswordField = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(61, 122, 155));
         setMaximumSize(new java.awt.Dimension(708, 368));
@@ -77,6 +77,12 @@ public class CriarContaPanel extends javax.swing.JPanel {
         adminRadio.setForeground(new java.awt.Color(255, 255, 255));
         adminRadio.setText("Admin");
 
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout createAccountPaneLayout = new javax.swing.GroupLayout(createAccountPane);
         createAccountPane.setLayout(createAccountPaneLayout);
         createAccountPaneLayout.setHorizontalGroup(
@@ -85,7 +91,6 @@ public class CriarContaPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(createAccountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(confirmPasswordField)
-                    .addComponent(passwordField)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createAccountPaneLayout.createSequentialGroup()
                         .addComponent(usuarioRadio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -93,9 +98,13 @@ public class CriarContaPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(createAccountButton))
                     .addComponent(userField, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
-                    .addComponent(userLabel)
-                    .addComponent(passwordLabel)
-                    .addComponent(confirmPasswordLabel))
+                    .addComponent(passwordField)
+                    .addGroup(createAccountPaneLayout.createSequentialGroup()
+                        .addGroup(createAccountPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userLabel)
+                            .addComponent(passwordLabel)
+                            .addComponent(confirmPasswordLabel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         createAccountPaneLayout.setVerticalGroup(
@@ -190,16 +199,20 @@ public class CriarContaPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_criarConta
 
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton adminRadio;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JTextField confirmPasswordField;
+    private javax.swing.JPasswordField confirmPasswordField;
     private javax.swing.JLabel confirmPasswordLabel;
     private javax.swing.JButton createAccountButton;
     private javax.swing.JLabel createAccountLabel;
     private javax.swing.JPanel createAccountPane;
-    private javax.swing.JTextField passwordField;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField userField;
     private javax.swing.JLabel userLabel;

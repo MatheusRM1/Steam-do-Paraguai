@@ -29,12 +29,11 @@ public abstract class User {
      * @return 
      */
     private boolean validoNome(String n) {
-        String regex = "^[A-Za-z0-9]+$"; 
-        String regexLetra = ".*[A-Za-z]+.*";
-        
-        
-        if((!n.matches(regex) && !n.matches(regexLetra)) || n.contains(" "))
-            return false;
+        String regex = "^[A-Za-z][A-Za-z0-9]*$";
+
+    if (!n.matches(regex)) {
+        return false;
+    }
 
         Persistence<Usuario> usuarioPersistence = new UsuarioPersistence();
         List<Usuario> listaUsuarios = usuarioPersistence.findAll();

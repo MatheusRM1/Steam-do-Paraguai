@@ -79,10 +79,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="confirmPasswordField" max="32767" attributes="0"/>
-                      <Component id="passwordField" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="usuarioRadio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -91,11 +90,17 @@
                           <Component id="createAccountButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="userField" alignment="0" pref="558" max="32767" attributes="0"/>
-                      <Component id="userLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="confirmPasswordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="passwordField" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="userLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="confirmPasswordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -152,8 +157,6 @@
             <Property name="text" type="java.lang.String" value="Senha"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="passwordField">
-        </Component>
         <Component class="javax.swing.JLabel" name="confirmPasswordLabel">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -161,8 +164,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Confirmar Senha"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="confirmPasswordField">
         </Component>
         <Component class="javax.swing.JRadioButton" name="usuarioRadio">
           <Properties>
@@ -185,6 +186,13 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Admin"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="passwordField">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordFieldActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="confirmPasswordField">
         </Component>
       </SubComponents>
     </Container>

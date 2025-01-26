@@ -38,7 +38,7 @@ public class LoginPanel extends javax.swing.JPanel {
         userLabel = new javax.swing.JLabel();
         userField = new javax.swing.JTextField();
         passwordLabel = new javax.swing.JLabel();
-        passwordField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(61, 122, 155));
         setMaximumSize(new java.awt.Dimension(708, 368));
@@ -78,9 +78,6 @@ public class LoginPanel extends javax.swing.JPanel {
         passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
         passwordLabel.setText("Senha:");
 
-        passwordField.setBackground(new java.awt.Color(221, 221, 221));
-        passwordField.setForeground(new java.awt.Color(30, 30, 29));
-
         javax.swing.GroupLayout loginAreaPanelLayout = new javax.swing.GroupLayout(loginAreaPanel);
         loginAreaPanel.setLayout(loginAreaPanelLayout);
         loginAreaPanelLayout.setHorizontalGroup(
@@ -88,13 +85,13 @@ public class LoginPanel extends javax.swing.JPanel {
             .addGroup(loginAreaPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(loginAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(passwordField)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginAreaPanelLayout.createSequentialGroup()
                         .addGap(0, 334, Short.MAX_VALUE)
                         .addComponent(createAccountButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(enterAccountButton))
                     .addComponent(userField)
-                    .addComponent(passwordField)
                     .addGroup(loginAreaPanelLayout.createSequentialGroup()
                         .addGroup(loginAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(userLabel)
@@ -111,9 +108,9 @@ public class LoginPanel extends javax.swing.JPanel {
                 .addComponent(userField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(passwordLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(loginAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enterAccountButton)
                     .addComponent(createAccountButton))
@@ -205,7 +202,7 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JButton enterAccountButton;
     private javax.swing.JLabel iniciaSessaoLabel;
     private javax.swing.JPanel loginAreaPanel;
-    private javax.swing.JTextField passwordField;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField userField;
     private javax.swing.JLabel userLabel;

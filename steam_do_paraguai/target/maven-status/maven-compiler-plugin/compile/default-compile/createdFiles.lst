@@ -74,6 +74,7 @@ com/steam_do_paraguai/model/CupomFixo.class
 com/steam_do_paraguai/view/AdminEditaAdmin$1.class
 com/steam_do_paraguai/persistence/AdminPersistence$1.class
 com/steam_do_paraguai/view/AdminEditaUsuarios$6.class
+com/steam_do_paraguai/view/CriarContaPanel$2.class
 com/steam_do_paraguai/view/LojaPanel$3.class
 com/steam_do_paraguai/view/BibliotecaPanel$1.class
 com/steam_do_paraguai/view/CarrinhoPanel$2.class

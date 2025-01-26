@@ -1,1 +1,1 @@
-[{"dados":{"codigoCupom":"A029","valorDesconto":29.0},"typeClass":"CupomPorcentagem"},{"dados":{"codigoCupom":"L010","valorDesconto":10.0},"typeClass":"CupomPorcentagem"},{"dados":{"codigoCupom":"L050","valorDesconto":50.0},"typeClass":"CupomPorcentagem"}]
+[{"dados":{"codigoCupom":"L010","valorDesconto":10.0},"typeClass":"CupomPorcentagem"},{"dados":{"codigoCupom":"L050","valorDesconto":50.0},"typeClass":"CupomPorcentagem"},{"dados":{"codigoCupom":"A029","valorDesconto":29.0},"typeClass":"CupomPorcentagem"}]
