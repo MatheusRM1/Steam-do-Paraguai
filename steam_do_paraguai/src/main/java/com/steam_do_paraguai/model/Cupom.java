@@ -11,6 +11,7 @@ import com.steam_do_paraguai.exception.CupomException;
 public abstract class Cupom implements Desconto {
     private String codigoCupom;
     private float valorDesconto;
+    private boolean usado;
     
     /***
      * Construtor que faz com que o codigo do cupom tenha obrigatoriamente uma letra e 3 digitos, fazendo o valor do desconto ser referente aos 3 digitos.
@@ -26,6 +27,12 @@ public abstract class Cupom implements Desconto {
         }
         this.codigoCupom = codigoCupom;
         this.valorDesconto = Float.parseFloat(codigoCupom.split("\\D+")[1]); //Pega os numeros da string
+        this.usado = false;
+    }
+    
+    public boolean getUsado()
+    {
+        return this.usado;
     }
     
     public String getCodigo()
@@ -37,6 +44,11 @@ public abstract class Cupom implements Desconto {
     {
         return this.valorDesconto;
     }
+    
+    public void setUsado(boolean val){
+            this.usado = val;
+}
+        
     
     public void setCodigo(String codigoCupom) throws CupomException
     {

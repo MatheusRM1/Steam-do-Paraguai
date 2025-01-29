@@ -183,29 +183,31 @@ public class CarrinhoPanel extends javax.swing.JPanel {
         {
             for(int i = 0; i<this.cupons.size(); i+=1)
             {
-                if(this.cupomTextField.getText().toUpperCase().equals(this.cupons.get(i).getCodigo()))
-                {
-                    if(this.cupomAplicado != null)
+                     if(this.cupomTextField.getText().toUpperCase().equals(this.cupons.get(i).getCodigo()) && !this.cupons.get(i).getUsado())
                     {
-                        this.calculaTotal();
-                    }
-                    this.total = this.cupons.get(i).calculaDesconto(total);
-                    this.exibeTotal();
-                    
-                    if(this.cupons.get(i) instanceof CupomFixo)
-                    {
-                        this.cupomAplicado = (CupomFixo)this.cupons.get(i);
-                        JOptionPane.showMessageDialog(null, "O cupom é válido e garante  R$" + String.format("%.2f", this.cupons.get(i).getDesconto()).replaceAll("[.]",",")+ " de desconto na sua compra!");
+                        this.total = this.cupons.get(i).calculaDesconto(total);
+                        this.exibeTotal();
+                        if(this.cupomAplicado != null)
+                        {
+                                this.calculaTotal();
+                        }
+                        if(this.cupons.get(i) instanceof CupomFixo)
+                        {
+                            this.cupomAplicado = (CupomFixo)this.cupons.get(i);
+                            JOptionPane.showMessageDialog(null, "O cupom é válido e garante  R$" + String.format("%.2f", this.cupons.get(i).getDesconto()).replaceAll("[.]",",")+ " de desconto na sua compra!");
+                        }
+                        else
+                        {
+                            this.cupomAplicado = (CupomPorcentagem)this.cupons.get(i);
+                            JOptionPane.showMessageDialog(null, "O cupom é válido e garante " + String.format("%.2f", this.cupons.get(i).getDesconto()).replaceAll("[.]",",")+ "% de desconto na sua compra!");
+                        }
+                        
                         return;
-                    }
-                    else
-                    {
-                        this.cupomAplicado = (CupomPorcentagem)this.cupons.get(i);
-                        JOptionPane.showMessageDialog(null, "O cupom é válido e garante " + String.format("%.2f", this.cupons.get(i).getDesconto()).replaceAll("[.]",",")+ "% de desconto na sua compra!");
-                    }
-                    return;
-                    
                 }
+                else if(this.cupons.get(i).getUsado()){
+                    JOptionPane.showMessageDialog(null, "O cupom não pode mais ser utilizado!");
+                    return;
+            }
             }
         }
          JOptionPane.showMessageDialog(null, "O cupom é inválido!");
@@ -250,6 +252,8 @@ public class CarrinhoPanel extends javax.swing.JPanel {
                         
                     }
                 }
+                this.cupomAplicado.setUsado(true);
+                cupomPersistence.save(cupons);
                 usuarioPersistence.save(lista);
                 this.lista = usuarioPersistence.findAll();
                 this.calculaTotal();

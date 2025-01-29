@@ -250,6 +250,7 @@ public class AdminEditaUsuarios extends javax.swing.JPanel {
         try {
             Usuario p = new Usuario(jNomeField.getText(), jSenhaField.getText(), "Usuario");
             listaUsuarios.add(p);
+            p.setSaldo(Float.parseFloat(jFundosField.getText()));
             model.addRow(new Object[]{
                 p.getNome(),
                 p.getSenha(),

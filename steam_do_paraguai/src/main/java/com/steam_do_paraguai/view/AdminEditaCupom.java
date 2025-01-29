@@ -37,7 +37,7 @@ public class AdminEditaCupom extends javax.swing.JPanel {
         cupomList = new javax.swing.JList<>();
         codigoLabel = new javax.swing.JLabel();
         codigoTextField = new javax.swing.JTextField();
-        descontoLabel = new javax.swing.JLabel();
+        usadoLabel = new javax.swing.JLabel();
         removerButton = new javax.swing.JButton();
         editarButton = new javax.swing.JButton();
         adicionarButton = new javax.swing.JButton();
@@ -45,6 +45,7 @@ public class AdminEditaCupom extends javax.swing.JPanel {
         porcentagemRadioButton = new javax.swing.JRadioButton();
         descontoScrollPane = new javax.swing.JScrollPane();
         descontoTextPane = new javax.swing.JTextPane();
+        descontoLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(61, 122, 155));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -64,8 +65,7 @@ public class AdminEditaCupom extends javax.swing.JPanel {
 
         codigoTextField.setForeground(new java.awt.Color(0, 0, 0));
 
-        descontoLabel.setForeground(new java.awt.Color(255, 255, 255));
-        descontoLabel.setText("Desconto");
+        usadoLabel.setForeground(new java.awt.Color(255, 255, 255));
 
         removerButton.setText("Remover");
         removerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +100,9 @@ public class AdminEditaCupom extends javax.swing.JPanel {
         descontoTextPane.setRequestFocusEnabled(false);
         descontoScrollPane.setViewportView(descontoTextPane);
 
+        descontoLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        descontoLabel1.setText("Desconto");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,25 +111,36 @@ public class AdminEditaCupom extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(cupomListScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 100, Short.MAX_VALUE)
-                        .addComponent(removerButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(editarButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(adicionarButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(codigoLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fixoRadioButton)
-                            .addComponent(codigoLabel)
-                            .addComponent(porcentagemRadioButton)
-                            .addComponent(descontoLabel)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(descontoScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                                .addComponent(codigoTextField, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(removerButton))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(porcentagemRadioButton, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fixoRadioButton, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 110, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(descontoScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                                    .addComponent(codigoTextField, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(18, 18, 18)
+                                .addComponent(usadoLabel)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editarButton)))
+                .addComponent(adicionarButton)
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(264, 264, 264)
+                    .addComponent(descontoLabel1)
+                    .addContainerGap(378, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,14 +152,14 @@ public class AdminEditaCupom extends javax.swing.JPanel {
                         .addGap(6, 6, 6)
                         .addComponent(codigoLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(codigoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(descontoLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(codigoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(usadoLabel))
+                        .addGap(54, 54, 54)
                         .addComponent(descontoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(fixoRadioButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(14, 14, 14)
                         .addComponent(porcentagemRadioButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -153,6 +167,11 @@ public class AdminEditaCupom extends javax.swing.JPanel {
                             .addComponent(editarButton)
                             .addComponent(removerButton))))
                 .addGap(0, 62, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(112, 112, 112)
+                    .addComponent(descontoLabel1)
+                    .addContainerGap(234, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -303,15 +322,21 @@ public class AdminEditaCupom extends javax.swing.JPanel {
        {
            this.codigoTextField.setText(this.cupomList.getSelectedValue().getCodigo());
            this.descontoTextPane.setText("" + this.cupomList.getSelectedValue().getDesconto());
+           if(this.cupomList.getSelectedValue().getUsado())
+           {
+               this.usadoLabel.setText("Cupom já foi utilizado");
+           }
+           else
+           {
+               this.usadoLabel.setText("Cupom ainda disponível!");
+           }
            if(this.cupomList.getSelectedValue() instanceof CupomFixo)
            {
-               this.descontoLabel.setText("Desconto fixo:");
                this.fixoRadioButton.setSelected(true);
                this.porcentagemRadioButton.setSelected(false);
            }
            else if(this.cupomList.getSelectedValue() instanceof CupomPorcentagem)
            {
-               this.descontoLabel.setText("Desconto em porcentagem:");
                this.fixoRadioButton.setSelected(false);
                this.porcentagemRadioButton.setSelected(true);
            }
@@ -326,7 +351,7 @@ public class AdminEditaCupom extends javax.swing.JPanel {
     private javax.swing.JTextField codigoTextField;
     private javax.swing.JList<Cupom> cupomList;
     private javax.swing.JScrollPane cupomListScrollPane;
-    private javax.swing.JLabel descontoLabel;
+    private javax.swing.JLabel descontoLabel1;
     private javax.swing.JScrollPane descontoScrollPane;
     private javax.swing.JTextPane descontoTextPane;
     private javax.swing.JButton editarButton;
@@ -334,5 +359,6 @@ public class AdminEditaCupom extends javax.swing.JPanel {
     private javax.swing.ButtonGroup grupo1;
     private javax.swing.JRadioButton porcentagemRadioButton;
     private javax.swing.JButton removerButton;
+    private javax.swing.JLabel usadoLabel;
     // End of variables declaration//GEN-END:variables
 }
